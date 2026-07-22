@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practical NURBS surface-intersection catalogue</title>
+  <style>
+
+    .bench-nav { position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(50, 64, 77, 0.9); background: rgba(9, 12, 16, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
+    .bench-nav__inner { display: flex; width: min(100% - 2rem, 112rem); min-height: 3.65rem; margin: auto; align-items: center; gap: 1.5rem; }
+    .bench-nav__brand { flex: none; color: #f1f5f9; font-size: 0.78rem; font-weight: 850; letter-spacing: 0.13em; text-decoration: none; text-transform: uppercase; }
+    .bench-nav__brand span { color: #67d4ff; }
+    .bench-nav__links { display: flex; min-width: 0; align-self: stretch; align-items: center; gap: 0.2rem; overflow-x: auto; scrollbar-width: none; }
+    .bench-nav__links::-webkit-scrollbar { display: none; }
+    .bench-nav__link { padding: 0.5rem 0.7rem; border-radius: 0.45rem; color: #8998a6; font-size: 0.76rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
+    .bench-nav__link:hover { background: #17202a; color: #e2e8ef; }
+    .bench-nav__link[aria-current="page"] { background: #192631; color: #7ddcff; }
+    @media (max-width: 44rem) { .bench-nav__inner { width: calc(100% - 1rem); gap: 0.65rem; } .bench-nav__brand span { display: none; } .bench-nav__link { padding: 0.5rem 0.58rem; } }
+    @media print { .bench-nav { display: none; } }
+
+    :root {
+      color-scheme: dark;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #090c10;
+      color: #e8edf2;
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background:
+        radial-gradient(circle at 8% -10%, rgba(56, 189, 248, 0.12), transparent 28rem),
+        #090c10;
+    }
+
+    main {
+      width: min(100% - 2.5rem, 100rem);
+      margin: 0 auto;
+      padding: 4.5rem 0 5rem;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.25rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #26313c;
+    }
+
+    .eyebrow {
+      margin: 0 0 0.65rem;
+      color: #67d4ff;
+      font-size: 0.72rem;
+      font-weight: 750;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      max-width: 18ch;
+      margin: 0;
+      color: #f7fafc;
+      font-size: clamp(2rem, 4vw, 4rem);
+      font-weight: 680;
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+    }
+
+    .summary {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.55rem;
+      max-width: 29rem;
+    }
+
+    .summary span {
+      padding: 0.65rem 0.8rem;
+      border: 1px solid #2a3541;
+      border-radius: 999px;
+      background: rgba(20, 26, 33, 0.72);
+      color: #9daab7;
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .summary strong { color: #f2f6f9; font-size: 0.9rem; }
+    .summary .summary--pass strong { color: #5ce6a2; }
+    .summary .summary--fail strong { color: #ff7c86; }
+
+    .catalogue {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 38rem), 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .case-card {
+      overflow: hidden;
+      border: 1px solid #27323d;
+      border-radius: 0.9rem;
+      background: linear-gradient(145deg, rgba(23, 29, 36, 0.98), rgba(15, 20, 26, 0.98));
+      box-shadow: 0 1.1rem 3.5rem rgba(0, 0, 0, 0.16);
+    }
+
+    .case-card__header {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      justify-content: space-between;
+      min-height: 5.2rem;
+      padding: 1.15rem 1.25rem 1rem;
+      border-bottom: 1px solid #27323d;
+    }
+
+    h2 {
+      margin: 0 0 0.35rem;
+      color: #f3f6f8;
+      font-size: 1rem;
+      font-weight: 680;
+      letter-spacing: -0.015em;
+      line-height: 1.25;
+    }
+
+    code {
+      padding: 0.16rem 0.38rem;
+      border: 1px solid #313d49;
+      border-radius: 0.32rem;
+      background: #11171d;
+      color: #b5c0ca;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 0.74em;
+      overflow-wrap: anywhere;
+    }
+
+    .status {
+      flex: none;
+      padding: 0.28rem 0.48rem;
+      border: 1px solid currentColor;
+      border-radius: 999px;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      line-height: 1;
+    }
+
+    .status--pass { color: #5ce6a2; background: rgba(42, 187, 116, 0.09); }
+    .status--fail { color: #ff7c86; background: rgba(255, 88, 102, 0.09); }
+    .status--not-run { color: #a7b1bb; background: rgba(167, 177, 187, 0.08); }
+
+    .case-card__content {
+      display: grid;
+      grid-template-columns: minmax(15rem, 0.9fr) minmax(0, 1.1fr);
+    }
+
+    figure {
+      display: flex;
+      align-items: center;
+      align-self: stretch;
+      margin: 0;
+      border-right: 1px solid #27323d;
+      background: #0f172a;
+    }
+
+    figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .case-card__details { padding: 0.35rem 1.15rem 1rem; }
+
+    .verdict {
+      min-height: 2.3em;
+      margin: 0;
+      padding: 0.85rem 0 0.75rem;
+      color: #d8e0e7;
+      font-size: 0.84rem;
+      line-height: 1.45;
+    }
+
+    dl, dd { margin: 0; }
+
+    .fact {
+      display: grid;
+      grid-template-columns: 5.2rem minmax(0, 1fr);
+      gap: 0.7rem;
+      padding: 0.65rem 0;
+      border-top: 1px solid #2a3540;
+    }
+
+    dt {
+      color: #778592;
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    dd {
+      color: #c6d0d9;
+      font-size: 0.78rem;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    .fact--purpose dd { color: #98a6b2; }
+
+    footer {
+      margin-top: 2.25rem;
+      color: #687784;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+
+    @media (max-width: 48rem) {
+      main { width: min(100% - 1.25rem, 44rem); padding-top: 2.5rem; }
+      .hero { grid-template-columns: 1fr; gap: 1.25rem; }
+      .summary { justify-content: flex-start; }
+      .case-card__content { grid-template-columns: 1fr; }
+      figure { border-right: 0; border-bottom: 1px solid #27323d; }
+    }
+
+    @media print {
+      :root { color-scheme: light; background: #fff; color: #111; }
+      body { background: #fff; }
+      main { width: 100%; padding: 0; }
+      .hero { break-after: avoid; }
+      .catalogue { grid-template-columns: 1fr; }
+      .case-card { break-inside: avoid; box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html" aria-current="page">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a></div></div></nav>
+  <main>
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Fabrik · Geometry bench</p>
+        <h1>Practical NURBS surface-intersection catalogue</h1>
+      </div>
+      <div class="summary" aria-label="Run summary">
+        <span><strong>23</strong> cases</span>
+        <span class="summary--pass"><strong>23</strong> passed</span>
+        <span class="summary--fail"><strong>0</strong> failed</span>
+        <span><strong>0</strong> not run</span>
+        <span><strong>1183.826 ms</strong> runtime</span>
+      </div>
+    </header>
+    <section class="catalogue" aria-label="Surface-intersection cases">
+      <article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Oblique planar cut</h2>
+      <code>plane_plane_oblique</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/plane_plane_oblique.svg" alt="Reference render for Oblique planar cut" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>line</code> · degree 1 · 1 span · 5.55e-16 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Baseline transverse line between two bounded planar NURBS patches.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Swept profile section</h2>
+      <code>sweep_profile_plane</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/sweep_profile_plane.svg" alt="Reference render for Swept profile section" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>trace-polyline</code> · degree 1 · 1745 spans · 3.57e-07 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Open curved section through a rational swept-profile surface.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Free-form transverse branch</h2>
+      <code>freeform_bicubic_transverse</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/freeform_bicubic_transverse.svg" alt="Reference render for Free-form transverse branch" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>line</code> · degree 1 · 1 span · 6.66e-16 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Primitive-independent transverse intersection of two bicubic patches.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Two close free-form branches</h2>
+      <code>two_close_freeform_branches</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/two_close_freeform_branches.svg" alt="Reference render for Two close free-form branches" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>line</code> · degree 1 · 1 span · 8.26e-12 mm<br><code>line</code> · degree 1 · 1 span · 8.26e-12 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Two nearby regular components must both be discovered and kept separate.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Axial cylinder cut</h2>
+      <code>cylinder_plane_axial</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/cylinder_plane_axial.svg" alt="Reference render for Axial cylinder cut" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>line</code> · degree 1 · 1 span · 7.3e-16 mm<br><code>line</code> · degree 1 · 1 span · 4.58e-16 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A rational cylindrical patch produces two open components.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Cylinder cross-section</h2>
+      <code>cylinder_plane_cross</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/cylinder_plane_cross.svg" alt="Reference render for Cylinder cross-section" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>circle</code> · degree 2 · 4 spans · 2.65e-07 mm · radius 1 mm · recognized</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A rational cylindrical patch produces one closed seam-crossing loop.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Spherical corner cap section</h2>
+      <code>sphere_plane_section</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/sphere_plane_section.svg" alt="Reference render for Spherical corner cap section" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>circle</code> · degree 2 · 4 spans · 2.28e-07 mm · radius 0.953939 mm · recognized</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A rational spherical patch produces a closed loop away from its poles.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Short segment bounded by surface B</h2>
+      <code>flat_short_segment_bounded_by_b</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/flat_short_segment_bounded_by_b.svg" alt="Reference render for Short segment bounded by surface B" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>line</code> · degree 1 · 1 span · 3.61e-16 mm</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A short but comfortably resolved component terminates at surface boundaries.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Microscopic cylinder section</h2>
+      <code>microscopic_cylinder_section</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/microscopic_cylinder_section.svg" alt="Reference render for Microscopic cylinder section" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>circle</code> · degree 2 · 4 spans · 1.95e-08 mm · radius 0.001 mm · recognized</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>The same general path handles submillimetre geometry with an explicit tolerance.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Metre-scale cylinder section</h2>
+      <code>metre_scale_cylinder_section</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/metre_scale_cylinder_section.svg" alt="Reference render for Metre-scale cylinder section" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>circle</code> · degree 2 · 4 spans · 1.53e-05 mm · radius 1000 mm · recognized</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>The same general path handles metre-scale geometry with an explicit tolerance.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Parallel separated planes</h2>
+      <code>plane_plane_parallel</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/plane_plane_parallel.svg" alt="Reference render for Parallel separated planes" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Separated parallel patches are a valid empty result.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Parallel planes within tolerance</h2>
+      <code>parallel_planes_gap_within_tolerance</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/parallel_planes_gap_within_tolerance.svg" alt="Reference render for Parallel planes within tolerance" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>An exact uniform gap remains empty even when it is smaller than the Design tolerance.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Parallel planes outside tolerance</h2>
+      <code>parallel_planes_gap_outside_tolerance</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/parallel_planes_gap_outside_tolerance.svg" alt="Reference render for Parallel planes outside tolerance" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A uniform gap larger than the Design tolerance is classified as empty without proximity candidates.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Free-form bowl within tolerance</h2>
+      <code>freeform_bowl_gap_within_tolerance</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/freeform_bowl_gap_within_tolerance.svg" alt="Reference render for Free-form bowl within tolerance" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A curved near miss remains empty when its exact minimum gap is smaller than the Design tolerance.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Free-form bowl outside tolerance</h2>
+      <code>freeform_bowl_gap_outside_tolerance</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/freeform_bowl_gap_outside_tolerance.svg" alt="Reference render for Free-form bowl outside tolerance" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A curved near miss with a minimum gap larger than the Design tolerance is classified as empty.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Nested coaxial cylinders</h2>
+      <code>coaxial_cylinders_disjoint</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/coaxial_cylinders_disjoint.svg" alt="Reference render for Nested coaxial cylinders" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Overlapping control bounds do not turn nested cylindrical surfaces into an intersection.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Intersecting planes with disjoint patches</h2>
+      <code>flat_infinite_planes_intersect_patches_disjoint</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/flat_infinite_planes_intersect_patches_disjoint.svg" alt="Reference render for Intersecting planes with disjoint patches" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Correct empty relation.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>empty</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Intersecting supports remain empty when their bounded domains do not meet.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Extrusion cap tangent to spherical corner</h2>
+      <code>sphere_plane_tangent_point</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/sphere_plane_tangent_point.svg" alt="Reference render for Extrusion cap tangent to spherical corner" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured singular-ambiguity rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>singular-ambiguity</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>An isolated tangent contact is deliberately rejected by the first curve-only capability.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Coincident planar patches</h2>
+      <code>plane_plane_coincident</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/plane_plane_coincident.svg" alt="Reference render for Coincident planar patches" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured coincident-ambiguity rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>coincident-ambiguity</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A coincident area is deliberately rejected by the first curve-only capability.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Non-positive rational weight</h2>
+      <code>invalid_weight</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/invalid_weight.svg" alt="Reference render for Non-positive rational weight" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured invalid-input rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>invalid-input</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>Malformed non-positive rational weights are rejected before numerical work.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Five branches on a degree-five patch</h2>
+      <code>high_degree_five_transverse_branches</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/high_degree_five_transverse_branches.svg" alt="Reference render for Five branches on a degree-five patch" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured unsupported-input rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>unsupported-input</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A mathematically valid surface outside the initial degree limit is rejected clearly.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Input accuracy exhausts Design tolerance</h2>
+      <code>accuracy_budget_exhausted</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/accuracy_budget_exhausted.svg" alt="Reference render for Input accuracy exhausts Design tolerance" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured below-resolution rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>below-resolution</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>The operation rejects before numerical work when no output-error budget remains.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Bounded circular arc</h2>
+      <code>quarter_cylinder_plane_arc</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/quarter_cylinder_plane_arc.svg" alt="Reference render for Bounded circular arc" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>complete</dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd><code>circular-arc</code> · degree 2 · 1 span · 1.94e-07 mm · radius 1 mm · sweep 90° · recognized</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A surface-domain boundary restricts a circular intersection without losing its rational degree-two form.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article>
+    </section>
+    <footer>Generated by <code>bench.py</code> from the Level 1 corpus.</footer>
+  </main>
+</body>
+</html>

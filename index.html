@@ -26,6 +26,61 @@
         #090c10;
     }
 
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(50, 64, 77, 0.9);
+      background: rgba(9, 12, 16, 0.88);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav__inner {
+      display: flex;
+      width: min(100% - 2rem, 78rem);
+      min-height: 3.65rem;
+      margin: auto;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      flex: none;
+      color: #f1f5f9;
+      font-size: 0.78rem;
+      font-weight: 850;
+      letter-spacing: 0.13em;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .brand span { color: #67d4ff; }
+
+    .nav__links {
+      display: flex;
+      min-width: 0;
+      align-self: stretch;
+      align-items: center;
+      gap: 0.2rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+
+    .nav__links::-webkit-scrollbar { display: none; }
+
+    .nav__links a {
+      padding: 0.5rem 0.7rem;
+      border-radius: 0.45rem;
+      color: #8998a6;
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .nav__links a:hover { background: #17202a; color: #e2e8ef; }
+
     main {
       width: min(100% - 2.5rem, 78rem);
       margin: 0 auto;
@@ -111,6 +166,16 @@
     .report--ssi {
       --accent: linear-gradient(90deg, #38bdf8, #34d399);
       --glow: radial-gradient(circle, rgba(56, 189, 248, 0.18), transparent 68%);
+    }
+
+    .report--face {
+      --accent: linear-gradient(90deg, #60a5fa, #22d3ee);
+      --glow: radial-gradient(circle, rgba(34, 211, 238, 0.15), transparent 68%);
+    }
+
+    .report--partition {
+      --accent: linear-gradient(90deg, #34d399, #a78bfa);
+      --glow: radial-gradient(circle, rgba(52, 211, 153, 0.15), transparent 68%);
     }
 
     .report--boolean {
@@ -221,6 +286,9 @@
 
     @media (max-width: 46rem) {
       main { width: min(100% - 1.25rem, 38rem); padding-top: 3rem; }
+      .nav__inner { width: calc(100% - 1rem); gap: 0.65rem; }
+      .brand span { display: none; }
+      .nav__links a { padding: 0.5rem 0.58rem; }
       .reports { grid-template-columns: 1fr; }
       .report { min-height: 23rem; }
       footer { flex-direction: column; }
@@ -228,6 +296,17 @@
   </style>
 </head>
 <body>
+  <nav aria-label="Geometry bench catalogues">
+    <div class="nav__inner">
+      <a class="brand" href="./">Fabrik <span>Benches</span></a>
+      <div class="nav__links">
+        <a href="nurbs-surface-intersections/CATALOG.html">Surface × Surface</a>
+        <a href="nurbs-face-intersections/CATALOG.html">Face × Face</a>
+        <a href="nurbs-brep-partitioning/CATALOG.html">Partitioning</a>
+        <a href="nurbs-booleans/CATALOG.html">Booleans</a>
+      </div>
+    </div>
+  </nav>
   <main>
     <header>
       <p class="eyebrow">Fabrik · Geometry benches</p>
@@ -236,7 +315,7 @@
     </header>
 
     <section class="reports" aria-label="Published geometry reports">
-      <a class="report report--ssi" href="surface-intersections/">
+      <a class="report report--ssi" href="nurbs-surface-intersections/CATALOG.html">
         <div class="report__body">
           <div class="report__topline">
             <span>Intersection core</span>
@@ -253,7 +332,41 @@
         </div>
       </a>
 
-      <a class="report report--boolean" href="booleans/">
+      <a class="report report--face" href="nurbs-face-intersections/CATALOG.html">
+        <div class="report__body">
+          <div class="report__topline">
+            <span>Trimmed topology</span>
+            <span class="status status--pass">7 passed</span>
+          </div>
+          <h2>Face × Face</h2>
+          <p>Trim-aware intersection results across clipped sections, holes, empty relations, and structured boundary or corner rejections.</p>
+          <div class="metrics">
+            <span>7 cases</span>
+            <span>Trim wires</span>
+            <span>Boundary provenance</span>
+          </div>
+          <div class="open"><span>Open catalogue</span><span class="arrow" aria-hidden="true">→</span></div>
+        </div>
+      </a>
+
+      <a class="report report--partition" href="nurbs-brep-partitioning/CATALOG.html">
+        <div class="report__body">
+          <div class="report__topline">
+            <span>Shared solid groundwork</span>
+            <span class="status status--pass">4 passed</span>
+          </div>
+          <h2>B-rep Partitioning</h2>
+          <p>Operation-independent section and source-edge partitions for transverse, contained, and disjoint solid configurations.</p>
+          <div class="metrics">
+            <span>4 cases</span>
+            <span>8 valid solids</span>
+            <span>Face loops pending</span>
+          </div>
+          <div class="open"><span>Open catalogue</span><span class="arrow" aria-hidden="true">→</span></div>
+        </div>
+      </a>
+
+      <a class="report report--boolean" href="nurbs-booleans/CATALOG.html">
         <div class="report__body">
           <div class="report__topline">
             <span>Solid operations</span>
