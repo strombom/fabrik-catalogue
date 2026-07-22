@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Fabrik mass properties</title><style>
+
+.bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
+
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin-bottom:28px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.card svg{width:100%;height:220px;display:block;border-block:1px solid #26384b}.pass{color:#34d399;font-weight:800}.fail{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:80px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.92rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html" aria-current="page">Mass properties</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a></div></div></nav><div class="content"><h1>Planar NURBS B-rep mass properties</h1><p class="summary"><strong>6/6</strong> cases match · signed Shell orientation and net volume · 0.00001 mm Design tolerance</p><main class="grid"><article class="card"><header><div><h2>Rectangular prism</h2><code>rectangular_prism</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Rectangular prism">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="40,180 260,180 260,40 40,40" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">solid</text>
+  </svg><dl><dt>Expected</dt><dd>24 mm³ net · [24] mm³ signed Shells</dd><dt>Actual</dt><dd>24.000000000 mm³ · Shell 0 outer: 24.000000000 mm³ · 0.00e+0 mm accuracy</dd></dl></article>
+<article class="card"><header><div><h2>Translated skew prism</h2><code>translated_skew_prism</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Translated skew prism">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="84,180 260,156.66666666666666 216,40 40,63.33333333333333" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">solid</text>
+  </svg><dl><dt>Expected</dt><dd>63 mm³ net · [63] mm³ signed Shells</dd><dt>Actual</dt><dd>63.000000000 mm³ · Shell 0 outer: 63.000000000 mm³ · 0.00e+0 mm accuracy</dd></dl></article>
+<article class="card"><header><div><h2>Prism with cavity</h2><code>hollow_prism</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Prism with cavity">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="40,180 260,180 260,40 40,40" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <polygon points="122.5,133.33333333333334 177.5,133.33333333333334 177.5,86.66666666666667 122.5,86.66666666666667" fill="#08111f" stroke="#fb923c" stroke-width="3"/><text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">cavity</text>
+  </svg><dl><dt>Expected</dt><dd>184 mm³ net · [192, -8] mm³ signed Shells</dd><dt>Actual</dt><dd>184.000000000 mm³ · Shell 0 outer: 192.000000000 mm³ · Shell 1 cavity: -8.000000000 mm³ · 0.00e+0 mm accuracy</dd></dl></article>
+<article class="card"><header><div><h2>Inverted outer Shell</h2><code>inverted_outer_shell</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Inverted outer Shell">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="40,180 260,180 260,40 40,40" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">inverted-outer</text>
+  </svg><dl><dt>Expected</dt><dd>below-resolution rejection</dd><dt>Actual</dt><dd>below-resolution at output-validation: The outer Shell is inverted or has no resolvable positive volume.</dd></dl></article>
+<article class="card"><header><div><h2>Inverted cavity Shell</h2><code>inverted_cavity_shell</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Inverted cavity Shell">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="40,180 260,180 260,40 40,40" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <polygon points="122.5,133.33333333333334 177.5,133.33333333333334 177.5,86.66666666666667 122.5,86.66666666666667" fill="#08111f" stroke="#fb923c" stroke-width="3"/><text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">inverted-cavity</text>
+  </svg><dl><dt>Expected</dt><dd>below-resolution rejection</dd><dt>Actual</dt><dd>below-resolution at output-validation: A cavity Shell is inverted or has no resolvable negative volume.</dd></dl></article>
+<article class="card"><header><div><h2>Quadratic boundary is deferred</h2><code>quadratic_boundary_deferred</code></div><span class="pass">PASS</span></header><svg viewBox="0 0 300 220" role="img" aria-label="Quadratic boundary is deferred">
+    <rect width="300" height="220" fill="#08111f"/>
+    <polygon points="40,180 260,180 260,40 40,40" fill="#34d399" fill-opacity=".28" stroke="#60a5fa" stroke-width="3"/>
+    <text x="18" y="26" fill="#dbeafe" font-family="system-ui" font-size="14">degree-two</text>
+  </svg><dl><dt>Expected</dt><dd>unsupported-input rejection</dd><dt>Actual</dt><dd>unsupported-input at boundary-integration: Planar Solid volume currently accepts degree-one boundary curves.</dd></dl></article></main></div></body></html>
