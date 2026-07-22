@@ -5,18 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practical NURBS surface-intersection catalogue</title>
   <style>
-
-    .bench-nav { position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid rgba(50, 64, 77, 0.9); background: rgba(9, 12, 16, 0.88); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); }
-    .bench-nav__inner { display: flex; width: min(100% - 2rem, 112rem); min-height: 3.65rem; margin: auto; align-items: center; gap: 1.5rem; }
-    .bench-nav__brand { flex: none; color: #f1f5f9; font-size: 0.78rem; font-weight: 850; letter-spacing: 0.13em; text-decoration: none; text-transform: uppercase; }
-    .bench-nav__brand span { color: #67d4ff; }
-    .bench-nav__links { display: flex; min-width: 0; align-self: stretch; align-items: center; gap: 0.2rem; overflow-x: auto; scrollbar-width: none; }
-    .bench-nav__links::-webkit-scrollbar { display: none; }
-    .bench-nav__link { padding: 0.5rem 0.7rem; border-radius: 0.45rem; color: #8998a6; font-size: 0.76rem; font-weight: 700; text-decoration: none; white-space: nowrap; transition: background 0.15s ease, color 0.15s ease; }
-    .bench-nav__link:hover { background: #17202a; color: #e2e8ef; }
-    .bench-nav__link[aria-current="page"] { background: #192631; color: #7ddcff; }
-    @media (max-width: 44rem) { .bench-nav__inner { width: calc(100% - 1rem); gap: 0.65rem; } .bench-nav__brand span { display: none; } .bench-nav__link { padding: 0.5rem 0.58rem; } }
-    @media print { .bench-nav { display: none; } }
+.bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
 
     :root {
       color-scheme: dark;
@@ -237,7 +236,7 @@
   </style>
 </head>
 <body>
-<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html" aria-current="page">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a></div></div></nav>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html" aria-current="page">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a></div></div></nav>
   <main>
     <header class="hero">
       <div>
@@ -249,7 +248,7 @@
         <span class="summary--pass"><strong>23</strong> passed</span>
         <span class="summary--fail"><strong>0</strong> failed</span>
         <span><strong>0</strong> not run</span>
-        <span><strong>1183.826 ms</strong> runtime</span>
+        <span><strong>1269.501 ms</strong> runtime</span>
       </div>
     </header>
     <section class="catalogue" aria-label="Surface-intersection cases">
