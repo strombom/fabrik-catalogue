@@ -17,7 +17,7 @@
 </style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html" aria-current="page">Booleans</a></div></div></nav><main>
 <p class="eyebrow">Fabrik · Geometry bench</p><h1>Practical NURBS Boolean catalogue</h1>
 <p class="lede">Two closed six-face solids overlap without coincident faces, shared edges, tangency, or corner contact. Every face is a bounded degree-one NURBS surface with shared B-rep edges and face-local p-curves.</p>
-<div class="summary"><span><strong>9/9</strong> validated planar outcomes</span><span><strong>2/2</strong> validated curved Solids</span><span><strong>4</strong> interference fixtures</span><span><strong>4</strong> publication guards</span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001</strong> mm Design tolerance</span></div>
+<div class="summary"><span><strong>10/10</strong> validated planar outcomes</span><span><strong>2/2</strong> validated curved Solids</span><span><strong>5</strong> interference fixtures</span><span><strong>4</strong> publication guards</span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001</strong> mm Design tolerance</span></div>
 <p class="legend"><span class="swatch a">Solid A</span><span class="swatch b">Solid B</span><span class="swatch result">Expected material</span><span class="swatch reverse">Orientation flip</span></p>
 <section class="grid"><article class="case-card">
     <header><div><h2>Cut A by B</h2><code>skew_prisms_cut</code></div><span class="status pass">SOLID PASS</span></header>
@@ -125,6 +125,29 @@
     </section>
   </article>
 <article class="case-card">
+    <header><div><h2>Cut a through-hole</h2><code>through_cutter_cut</code></div><span class="status pass">SOLID PASS</span></header>
+    <div class="slices component"><svg viewBox="0 0 900 220" role="img" aria-label="Cut a through-hole footprints">
+    <rect width="100%" height="100%" fill="#0d141c"/>
+    <polygon points="34.00,186.00 186.00,186.00 186.00,34.00 34.00,34.00" fill="#34d399" fill-opacity=".32" stroke="#60a5fa" stroke-width="3"/>
+    <polygon points="85.30,157.50 134.70,157.50 134.70,62.50 85.30,62.50" fill="#0d141c" fill-opacity="1" stroke="#fb923c" stroke-width="3"/>
+    <text x="16" y="26" fill="#dbeafe" font-size="15" font-family="system-ui">CUT · blue A · orange B</text>
+  </svg></div>
+    <section class="selection"><p>Production topology cut · 10 fragments retained</p></section>
+    <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (16 source images + 8 sections) · 48 face-local Coedges · 12 Wires · 10 Faces · 10 Surfaces · 1.62e-15 mm accuracy</p></section>
+    <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 10 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</p></section>
+    <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 1.62e-15 mm accuracy · 25.500000000 mm³ ± 0.00e+0</p></section>
+    <section class="details">
+      <p>A tool fully enclosed in plan but extending through the base must publish one Solid whose two cap Faces each retain a genuine inner Wire.</p>
+      <dl>
+        <dt>Representation</dt><dd>Two planar six-face NURBS prisms exercise two closed section components, Face fragments with holes, inner-Wire materialization, and final Solid validation.</dd>
+        <dt>Expected</dt><dd>1 closed Shells · 1 validated Solid · 25.500000 mm³</dd>
+        <dt>Interference</dt><dd>8 section Edges · 2 closed components</dd>
+        <dt>Face holes</dt><dd>2 published inner Wires · expected 2</dd>
+        <dt>Result</dt><dd>Shell roles, Face holes, and self-contained Solid snapshots match.</dd>
+      </dl>
+    </section>
+  </article>
+<article class="case-card">
     <header><div><h2>Join disjoint prisms</h2><code>disjoint_prisms_join</code></div><span class="status pass">SOLID PASS</span></header>
     <div class="slices component"><svg viewBox="0 0 900 220" role="img" aria-label="Join disjoint prisms footprints">
     <rect width="100%" height="100%" fill="#0d141c"/>
@@ -132,7 +155,7 @@
     <polygon points="338.00,186.00 459.60,186.00 459.60,34.00 338.00,34.00" fill="#34d399" fill-opacity="0.32" stroke="#fb923c" stroke-width="3"/>
     <text x="16" y="26" fill="#dbeafe" font-size="15" font-family="system-ui">JOIN · blue A · orange B</text>
   </svg></div>
-    <section class="selection"><p>Production empty-interference join · 12 fragments retained</p></section>
+    <section class="selection"><p>Production topology join · 12 fragments retained</p></section>
     <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (24 source images + 0 sections) · 48 face-local Coedges · 12 Wires · 12 Faces · 12 Surfaces · 2.00e-16 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 6 Faces [0, 1, 2, 3, 4, 5] · Shell 1: 6 Faces [6, 7, 8, 9, 10, 11]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>2 Solid snapshots · Shell 0: outer, depth 0 · Shell 1: outer, depth 0 · 2.29e-16 mm accuracy · 20.000000000 mm³ ± 0.00e+0</p></section>
@@ -141,8 +164,9 @@
       <dl>
         <dt>Representation</dt><dd>Two separated six-face NURBS prism solids exercise the empty-interference path and multi-body publication.</dd>
         <dt>Expected</dt><dd>2 closed Shells · 2 validated Solids · 20.000000 mm³</dd>
-        <dt>Interference</dt><dd>0 section Edges</dd>
-        <dt>Result</dt><dd>Shell roles and self-contained Solid snapshots match.</dd>
+        <dt>Interference</dt><dd>0 section Edges · 0 closed components</dd>
+        <dt>Face holes</dt><dd>0 published inner Wires · expected 0</dd>
+        <dt>Result</dt><dd>Shell roles, Face holes, and self-contained Solid snapshots match.</dd>
       </dl>
     </section>
   </article>
@@ -154,7 +178,7 @@
     <polygon points="110.00,135.33 160.67,135.33 160.67,84.67 110.00,84.67" fill="#0d141c" fill-opacity="1" stroke="#fb923c" stroke-width="3"/>
     <text x="16" y="26" fill="#dbeafe" font-size="15" font-family="system-ui">CUT · blue A · orange B</text>
   </svg></div>
-    <section class="selection"><p>Production empty-interference cut · 12 fragments retained</p></section>
+    <section class="selection"><p>Production topology cut · 12 fragments retained</p></section>
     <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (24 source images + 0 sections) · 48 face-local Coedges · 12 Wires · 12 Faces · 12 Surfaces · 5.44e-16 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 6 Faces [0, 1, 2, 3, 4, 5] · Shell 1: 6 Faces [6, 7, 8, 9, 10, 11]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · Shell 1: cavity, depth 1, parent 0 · 5.44e-16 mm accuracy · 184.000000000 mm³ ± 0.00e+0</p></section>
@@ -163,8 +187,9 @@
       <dl>
         <dt>Representation</dt><dd>Two nested six-face NURBS prism solids exercise empty-interference Shell containment and cavity assignment.</dd>
         <dt>Expected</dt><dd>2 closed Shells · 1 validated Solid · 184.000000 mm³</dd>
-        <dt>Interference</dt><dd>0 section Edges</dd>
-        <dt>Result</dt><dd>Shell roles and self-contained Solid snapshots match.</dd>
+        <dt>Interference</dt><dd>0 section Edges · 0 closed components</dd>
+        <dt>Face holes</dt><dd>0 published inner Wires · expected 0</dd>
+        <dt>Result</dt><dd>Shell roles, Face holes, and self-contained Solid snapshots match.</dd>
       </dl>
     </section>
   </article>
