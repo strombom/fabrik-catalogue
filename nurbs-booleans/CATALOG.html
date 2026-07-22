@@ -17,7 +17,7 @@
 </style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html" aria-current="page">Booleans</a></div></div></nav><main>
 <p class="eyebrow">Fabrik · Geometry bench</p><h1>Practical NURBS Boolean catalogue</h1>
 <p class="lede">Two closed six-face solids overlap without coincident faces, shared edges, tangency, or corner contact. Every face is a bounded degree-one NURBS surface with shared B-rep edges and face-local p-curves.</p>
-<div class="summary"><span><strong>10/10</strong> validated planar outcomes</span><span><strong>2/2</strong> validated curved Solids</span><span><strong>5</strong> interference fixtures</span><span><strong>4</strong> publication guards</span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001</strong> mm Design tolerance</span></div>
+<div class="summary"><span><strong>10/10</strong> validated planar outcomes</span><span><strong>2/2</strong> validated curved Solids</span><span><strong>8/8</strong> end-to-end API results</span><span><strong>1/1</strong> façade rejection guard</span><span><strong>5</strong> interference fixtures</span><span><strong>4</strong> publication guards</span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001</strong> mm Design tolerance</span></div>
 <p class="legend"><span class="swatch a">Solid A</span><span class="swatch b">Solid B</span><span class="swatch result">Expected material</span><span class="swatch reverse">Orientation flip</span></p>
 <section class="grid"><article class="case-card">
     <header><div><h2>Cut A by B</h2><code>skew_prisms_cut</code></div><span class="status pass">SOLID PASS</span></header>
@@ -44,6 +44,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>22 Vertices · 33 shared Edges (20 source images + 13 sections) · 66 face-local Coedges · 13 Wires · 13 Faces · 11 Surfaces · 2.42e-15 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 13 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 2.42e-15 mm accuracy · 18.065336037 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>First target: partition both solids, retain material in A but outside B, and close the cut using reversed fragments from B.</p>
       <dl>
@@ -79,6 +80,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>28 Vertices · 42 shared Edges (29 source images + 13 sections) · 84 face-local Coedges · 16 Wires · 16 Faces · 12 Surfaces · 2.42e-15 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 16 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 2.79e-15 mm accuracy · 38.801336037 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>Reuse the same partition while selecting the exterior fragments of both solids.</p>
       <dl>
@@ -114,6 +116,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>14 Vertices · 21 shared Edges (8 source images + 13 sections) · 42 face-local Coedges · 9 Wires · 9 Faces · 9 Surfaces · 2.42e-15 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 9 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 2.42e-15 mm accuracy · 17.934663963 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>Reuse the same partition while retaining only fragments inside both solids.</p>
       <dl>
@@ -136,6 +139,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (16 source images + 8 sections) · 48 face-local Coedges · 12 Wires · 10 Faces · 10 Surfaces · 1.62e-15 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 10 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 1.62e-15 mm accuracy · 25.500000000 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>A tool fully enclosed in plan but extending through the base must publish one Solid whose two cap Faces each retain a genuine inner Wire.</p>
       <dl>
@@ -159,6 +163,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (24 source images + 0 sections) · 48 face-local Coedges · 12 Wires · 12 Faces · 12 Surfaces · 2.00e-16 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 6 Faces [0, 1, 2, 3, 4, 5] · Shell 1: 6 Faces [6, 7, 8, 9, 10, 11]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>2 Solid snapshots · Shell 0: outer, depth 0 · Shell 1: outer, depth 0 · 2.29e-16 mm accuracy · 20.000000000 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>2 final Solid snapshots · matches the staged pipeline</p></section>
     <section class="details">
       <p>A disconnected Join must preserve both closed components as distinct Solid snapshots without spatial sewing or fixture-specific branching.</p>
       <dl>
@@ -182,6 +187,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>16 Vertices · 24 shared Edges (24 source images + 0 sections) · 48 face-local Coedges · 12 Wires · 12 Faces · 12 Surfaces · 5.44e-16 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 6 Faces [0, 1, 2, 3, 4, 5] · Shell 1: 6 Faces [6, 7, 8, 9, 10, 11]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · Shell 1: cavity, depth 1, parent 0 · 5.44e-16 mm accuracy · 184.000000000 mm³ ± 0.00e+0</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>A fully contained tool must become one cavity Shell inside one published Solid rather than a second positive body.</p>
       <dl>
@@ -205,6 +211,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>18 Vertices · 27 shared Edges (19 source images + 8 sections) · 54 face-local Coedges · 11 Wires · 11 Faces · 10 Surfaces · 1.14e-6 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 11 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 1.29e-6 mm accuracy · 14.800818253 mm³ ± 8.07e-5</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>Retain the base outside the through-tool and reverse the selected tool fragments to close the cut across the curved Face.</p>
       <dl>
@@ -228,6 +235,7 @@
     <section class="materialization"><strong>Shared boundary records</strong><p>26 Vertices · 39 shared Edges (31 source images + 8 sections) · 78 face-local Coedges · 15 Wires · 15 Faces · 13 Surfaces · 1.14e-6 mm accuracy</p></section>
     <section class="materialization shells"><strong>Closed Shells</strong><p>Shell 0: 15 Faces [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]</p></section>
     <section class="materialization solids"><strong>Published Solids</strong><p>1 Solid snapshot · Shell 0: outer, depth 0 · 1.29e-6 mm accuracy · 17.200818253 mm³ ± 8.89e-5</p></section>
+    <section class="materialization"><strong>End-to-end API</strong><p>1 final Solid snapshot · matches the staged pipeline</p></section>
     <section class="details">
       <p>Retain the exterior fragments of the filleted base and through-extrusion as one closed curved result boundary.</p>
       <dl>
