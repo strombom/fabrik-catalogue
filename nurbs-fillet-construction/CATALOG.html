@@ -33,7 +33,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
 <nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html" aria-current="page">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
 <main>
 <header>
-  <div class="summary">10/10 expected observations match</div>
+  <div class="summary">11/11 expected observations match</div>
   <h1>Simple fillet arrangements, before topology.</h1>
   <p>The orange Edge is the selection seed. Cyan is the true center axis; green and violet are its contact lines on the two planar support Faces. Gold marks the two limiting sections verified against trimmed Faces. Completed B-rep fillets are intentionally not claimed yet.</p>
 </header>
@@ -43,7 +43,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · simple arrangement</div>
       <h2>Box horizontal edge</h2>
       <p>Baseline exact quarter-round strip between a cap and side Face.</p>
-      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces.</p>
+      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · materialization: rejected</p>
     </div>
   </article>
@@ -53,7 +53,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · simple arrangement</div>
       <h2>Degree-two straight Edge</h2>
       <p>Eligibility follows measured geometry rather than a degree-one primitive label.</p>
-      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces.</p>
+      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · materialization: rejected</p>
     </div>
   </article>
@@ -63,7 +63,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · simple arrangement</div>
       <h2>Box vertical edge</h2>
       <p>The selected Edge orientation changes without changing rolling-ball semantics.</p>
-      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces.</p>
+      <p class="evidence">Strip deviation 0.000e+0 mm; arrangement deviation 0.000e+0 mm; 2 limiting Faces; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · materialization: rejected</p>
     </div>
   </article>
@@ -73,7 +73,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · simple arrangement</div>
       <h2>Oblique dihedral</h2>
       <p>The true center axis is derived from offset planes rather than copied from the seed Edge.</p>
-      <p class="evidence">Strip deviation 2.220e-16 mm; arrangement deviation 2.220e-16 mm; 2 limiting Faces.</p>
+      <p class="evidence">Strip deviation 2.220e-16 mm; arrangement deviation 2.220e-16 mm; 2 limiting Faces; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · materialization: rejected</p>
     </div>
   </article>
@@ -83,7 +83,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · simple arrangement</div>
       <h2>Rigidly transformed box</h2>
       <p>Support recognition and exact strip solution remain model-space invariant.</p>
-      <p class="evidence">Strip deviation 9.930e-16 mm; arrangement deviation 9.930e-16 mm; 2 limiting Faces.</p>
+      <p class="evidence">Strip deviation 9.930e-16 mm; arrangement deviation 9.930e-16 mm; 2 limiting Faces; 1/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · materialization: rejected</p>
     </div>
   </article>
@@ -93,7 +93,17 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · exact strip</div>
       <h2>Oversized radius</h2>
       <p>Trim containment rejects a mathematically valid strip that does not fit the bounded Faces.</p>
-      <p class="evidence">Expected radius-infeasible; received radius-infeasible.</p>
+      <p class="evidence">Expected radius-infeasible; received radius-infeasible. The requested radius places the strip end outside limiting Face 5.</p>
+      <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: rejected</p>
+    </div>
+  </article>
+<article class="case pass">
+    <div class="visual"><svg viewBox="0 0 420 250" role="img" aria-label="Nearby hole Face interference"><line class="seed" x1="101.58620689655172" y1="135.0344827586207" x2="369.17241379310343" y2="188.55172413793102"/><line class="source" x1="369.17241379310343" y1="188.55172413793102" x2="295.5862068965517" y2="222"/><line class="source" x1="295.5862068965517" y1="222" x2="28" y2="168.48275862068965"/><line class="source" x1="28" y1="168.48275862068965" x2="101.58620689655172" y2="135.0344827586207"/><line class="source" x1="201.26206896551722" y1="159.7862068965517" x2="193.90344827586208" y2="163.13103448275862"/><line class="source" x1="193.90344827586208" y1="163.13103448275862" x2="247.4206896551724" y2="173.83448275862068"/><line class="source" x1="247.4206896551724" y1="173.83448275862068" x2="254.77931034482756" y2="170.4896551724138"/><line class="source" x1="254.77931034482756" y1="170.4896551724138" x2="201.26206896551722" y2="159.7862068965517"/><line class="source" x1="101.58620689655172" y1="28" x2="369.17241379310343" y2="81.51724137931035"/><line class="source" x1="369.17241379310343" y1="81.51724137931035" x2="295.5862068965517" y2="114.9655172413793"/><line class="source" x1="295.5862068965517" y1="114.9655172413793" x2="28" y2="61.44827586206896"/><line class="source" x1="28" y1="61.44827586206896" x2="101.58620689655172" y2="28"/><line class="source" x1="201.26206896551722" y1="52.75172413793103" x2="193.90344827586208" y2="56.096551724137925"/><line class="source" x1="193.90344827586208" y1="56.096551724137925" x2="247.4206896551724" y2="66.80000000000001"/><line class="source" x1="247.4206896551724" y1="66.80000000000001" x2="254.77931034482756" y2="63.45517241379311"/><line class="source" x1="254.77931034482756" y1="63.45517241379311" x2="201.26206896551722" y2="52.75172413793103"/><line class="source" x1="101.58620689655172" y1="135.0344827586207" x2="101.58620689655172" y2="28"/><line class="source" x1="369.17241379310343" y1="188.55172413793102" x2="369.17241379310343" y2="81.51724137931035"/><line class="source" x1="295.5862068965517" y1="222" x2="295.5862068965517" y2="114.9655172413793"/><line class="source" x1="28" y1="168.48275862068965" x2="28" y2="61.44827586206896"/><line class="source" x1="201.26206896551722" y1="159.7862068965517" x2="201.26206896551722" y2="52.75172413793103"/><line class="source" x1="193.90344827586208" y1="163.13103448275862" x2="193.90344827586208" y2="56.096551724137925"/><line class="source" x1="247.4206896551724" y1="173.83448275862068" x2="247.4206896551724" y2="66.80000000000001"/><line class="source" x1="254.77931034482756" y1="170.4896551724138" x2="254.77931034482756" y2="63.45517241379311"/><line class="center" x1="79.51034482758621" y1="104.93103448275862" x2="347.09655172413795" y2="158.44827586206895"/><line class="contact first" x1="79.51034482758621" y1="145.06896551724137" x2="347.09655172413795" y2="198.58620689655172"/><line class="contact second" x1="101.58620689655172" y1="94.89655172413792" x2="369.17241379310343" y2="148.41379310344826"/><line class="termination" x1="79.51034482758621" y1="145.06896551724137" x2="101.58620689655172" y2="94.89655172413792"/><line class="termination" x1="347.09655172413795" y1="198.58620689655172" x2="369.17241379310343" y2="148.41379310344826"/></svg></div>
+    <div class="copy">
+      <div class="eyebrow">MATCH · simple arrangement</div>
+      <h2>Nearby hole Face interference</h2>
+      <p>A valid local strip is rejected when its rational fillet surface crosses a nonincident trimmed Face around a through-hole.</p>
+      <p class="evidence">Expected self-intersection; received self-intersection. The proposed fillet surface intersects nonlocal Face 6 inside its trimmed domain.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: rejected</p>
     </div>
   </article>
@@ -103,7 +113,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · exact strip</div>
       <h2>Oblique limiting Faces</h2>
       <p>The first arrangement rejects end sections that require a more general corner solution.</p>
-      <p class="evidence">Expected unsupported-termination; received unsupported-termination.</p>
+      <p class="evidence">Expected unsupported-termination; received unsupported-termination. Limiting Face 5 is not transverse to the exact strip axis.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: rejected</p>
     </div>
   </article>
@@ -113,7 +123,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · below-resolution</div>
       <h2>Below-resolution radius</h2>
       <p>A feature no larger than the Design tolerance is rejected before analysis.</p>
-      <p class="evidence">Expected below-resolution; received below-resolution.</p>
+      <p class="evidence">Expected below-resolution; received below-resolution. The requested fillet radius is not larger than the operation's resolvable model-space distance.</p>
       <p class="stages">input-validation: rejected</p>
     </div>
   </article>
@@ -123,7 +133,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · unsupported-propagation</div>
       <h2>Multiple seed Edges</h2>
       <p>Connected-contour propagation remains an explicit deferred capability.</p>
-      <p class="evidence">Expected unsupported-propagation; received unsupported-propagation.</p>
+      <p class="evidence">Expected unsupported-propagation; received unsupported-propagation. The first fillet path accepts one selected Edge; connected-contour propagation is not implemented yet.</p>
       <p class="stages">input-validation: accepted · selection-analysis: rejected</p>
     </div>
   </article>
@@ -133,7 +143,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · unsupported-support</div>
       <h2>Warped support Face</h2>
       <p>The exact planar solver refuses a genuinely nonplanar support surface.</p>
-      <p class="evidence">Expected unsupported-support; received unsupported-support.</p>
+      <p class="evidence">Expected unsupported-support; received unsupported-support. Support Face 0 is not one stable planar NURBS patch at the recognition tolerance.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · support-analysis: rejected</p>
     </div>
   </article></section>
