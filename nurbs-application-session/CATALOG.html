@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabrik application session bench</title>
+  <style>
+    :root{color-scheme:dark;font-family:Inter,ui-sans-serif,system-ui,sans-serif;background:#071018;color:#dbeafe}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#10243a 0,#071018 42rem)}
+    .bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
+
+    main{width:min(1180px,calc(100% - 32px));margin:0 auto;padding:54px 0 80px}
+    .hero{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:28px}.hero p{max-width:720px;color:#93a4b8;line-height:1.6}
+    h1{margin:0;font-size:clamp(30px,5vw,54px)}.score{font-size:22px;color:#7dd3fc}.score strong{font-size:42px}
+    .grid{display:grid;gap:20px}.case{padding:24px;border:1px solid #26384b;border-radius:18px;background:#0b1723dd;box-shadow:0 18px 50px #0005}
+    .case--pass{border-color:#1f6f63}.case--fail{border-color:#9f3f4b}.case header{display:flex;gap:16px}.case header>span{height:max-content;padding:5px 8px;border-radius:7px;background:#143d38;color:#6ee7b7;font-size:12px;font-weight:800}
+    h2{margin:0 0 7px;font-size:22px}.case header p,.timeline p{margin:0;color:#93a4b8;line-height:1.45}
+    .timeline{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;padding:0;margin:22px 0;list-style:none}.timeline li{display:grid;gap:6px;padding:14px;border:1px solid #213448;border-radius:12px;background:#08131e}.timeline span{color:#7dd3fc;font-size:12px}.timeline code{overflow:hidden;text-overflow:ellipsis;color:#94a3b8;font-size:10px}
+    .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:1px;overflow:hidden;border:1px solid #213448;border-radius:12px;background:#213448}.facts div{padding:12px;background:#0a1520}.facts dt{color:#8294a8;font-size:11px;text-transform:uppercase}.facts dd{margin:5px 0 0;font-weight:700;overflow-wrap:anywhere}
+    footer{margin-top:16px;color:#93a4b8;font-size:13px}
+  </style>
+</head>
+<body>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html" aria-current="page">Application session</a></div></div></nav>
+<main>
+  <section class="hero"><div><h1>Application session</h1><p>Inspectable state transitions through the same application authority used by the browser: one active tool, accepted revisions, CAD previews, display freshness, refusal, and cancellation.</p></div><div class="score"><strong>4</strong> / 4 passed</div></section>
+  <section class="grid"><article class="case case--pass">
+    <header><span>PASS</span><div><h2>Manual Sketch to solid</h2><p>GUI-equivalent actions create, preview, and accept one closed Sketch and one Create Extrude through the application authority.</p></div></header>
+    <ol class="timeline"><li><strong>Open</strong><span>R0 · tool none · preview none</span><code>application-session:manual_sketch_create_extrude:scene:0:accepted</code><p>Accepted empty Design</p></li><li><strong>Draw rectangle</strong><span>R0 · tool sketch · preview none</span><code>application-session:manual_sketch_create_extrude:scene:0:accepted</code><p>Four transient line entities</p></li><li><strong>Finish Sketch</strong><span>R1 · tool none · preview none</span><code>application-session:manual_sketch_create_extrude:scene:2:accepted</code><p>Accepted Sketch Feature</p></li><li><strong>Begin Extrude</strong><span>R1 · tool extrude · preview ready</span><code>application-session:manual_sketch_create_extrude:scene:2:accepted</code><p>Ready solid preview</p></li><li><strong>Accept Extrude</strong><span>R2 · tool none · preview none</span><code>application-session:manual_sketch_create_extrude:scene:5:accepted</code><p>Published solid Part</p></li></ol>
+    <dl class="facts"><div><dt>Accepted revision</dt><dd>2</dd></div><div><dt>Accepted Features</dt><dd>2</dd></div><div><dt>Display bodies</dt><dd>1</dd></div><div><dt>Display triangles</dt><dd>12</dd></div></dl>
+    <footer>Expected: accepted revision 2 with two Features and one displayed solid</footer>
+  </article><article class="case case--pass">
+    <header><span>PASS</span><div><h2>Note edit preserves geometry</h2><p>Changing non-geometric accepted intent advances the Project revision without reevaluating, retessellating, or invalidating a current topology pick.</p></div></header>
+    <ol class="timeline"><li><strong>Select Face</strong><span>R2 · tool none · preview none</span><code>application-session:note_edit_preserves_geometry:scene:5:accepted</code><p>Current token-bound topology pick</p></li><li><strong>Edit Note</strong><span>R3 · tool none · preview none</span><code>application-session:note_edit_preserves_geometry:scene:5:accepted</code><p>Accepted non-geometric Project change</p></li></ol>
+    <dl class="facts"><div><dt>Revision</dt><dd>2 → 3</dd></div><div><dt>Evaluation object</dt><dd>reused</dd></div><div><dt>Display object</dt><dd>reused</dd></div><div><dt>Scene token</dt><dd>application-session:note_edit_preserves_geometry:scene:5:accepted</dd></div><div><dt>Topology selection</dt><dd>preserved</dd></div><div><dt>CAD inspection</dt><dd>brep-face 0</dd></div></dl>
+    <footer>Expected: revision advances while evaluation, display, token, and selection remain current</footer>
+  </article><article class="case case--pass">
+    <header><span>PASS</span><div><h2>Open Sketch refusal and cancellation</h2><p>An incomplete Sketch exposes its rejected CAD preview while the accepted Project stays unchanged, then Cancel removes only transient state.</p></div></header>
+    <ol class="timeline"><li><strong>Finish open Sketch</strong><span>R0 · tool sketch · preview rejected</span><code>application-session:open_sketch_rejected_then_cancelled:scene:0:accepted</code><p>Rejected CAD command preview</p></li><li><strong>Cancel</strong><span>R0 · tool none · preview none</span><code>application-session:open_sketch_rejected_then_cancelled:scene:0:accepted</code><p>Transient draft removed</p></li></ol>
+    <dl class="facts"><div><dt>Rejected preview</dt><dd>rejected</dd></div><div><dt>Accepted revision</dt><dd>0</dd></div><div><dt>Accepted Features</dt><dd>0</dd></div><div><dt>Active tool after Cancel</dt><dd>none</dd></div></dl>
+    <footer>Expected: revision 0 before and after cancellation</footer>
+  </article><article class="case case--pass">
+    <header><span>PASS</span><div><h2>Invalid Extrude refusal and cancellation</h2><p>A zero-length Extrude remains a rejected preview over the accepted Sketch and cancellation restores the accepted display unchanged.</p></div></header>
+    <ol class="timeline"><li><strong>Set extent to 0 mm</strong><span>R1 · tool extrude · preview rejected</span><code>application-session:invalid_extrude_rejected_then_cancelled:scene:2:accepted</code><p>Rejected Extrude preview</p></li><li><strong>Cancel</strong><span>R1 · tool none · preview none</span><code>application-session:invalid_extrude_rejected_then_cancelled:scene:2:accepted</code><p>Accepted Sketch retained</p></li></ol>
+    <dl class="facts"><div><dt>Rejected preview</dt><dd>rejected</dd></div><div><dt>Accepted revision</dt><dd>1</dd></div><div><dt>Accepted Features</dt><dd>1</dd></div><div><dt>Accepted scene</dt><dd>application-session:invalid_extrude_rejected_then_cancelled:scene:2:accepted</dd></div></dl>
+    <footer>Expected: accepted Sketch remains at revision 1</footer>
+  </article></section>
+</main>
+</body>
+</html>
