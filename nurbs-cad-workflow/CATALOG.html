@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabrik · CAD Workflow</title>
+  <style>
+    :root { color-scheme:dark; --bg:#080c14; --panel:#111827; --line:#29364a; --text:#eef2ff; --muted:#94a3b8; --blue:#60a5fa; --violet:#a78bfa; --green:#34d399; --red:#fb7185; --amber:#fbbf24; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at 15% -10%,#182b55 0,transparent 38%),var(--bg); color:var(--text); font:15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif; }
+    .bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
+
+    main { width:min(1240px,calc(100% - 32px)); margin:0 auto; padding:52px 0 80px; }
+    header { margin-bottom:32px; }
+    h1 { margin:0 0 8px; font-size:clamp(34px,5vw,62px); letter-spacing:-.045em; }
+    header p { max-width:800px; color:var(--muted); font-size:17px; }
+    .summary { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .summary span { padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:#101827cc; }
+    .grid { display:grid; gap:20px; }
+    .case { display:grid; grid-template-columns:320px minmax(0,1fr); overflow:hidden; border:1px solid var(--line); border-radius:20px; background:linear-gradient(145deg,#131e30,#0d1420); box-shadow:0 22px 55px #0005; }
+    .case--fail { border-color:#7f1d1d; }
+    .visual { display:flex; align-items:flex-start; padding:18px; background:#0a111d; }
+    .diagram rect { fill:#0c1725; stroke:#28405d; }
+    .diagram path { fill:none; stroke:var(--blue); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+    .diagram--solid path:nth-of-type(3n) { stroke:var(--violet); }
+    .diagram--rejected path { stroke:var(--red); stroke-dasharray:7 4; }
+    .diagram text { fill:var(--muted); font-size:10px; }
+    .case__body { padding:26px; }
+    .eyebrow { display:flex; justify-content:space-between; gap:12px; color:var(--green); font-size:12px; font-weight:800; letter-spacing:.12em; }
+    .eyebrow code { color:var(--muted); letter-spacing:0; font-weight:500; }
+    h2 { margin:10px 0 4px; font-size:24px; }
+    h3 { margin:0 0 6px; color:var(--muted); font-size:11px; text-transform:uppercase; letter-spacing:.1em; }
+    .purpose { margin:0 0 18px; color:var(--muted); }
+    .timeline { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:0 0 18px; padding:0; list-style:none; }
+    .timeline__item { min-height:78px; padding:11px; border:1px solid var(--line); border-radius:12px; background:#0a1320; }
+    .timeline__item::before { content:""; display:block; width:8px; height:8px; margin-bottom:8px; border-radius:50%; background:var(--blue); }
+    .timeline__item--accepted::before { background:var(--green); }
+    .timeline__item--rejected::before { background:var(--red); }
+    .timeline__item strong,.timeline__item span { display:block; }
+    .timeline__item span { margin-top:4px; color:var(--muted); font-size:12px; }
+    .evaluated { display:flex; gap:28px; margin-bottom:16px; }
+    .evaluated ul { display:flex; flex-wrap:wrap; gap:6px; margin:0; padding:0; list-style:none; }
+    .evaluated li { display:flex; gap:8px; padding:5px 8px; border-radius:8px; background:#0a1320; color:var(--green); font-size:12px; }
+    .evaluated code { color:#cbd5e1; }
+    .result { display:flex; flex-wrap:wrap; gap:10px 18px; padding-top:15px; border-top:1px solid var(--line); }
+    .result p { flex-basis:100%; margin:0; color:var(--muted); font-size:12px; }
+    .result--rejected strong { color:var(--red); }
+    .result--rejected span { color:var(--muted); }
+    .result--rejected ul { flex-basis:100%; margin:2px 0 0; padding-left:18px; color:#cbd5e1; }
+    .empty { color:var(--amber); font-size:12px; }
+    @media (max-width:760px) { .case { grid-template-columns:1fr; } .visual { justify-content:center; } .evaluated { flex-direction:column; gap:10px; } }
+  </style>
+</head>
+<body>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html" aria-current="page">CAD workflow</a></div></div></nav>
+<main>
+  <header>
+    <div class="eyebrow">HEADLESS CAD <code>intent → evaluation → published Part</code></div>
+    <h1>CAD Workflow</h1>
+    <p>The first caller-neutral modelling sequence. Typed Sketch and Create Extrude commands use ordinary CAD evaluation, preserve the last accepted Project on refusal, and publish inspectable NURBS B-rep geometry only after acceptance.</p>
+    <div class="summary"><span><strong>3/3</strong> expected outcomes</span><span><strong>1</strong> accepted solid</span><span><strong>2</strong> structured rejections</span><span><strong>2</strong> semantic command kinds</span></div>
+  </header>
+  <section class="grid"><article class="case case--pass">
+    <div class="visual"><svg class="diagram diagram--solid" viewBox="0 0 320 200" role="img" aria-label="Closed Sketch to published solid solid wire render"><rect width="320" height="200" rx="14"/><path d="M90.48,106.19 L107.77,102.12 L125.07,98.04 L142.36,93.97 L159.65,89.90 L176.95,85.83 L194.24,81.75 L211.53,77.68 L228.83,73.61 L246.12,69.54 L263.41,65.47 L280.71,61.39 L298.00,57.32"/><path d="M298.00,57.32 L292.29,54.88 L286.59,52.43 L280.88,49.99 L275.17,47.55 L269.47,45.10 L263.76,42.66 L258.05,40.22 L252.35,37.77 L246.64,35.33 L240.93,32.89 L235.23,30.44 L229.52,28.00"/><path d="M229.52,28.00 L212.23,32.07 L194.93,36.14 L177.64,40.22 L160.35,44.29 L143.05,48.36 L125.76,52.43 L108.47,56.51 L91.17,60.58 L73.88,64.65 L56.59,68.72 L39.29,72.80 L22.00,76.87"/><path d="M22.00,76.87 L27.71,79.31 L33.41,81.75 L39.12,84.20 L44.83,86.64 L50.53,89.08 L56.24,91.53 L61.95,93.97 L67.65,96.42 L73.36,98.86 L79.07,101.30 L84.77,103.75 L90.48,106.19"/><path d="M90.48,176.00 L107.77,171.93 L125.07,167.86 L142.36,163.78 L159.65,159.71 L176.95,155.64 L194.24,151.57 L211.53,147.49 L228.83,143.42 L246.12,139.35 L263.41,135.28 L280.71,131.20 L298.00,127.13"/><path d="M298.00,127.13 L292.29,124.69 L286.59,122.25 L280.88,119.80 L275.17,117.36 L269.47,114.92 L263.76,112.47 L258.05,110.03 L252.35,107.58 L246.64,105.14 L240.93,102.70 L235.23,100.25 L229.52,97.81"/><path d="M229.52,97.81 L212.23,101.88 L194.93,105.96 L177.64,110.03 L160.35,114.10 L143.05,118.17 L125.76,122.25 L108.47,126.32 L91.17,130.39 L73.88,134.46 L56.59,138.53 L39.29,142.61 L22.00,146.68"/><path d="M22.00,146.68 L27.71,149.12 L33.41,151.57 L39.12,154.01 L44.83,156.45 L50.53,158.90 L56.24,161.34 L61.95,163.78 L67.65,166.23 L73.36,168.67 L79.07,171.11 L84.77,173.56 L90.48,176.00"/><path d="M298.00,57.32 L298.00,63.14 L298.00,68.96 L298.00,74.77 L298.00,80.59 L298.00,86.41 L298.00,92.23 L298.00,98.04 L298.00,103.86 L298.00,109.68 L298.00,115.50 L298.00,121.31 L298.00,127.13"/><path d="M90.48,106.19 L90.48,112.01 L90.48,117.82 L90.48,123.64 L90.48,129.46 L90.48,135.28 L90.48,141.09 L90.48,146.91 L90.48,152.73 L90.48,158.55 L90.48,164.36 L90.48,170.18 L90.48,176.00"/><path d="M229.52,28.00 L229.52,33.82 L229.52,39.64 L229.52,45.45 L229.52,51.27 L229.52,57.09 L229.52,62.91 L229.52,68.72 L229.52,74.54 L229.52,80.36 L229.52,86.18 L229.52,91.99 L229.52,97.81"/><path d="M22.00,76.87 L22.00,82.69 L22.00,88.50 L22.00,94.32 L22.00,100.14 L22.00,105.96 L22.00,111.77 L22.00,117.59 L22.00,123.41 L22.00,129.23 L22.00,135.04 L22.00,140.86 L22.00,146.68"/><text x="16" y="191">accepted NURBS B-rep Part</text></svg></div>
+    <div class="case__body">
+      <div class="eyebrow"><span>PASS</span><code>rectangle_create_extrude</code></div>
+      <h2>Closed Sketch to published solid</h2>
+      <p class="purpose">A caller-neutral closed rectangular Sketch previews and accepts before a Create Extrude publishes one valid solid Part.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile evaluated without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>12 mm normal extent against R1</span></li><li class="timeline__item timeline__item--preview"><strong>Extrude preview ready</strong><span>Validated NURBS B-rep is still transient</span></li><li class="timeline__item timeline__item--accepted"><strong>Extrude accepted</strong><span>Solid Part published · R2</span></li></ol>
+      <div class="evaluated"><div><h3>Features</h3><ul><li><code>sketch</code><span>complete</span></li><li><code>extrude</code><span>complete</span></li></ul></div><div><h3>Parts</h3><ul><li><code>Part 1</code><span>complete</span></li></ul></div></div>
+      <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+    </div>
+  </article><article class="case case--pass">
+    <div class="visual"><svg class="diagram diagram--rejected" viewBox="0 0 320 200" role="img" aria-label="Open Sketch remains unaccepted Sketch"><rect width="320" height="200" rx="14"/><path d="M22.00,176.00 L298.00,176.00"/><path d="M298.00,176.00 L298.00,28.00"/><path d="M298.00,28.00 L22.00,28.00"/><text x="16" y="191">last accepted Project preserved</text></svg></div>
+    <div class="case__body">
+      <div class="eyebrow"><span>PASS</span><code>open_sketch_rejected</code></div>
+      <h2>Open Sketch remains unaccepted</h2>
+      <p class="purpose">Finishing an open three-segment Sketch exposes the profile diagnostic and leaves the accepted Project at its prior revision.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>3 line entities against R0</span></li><li class="timeline__item timeline__item--rejected"><strong>Preview rejected</strong><span>evaluation-rejected · accepted revision remains R0</span></li></ol>
+      <div class="evaluated"><div><h3>Features</h3><ul><li><code>sketch</code><span>rejected</span></li></ul></div><div><h3>Parts</h3><ul><li><code>Part 1</code><span>unpublished</span></li></ul></div></div>
+      <div class="result result--rejected"><strong>evaluation-rejected</strong><span>candidate-evaluation</span><ul><li>Sketch 1 could not produce a usable planar profile: Every endpoint must meet exactly one other line to form a closed profile.</li></ul></div>
+    </div>
+  </article><article class="case case--pass">
+    <div class="visual"><svg class="diagram diagram--rejected" viewBox="0 0 320 200" role="img" aria-label="Invalid Extrude extent remains unaccepted Sketch"><rect width="320" height="200" rx="14"/><path d="M22.00,176.00 L298.00,176.00"/><path d="M298.00,176.00 L298.00,28.00"/><path d="M298.00,28.00 L22.00,28.00"/><path d="M22.00,28.00 L22.00,176.00"/><text x="16" y="191">last accepted Project preserved</text></svg></div>
+    <div class="case__body">
+      <div class="eyebrow"><span>PASS</span><code>invalid_extent_rejected</code></div>
+      <h2>Invalid Extrude extent remains unaccepted</h2>
+      <p class="purpose">A valid accepted Sketch is preserved while a zero-length Create Extrude is refused as invalid Project intent.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile evaluated without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>0 mm normal extent against R1</span></li><li class="timeline__item timeline__item--rejected"><strong>Preview rejected</strong><span>candidate-invalid · accepted revision remains R1</span></li></ol>
+      <div class="evaluated"><div><h3>Features</h3><ul><li><code>sketch</code><span>complete</span></li></ul></div><div><h3>Parts</h3><ul><li><code>Part 1</code><span>unpublished</span></li></ul></div></div>
+      <div class="result result--rejected"><strong>candidate-invalid</strong><span>candidate-validation</span><ul><li><code>$.items[0].features[1].extentMm</code> Extrude extent must be a finite positive number of millimetres.</li></ul></div>
+    </div>
+  </article></section>
+</main>
+</body>
+</html>
