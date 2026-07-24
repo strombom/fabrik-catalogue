@@ -28,7 +28,7 @@
 </style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html" aria-current="page">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><main>
 <p class="eyebrow">Fabrik · Geometry bench</p><h1>Practical NURBS Boolean catalogue</h1>
 <p class="lede">Two closed six-face solids overlap without coincident faces, shared edges, tangency, or corner contact. Every face is a bounded degree-one NURBS surface with shared B-rep edges and face-local p-curves.</p>
-<div class="summary"><span><strong>Verified</strong> across 16 scenario families</span><span><strong>14/14</strong> planar observations</span><span><strong>7/7</strong> curved observations</span><span><strong>3/3</strong> chained-accuracy outcomes</span><span><strong>13/13</strong> end-to-end API observations</span><span>Façade rejection <strong>verified</strong></span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001 · 0.01</strong> mm Design tolerances</span></div>
+<div class="summary"><span><strong>Verified</strong> across 18 scenario families</span><span><strong>15/15</strong> planar observations</span><span><strong>7/7</strong> curved observations</span><span>Generated selector gate <strong>blocked</strong></span><span><strong>3/3</strong> chained-accuracy outcomes</span><span>Discarded accuracy isolation <strong>verified</strong></span><span><strong>13/13</strong> end-to-end API observations</span><span>Façade rejection <strong>verified</strong></span><span>Curved material validation <strong>active</strong></span><span>Topology history <strong>not implemented</strong></span><span><strong>0.00001 · 0.01</strong> mm Design tolerances</span></div>
 <p class="legend"><span class="swatch a">Solid A</span><span class="swatch b">Solid B</span><span class="swatch result">Expected material</span><span class="swatch reverse">Orientation flip</span></p>
 <section class="grid"><article class="case-card">
   <header><div><h2>Skew transverse prisms</h2><code>skew_transverse_prisms</code></div><span class="status pass">VERIFIED</span></header>
@@ -576,6 +576,22 @@
   </section></div>
   </article>
 <article class="case-card">
+  <header><div><h2>Generated section selector evidence gate</h2><code>generated-section-selector-probe</code></div><span class="status pass">VERIFIED</span></header>
+  <section class="selection"><p>Interference → boundary provenance → Shell assembly → final Solid remapping → cold replay → supported tool-placement edit</p></section>
+  <section class="details">
+    <p>The probe asks whether one Boolean-generated section Edge can become portable Fillet intent without storing an evaluation-local ID, coordinate witness, or array position.</p>
+    <dl>
+      <dt>Available causes</dt><dd>Canonical A/B roles available · causal Face pairs available.</dd>
+      <dt>Section record</dt><dd>kind, sectionEdgeId, sourceFaces.</dd>
+      <dt>Endpoint record</dt><dd>kind, vertexId.</dd>
+      <dt>Missing identity</dt><dd>Normalized branch missing · source parameters missing · endpoint event missing.</dd>
+      <dt>Multiplicity</dt><dd>At most 1 section Edge per causal Face pair in the current corpus; multi-branch behavior is not demonstrated.</dd>
+      <dt>Downstream</dt><dd>Final remapping preserves current records · cold replay local signature stable · edited-tool local signature stable.</dd>
+      <dt>Gate</dt><dd>Blocked: preserve normalized section-branch and endpoint-event/source-parameter provenance through final publication, then demonstrate a repeated Face-pair branch case.</dd>
+    </dl>
+  </section>
+</article>
+<article class="case-card">
     <header><div><h2>Local accumulation stays local</h2><code>independent_and_sequential_accuracy</code></div><span class="status pass">VERIFIED</span></header>
     <section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of the published Boolean result">
     <div class="result-view__label">Published result · 2 Solids</div>
@@ -647,6 +663,19 @@
       </dl>
     </section>
   </article>
+<article class="case-card">
+  <header><div><h2>Discarded fragment accuracy isolation</h2><code>discarded-fragment-accuracy</code></div><span class="status pass">VERIFIED</span></header>
+  <section class="selection"><p>Classification → Common selection → boundary materialization → Shell assembly → Solid publication</p></section>
+  <section class="details">
+    <p>A deliberately worse accuracy declaration on one discarded classification must not become selected or published geometry accuracy.</p>
+    <dl>
+      <dt>Discarded</dt><dd>Fragment 0 at 7.50e-6 mm.</dd>
+      <dt>Selection</dt><dd>2.42e-15 mm baseline · 2.42e-15 mm with discarded uncertainty.</dd>
+      <dt>Publication</dt><dd>2.92e-15 mm baseline · 2.92e-15 mm with discarded uncertainty.</dd>
+      <dt>Outcome</dt><dd>Discarded classification uncertainty remains outside selected geometry and final Solid accuracy.</dd>
+    </dl>
+  </section>
+</article>
 <article class="case-card">
     <header><div><h2>Crossing Shells are rejected</h2><code>crossing_shells_rejected</code></div><span class="status pass">VERIFIED</span></header>
     <section class="result-view unavailable">
