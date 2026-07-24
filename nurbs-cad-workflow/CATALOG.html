@@ -92,6 +92,18 @@
     .inspection dd { min-width:0; margin:0; color:#dbeafe; font-size:11px; overflow-wrap:anywhere; }
     .inspection dd code { color:#bfdbfe; }
     .inspection__diagnostic,.inspection--unavailable p { margin:9px 0 0; color:var(--red); font-size:11px; }
+    .topology-evidence-group { margin:0 0 17px; }
+    .topology-evidence-group > p { margin:0 0 8px; color:var(--muted); font-size:11px; }
+    .topology-evidence { margin:7px 0; border:1px solid var(--line); border-radius:12px; background:#0a1320; }
+    .topology-evidence summary { display:flex; justify-content:space-between; gap:10px; padding:10px 12px; cursor:pointer; }
+    .topology-evidence summary strong { color:var(--violet); }
+    .topology-evidence summary span { color:var(--muted); font-size:11px; }
+    .topology-evidence dl { display:grid; gap:6px; margin:0; padding:0 12px 12px; }
+    .topology-evidence dl > div { display:grid; grid-template-columns:90px minmax(0,1fr); gap:8px; }
+    .topology-evidence dt { color:var(--muted); font-size:10px; text-transform:uppercase; }
+    .topology-evidence dd { margin:0; color:#dbeafe; font-size:11px; overflow-wrap:anywhere; }
+    .topology-evidence-group .topology-evidence-group__cold { margin-top:8px; }
+    .topology-evidence-group__cold strong { color:var(--green); }
     .result { display:flex; flex-wrap:wrap; gap:10px 18px; padding-top:15px; border-top:1px solid var(--line); }
     .result p { flex-basis:100%; margin:0; color:var(--muted); font-size:12px; }
     .result--rejected strong { color:var(--red); }
@@ -118,7 +130,7 @@
     <div class="eyebrow">HEADLESS CAD <code>intent → evaluation → display scene → published Part</code></div>
     <h1>CAD Workflow</h1>
     <p>The first caller-neutral modelling sequence. Typed Sketch, Create Extrude, and Fillet commands use ordinary CAD evaluation, preserve the last accepted Project on refusal, and project token-bound preview and accepted tessellations without making display data authoritative.</p>
-    <div class="summary"><span><strong>7/7</strong> expected outcomes</span><span><strong>5</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Part accuracy</strong> equals its body output</span><span><strong>Feature + Part</strong> typed inspection</span></div>
+    <div class="summary"><span><strong>7/7</strong> expected outcomes</span><span><strong>5</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Part accuracy</strong> equals its body output</span><span><strong>Feature + Part</strong> typed inspection</span><span><strong>Forward + reverse</strong> topology index</span><span><strong>Cold replay</strong> equivalent bindings</span></div>
   </header>
   <section class="grid"><article id="rectangle_create_extrude" class="case case--pass">
     <div class="visual"><section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of Closed Sketch to published solid">
@@ -169,6 +181,7 @@
       <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
     </dl>
   </article></div></section>
+
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
     </div>
   </article><article id="extrude_end_cap_sketch" class="case case--pass">
@@ -228,6 +241,16 @@
       <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000006/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000006/profile</code></dd></div>
     </dl>
   </article></div></section>
+<section class="topology-evidence-group"><h3>Disposable topology provenance</h3><p>Representative root, traversed path, current candidate, and reverse pick evidence. The complete evaluation index remains collapsed.</p><details class="topology-evidence">
+      <summary><strong>extrude-cap-face</strong><span>face#1 of 1 · forward/reverse agree</span></summary>
+      <dl>
+        <div><dt>Root</dt><dd><code>{&quot;kind&quot;:&quot;extrude-cap-face&quot;,&quot;extrudeId&quot;:&quot;extrude_00000000-0000-4000-8000-000000000004&quot;,&quot;cap&quot;:&quot;end&quot;}</code></dd></div>
+        <div><dt>Output</dt><dd><code>extrude_00000000-0000-4000-8000-000000000004/body[0]</code></dd></div>
+        <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-face → face#1</dd></div>
+        <div><dt>Reverse roots</dt><dd><code>extrude-cap-face</code></dd></div>
+        <div><dt>Pick conversion</dt><dd><code>extrude-cap-face</code></dd></div>
+      </dl>
+    </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
     </div>
   </article><article id="extrude_side_face_sketch" class="case case--pass">
@@ -287,6 +310,16 @@
       <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000006/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000006/profile</code></dd></div>
     </dl>
   </article></div></section>
+<section class="topology-evidence-group"><h3>Disposable topology provenance</h3><p>Representative root, traversed path, current candidate, and reverse pick evidence. The complete evaluation index remains collapsed.</p><details class="topology-evidence">
+      <summary><strong>extrude-side-face</strong><span>face#2 of 1 · forward/reverse agree</span></summary>
+      <dl>
+        <div><dt>Root</dt><dd><code>{&quot;kind&quot;:&quot;extrude-side-face&quot;,&quot;extrudeId&quot;:&quot;extrude_00000000-0000-4000-8000-000000000004&quot;,&quot;sketchEntityId&quot;:&quot;entity_00000000-0000-4000-8000-000000000011&quot;}</code></dd></div>
+        <div><dt>Output</dt><dd><code>extrude_00000000-0000-4000-8000-000000000004/body[0]</code></dd></div>
+        <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-side-face → face#2</dd></div>
+        <div><dt>Reverse roots</dt><dd><code>extrude-side-face</code></dd></div>
+        <div><dt>Pick conversion</dt><dd><code>extrude-side-face</code></dd></div>
+      </dl>
+    </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
     </div>
   </article><article id="accepted_solid_display_budget_rejected" class="case case--pass">
@@ -331,6 +364,7 @@
       <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
     </dl>
   </article></div></section>
+
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>0</strong> display triangles</span><span><strong>3744.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
     </div>
   </article><article id="rectangle_extrude_single_fillet" class="case case--pass">
@@ -390,6 +424,25 @@
       <div><dt>Outputs</dt><dd><code>body · fillet_00000000-0000-4000-8000-000000000005/body</code></dd></div>
     </dl>
   </article></div></section>
+<section class="topology-evidence-group"><h3>Disposable topology provenance</h3><p>Representative root, traversed path, current candidate, and reverse pick evidence. The complete evaluation index remains collapsed.</p><details class="topology-evidence">
+      <summary><strong>extrude-profile-edge</strong><span>edge#0 of 1 · forward/reverse agree</span></summary>
+      <dl>
+        <div><dt>Root</dt><dd><code>{&quot;kind&quot;:&quot;extrude-profile-edge&quot;,&quot;extrudeId&quot;:&quot;extrude_00000000-0000-4000-8000-000000000004&quot;,&quot;sketchEntityId&quot;:&quot;entity_00000000-0000-4000-8000-000000000011&quot;,&quot;cap&quot;:&quot;start&quot;}</code></dd></div>
+        <div><dt>Output</dt><dd><code>extrude_00000000-0000-4000-8000-000000000004/body[0]</code></dd></div>
+        <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-edge → edge#0</dd></div>
+        <div><dt>Reverse roots</dt><dd><code>extrude-profile-edge</code></dd></div>
+        <div><dt>Pick conversion</dt><dd><code>extrude-profile-edge</code></dd></div>
+      </dl>
+    </details><details class="topology-evidence">
+      <summary><strong>extrude-cap-face</strong><span>face#1 of 1 · forward/reverse agree</span></summary>
+      <dl>
+        <div><dt>Root</dt><dd><code>{&quot;kind&quot;:&quot;extrude-cap-face&quot;,&quot;extrudeId&quot;:&quot;extrude_00000000-0000-4000-8000-000000000004&quot;,&quot;cap&quot;:&quot;end&quot;}</code></dd></div>
+        <div><dt>Output</dt><dd><code>fillet_00000000-0000-4000-8000-000000000005/body[0]</code></dd></div>
+        <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-face → face#1<br>fillet_00000000-0000-4000-8000-000000000005/body[0]: preserved → face#1</dd></div>
+        <div><dt>Reverse roots</dt><dd><code>extrude-cap-face</code></dd></div>
+        <div><dt>Pick conversion</dt><dd><code>extrude-cap-face</code></dd></div>
+      </dl>
+    </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>7</strong> Faces</span><span><strong>15</strong> Edges</span><span><strong>172</strong> display triangles</span><span><strong>1595.700</strong> mm³</span><p>7 Faces; 15 Edges; 8.37e-3 mm³ volume error</p></div>
     </div>
   </article><article id="open_sketch_publishes_without_profile" class="case case--pass">
@@ -422,6 +475,7 @@
       <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code></dd></div>
     </dl>
   </article></div></section>
+
       <div class="result result--rejected"><strong>evaluation-rejected</strong><span>candidate-evaluation</span><ul><li>Extrude 1 is blocked because its source Sketch profile is unavailable: Every endpoint must meet exactly one other line to form a closed profile.</li></ul></div>
     </div>
   </article><article id="invalid_extent_rejected" class="case case--pass">
@@ -454,6 +508,7 @@
       <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
     </dl>
   </article></div></section>
+
       <div class="result result--rejected"><strong>candidate-invalid</strong><span>candidate-validation</span><ul><li><code>$.items[0].features[1].extentMm</code> Extrude extent must be a finite positive number of millimetres.</li></ul></div>
     </div>
   </article></section>
