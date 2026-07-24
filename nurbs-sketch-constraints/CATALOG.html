@@ -11,7 +11,7 @@
 @media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
 @media print{.bench-nav{display:none}}
 
-:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · distance semantics <strong class="pass">passed</strong> · mixed component <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.340 ms · p95 2.167 ms / 16 ms frozen gate · max 3.065 ms · 200 measured runs</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, cause-specific temporary point-goal evidence, physical and domain verification, minimum-change selection, bounded recovery, freedom, persistence separation, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). The browser-target build also exercises the isolated Stage 4 rank-revealing adapter, Fabrik-owned trust-region controller, standalone point-distance/line-length compiler, and mixed affine-nullspace component solver without routing accepted Project evaluation through those nonlinear paths. The application path remains within its frozen ordinary-preview p95 gate. Browser gesture commit and production acceptance are covered by the application-session bench; continuation, publication evidence, and accepted nonlinear workflow remain later work.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · distance semantics <strong class="pass">passed</strong> · mixed component <strong class="pass">passed</strong> · accepted line length <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.367 ms · p95 2.007 ms / 16 ms frozen gate · max 2.669 ms · 200 measured runs</p><p class="scope">The compact affine corpus and nonlinear probes exercise the standalone solvers, Project v1 validation and file round-trip, and the public headless Sketch evaluator. The browser-target build matches the direct affine corpus and numerical probes (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0), including the accepted line-length adapter. Affine-only components continue through the direct reducer; a component with a driving line length enters the mixed nullspace controller and must pass independent physical and finite-line verification. The application path remains within its frozen ordinary-preview p95 gate. Browser create/edit, refusal recovery, production rematerialization, Project undo/redo, and save/reload are covered by the application-session bench. Point distance and adaptive continuation remain later Stage 4 work.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-numerical-backend-probe-v1&quot;,
   &quot;backend&quot;: {
     &quot;implementation&quot;: &quot;ml-matrix&quot;,
@@ -2376,10 +2376,11 @@
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
   &quot;passed&quot;: true
-}</pre></details></article><article class="card"><header><div><h2>Stage 4 mixed component slice</h2><code>affine projection → nullspace trust region</code></div><span class="pass">PASS</span></header><p class="purpose">Project deterministic branch seeds onto the exact affine solution set, solve distance rows only in its nullspace, and independently verify every semantic constraint in millimetres.</p><dl><dt>Hard feasibility</dt><dd>fixed · coincidence · horizontal/vertical · signed distance remain satisfied during nonlinear selection</dd><dt>Classification</dt><dd>stable affine contradiction and nonlinear nonconvergence remain distinct</dd><dt>Initialization</dt><dd>coincident positive line length survives affine projection</dd><dt>Invariance</dt><dd>duplicate stable · large translation stable</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 mixed component slice</h2><code>shared affine reduction → nullspace trust region</code></div><span class="pass">PASS</span></header><p class="purpose">Reduce affine intent through the direct solver's deterministic contract, recover a line-valid projected start, solve distance rows only in its free-group nullspace, and independently verify every semantic constraint in millimetres.</p><dl><dt>Hard feasibility</dt><dd>fixed · coincidence · horizontal/vertical · signed distance remain satisfied during nonlinear selection</dd><dt>Classification</dt><dd>direct/mixed parity matched · self semantics preserved</dd><dt>Validation</dt><dd>unsupported runtime records structured</dd><dt>Domain</dt><dd>projected-start recovery recovered · physical/fault override guarded</dd><dt>Routing</dt><dd>affine-only kept on direct solver · final gray band preserved</dd><dt>Invariance</dt><dd>duplicate selection stable · symmetric evidence present · large translation stable</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-mixed-component-probe-v1&quot;,
   &quot;policy&quot;: {
     &quot;physicalLengthToleranceMm&quot;: 1e-7,
+    &quot;maximumAffineDomainRecoveryPasses&quot;: 128,
     &quot;distanceCompiler&quot;: {
       &quot;minimumLineLengthMm&quot;: 0.000001,
       &quot;initialDirectionThresholdMm&quot;: 1e-9,
@@ -2418,7 +2419,7 @@
           },
           &quot;end&quot;: {
             &quot;x&quot;: 5,
-            &quot;y&quot;: 4.440892098500626e-16
+            &quot;y&quot;: 0
           }
         }
       ],
@@ -2435,8 +2436,8 @@
               &quot;entityId&quot;: &quot;anchored&quot;
             }
           ],
-          &quot;measuredValueMm&quot;: 4.440892098500626e-16,
-          &quot;physicalErrorMm&quot;: 4.440892098500626e-16
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
         },
         {
           &quot;family&quot;: &quot;distance&quot;,
@@ -2553,7 +2554,8 @@
         &quot;affineRowCount&quot;: 3,
         &quot;affineRank&quot;: 3,
         &quot;affineNullity&quot;: 1,
-        &quot;maximumAffineResidualMm&quot;: 2.7755575615628914e-16,
+        &quot;affineNumericalFloorMm&quot;: 8.881784197001252e-15,
+        &quot;maximumAffineResidualMm&quot;: 0,
         &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
         &quot;distanceRowCount&quot;: 1,
         &quot;seeds&quot;: [],
@@ -2607,18 +2609,18 @@
             &quot;y&quot;: 2.7755575615628914e-17
           },
           &quot;end&quot;: {
-            &quot;x&quot;: 4,
+            &quot;x&quot;: 3.9999999999999996,
             &quot;y&quot;: 2.7755575615628914e-17
           }
         },
         {
           &quot;id&quot;: &quot;chain-b&quot;,
           &quot;start&quot;: {
-            &quot;x&quot;: 4,
+            &quot;x&quot;: 3.9999999999999996,
             &quot;y&quot;: 2.7755575615628914e-17
           },
           &quot;end&quot;: {
-            &quot;x&quot;: 4,
+            &quot;x&quot;: 3.9999999999999996,
             &quot;y&quot;: 2.9999999999999996
           }
         }
@@ -2662,8 +2664,8 @@
             }
           ],
           &quot;resolvedValueMm&quot;: 4,
-          &quot;measuredValueMm&quot;: 4,
-          &quot;physicalErrorMm&quot;: 0
+          &quot;measuredValueMm&quot;: 3.9999999999999996,
+          &quot;physicalErrorMm&quot;: 4.440892098500626e-16
         },
         {
           &quot;family&quot;: &quot;distance&quot;,
@@ -2793,6 +2795,7 @@
         &quot;affineRowCount&quot;: 7,
         &quot;affineRank&quot;: 7,
         &quot;affineNullity&quot;: 1,
+        &quot;affineNumericalFloorMm&quot;: 7.105427357601002e-15,
         &quot;maximumAffineResidualMm&quot;: 0,
         &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
         &quot;distanceRowCount&quot;: 1,
@@ -2844,11 +2847,11 @@
           &quot;id&quot;: &quot;singular&quot;,
           &quot;start&quot;: {
             &quot;x&quot;: 0,
-            &quot;y&quot;: 1.1102230246251568e-16
+            &quot;y&quot;: 0
           },
           &quot;end&quot;: {
             &quot;x&quot;: 2.0000000000000018,
-            &quot;y&quot;: -2.2204460492503136e-16
+            &quot;y&quot;: 0
           }
         }
       ],
@@ -2865,8 +2868,8 @@
               &quot;entityId&quot;: &quot;singular&quot;
             }
           ],
-          &quot;measuredValueMm&quot;: -3.3306690738754706e-16,
-          &quot;physicalErrorMm&quot;: 3.3306690738754706e-16
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
         },
         {
           &quot;family&quot;: &quot;distance&quot;,
@@ -2942,8 +2945,8 @@
             }
           ],
           &quot;resolvedValueMm&quot;: 0,
-          &quot;measuredValueMm&quot;: 1.1102230246251568e-16,
-          &quot;physicalErrorMm&quot;: 1.1102230246251568e-16
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
         }
       ],
       &quot;invalidEntityIds&quot;: [],
@@ -2956,7 +2959,8 @@
         &quot;affineRowCount&quot;: 3,
         &quot;affineRank&quot;: 3,
         &quot;affineNullity&quot;: 1,
-        &quot;maximumAffineResidualMm&quot;: 3.3306690738754706e-16,
+        &quot;affineNumericalFloorMm&quot;: 3.552713678800501e-15,
+        &quot;maximumAffineResidualMm&quot;: 0,
         &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
         &quot;distanceRowCount&quot;: 1,
         &quot;seeds&quot;: [
@@ -3009,6 +3013,152 @@
         }
       }
     },
+    &quot;projectedDomainRecovery&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;recover-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: -3.33333334490149e-7,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 6.666666690358092e-7,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;recover-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: -3.33333334490149e-7,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;recover-b-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;recover-b&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 2,
+          &quot;measuredValueMm&quot;: 2.0000003333333343,
+          &quot;physicalErrorMm&quot;: 3.333333342681044e-7,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;recover-b-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;recover-b&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 2,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 2
+          }
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;recover-joint&quot;,
+          &quot;kind&quot;: &quot;coincidence&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;recover-a&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;recover-b&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            }
+          ],
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 0.5,
+          &quot;originY&quot;: 0,
+          &quot;scaleMm&quot;: 2
+        },
+        &quot;affineRowCount&quot;: 2,
+        &quot;affineRank&quot;: 2,
+        &quot;affineNullity&quot;: 6,
+        &quot;affineNumericalFloorMm&quot;: 3.552713678800501e-15,
+        &quot;maximumAffineResidualMm&quot;: 0,
+        &quot;affineDomainRecovery&quot;: {
+          &quot;termination&quot;: &quot;recovered&quot;,
+          &quot;passes&quot;: 2,
+          &quot;maximumPasses&quot;: 128
+        },
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 1,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 5,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 5,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 2.220446049250313e-16
+          }
+        }
+      },
+      &quot;controller&quot;: {
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;stalled&quot;,
+          &quot;cause&quot;: &quot;domain-boundary&quot;,
+          &quot;path&quot;: &quot;entities[recover-a]&quot;,
+          &quot;message&quot;: &quot;Line length 8.888889013181078e-7 mm is below minimumLineLengthMm 0.000001 mm.&quot;
+        },
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 8,
+          &quot;evaluations&quot;: 9,
+          &quot;acceptedSteps&quot;: 0,
+          &quot;rejectedSteps&quot;: 8,
+          &quot;domainRejectedSteps&quot;: 8
+        },
+        &quot;residualNorm&quot;: 1.6666668101184e-7,
+        &quot;finalRadius&quot;: 0.000244140625,
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      }
+    },
     &quot;affineContradiction&quot;: {
       &quot;status&quot;: &quot;rejected&quot;,
       &quot;outcome&quot;: &quot;verified-affine-contradiction&quot;,
@@ -3016,7 +3166,7 @@
         {
           &quot;id&quot;: &quot;affine-conflict&quot;,
           &quot;start&quot;: {
-            &quot;x&quot;: 0.5,
+            &quot;x&quot;: 0,
             &quot;y&quot;: 0
           },
           &quot;end&quot;: {
@@ -3031,7 +3181,7 @@
           &quot;constraintId&quot;: &quot;affine-conflict-a&quot;,
           &quot;kind&quot;: &quot;fixed-x&quot;,
           &quot;participation&quot;: &quot;driving&quot;,
-          &quot;state&quot;: &quot;violated&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
           &quot;subjects&quot;: [
             {
               &quot;kind&quot;: &quot;point&quot;,
@@ -3046,8 +3196,11 @@
             }
           ],
           &quot;resolvedValueMm&quot;: 0,
-          &quot;measuredValueMm&quot;: 0.5,
-          &quot;physicalErrorMm&quot;: 0.5
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0,
+          &quot;conflictGroupIds&quot;: [
+            &quot;affine-conflict:affine-conflict-a+affine-conflict-b&quot;
+          ]
         },
         {
           &quot;family&quot;: &quot;affine&quot;,
@@ -3069,35 +3222,49 @@
             }
           ],
           &quot;resolvedValueMm&quot;: 1,
-          &quot;measuredValueMm&quot;: 0.5,
-          &quot;physicalErrorMm&quot;: 0.5
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 1,
+          &quot;conflictGroupIds&quot;: [
+            &quot;affine-conflict:affine-conflict-a+affine-conflict-b&quot;
+          ]
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;affine-conflict-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;affine-conflict&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 2,
+          &quot;measuredValueMm&quot;: 2,
+          &quot;physicalErrorMm&quot;: 0,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;affine-conflict-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;affine-conflict&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 2,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 2
+          }
         }
       ],
       &quot;invalidEntityIds&quot;: [],
-      &quot;reduction&quot;: {
-        &quot;normalization&quot;: {
-          &quot;originX&quot;: 1,
-          &quot;originY&quot;: 0,
-          &quot;scaleMm&quot;: 1
-        },
-        &quot;affineRowCount&quot;: 2,
-        &quot;affineRank&quot;: 1,
-        &quot;affineNullity&quot;: 3,
-        &quot;maximumAffineResidualMm&quot;: 0.5,
-        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
-        &quot;distanceRowCount&quot;: 0,
-        &quot;seeds&quot;: [],
-        &quot;backend&quot;: {
-          &quot;implementation&quot;: &quot;ml-matrix&quot;,
-          &quot;version&quot;: &quot;6.14.0&quot;,
-          &quot;license&quot;: &quot;MIT&quot;,
-          &quot;execution&quot;: &quot;synchronous-javascript&quot;
-        }
-      },
       &quot;rejection&quot;: {
         &quot;code&quot;: &quot;verified-affine-contradiction&quot;,
         &quot;path&quot;: &quot;affineConstraints&quot;,
-        &quot;message&quot;: &quot;The stable affine subsystem has 0.5 mm physical error, above physicalLengthToleranceMm 1e-7 mm.&quot;
+        &quot;message&quot;: &quot;The canonical affine difference system contains incompatible relations.&quot;
       }
     },
     &quot;nonlinearConflict&quot;: {
@@ -3246,6 +3413,7 @@
         &quot;affineRowCount&quot;: 4,
         &quot;affineRank&quot;: 4,
         &quot;affineNullity&quot;: 0,
+        &quot;affineNumericalFloorMm&quot;: 5.329070518200751e-15,
         &quot;maximumAffineResidualMm&quot;: 0,
         &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
         &quot;distanceRowCount&quot;: 1,
@@ -3255,16 +3423,6 @@
           &quot;version&quot;: &quot;6.14.0&quot;,
           &quot;license&quot;: &quot;MIT&quot;,
           &quot;execution&quot;: &quot;synchronous-javascript&quot;
-        },
-        &quot;localFirstOrderFreedom&quot;: 0,
-        &quot;localRank&quot;: {
-          &quot;activeRank&quot;: 0,
-          &quot;ambiguousRank&quot;: 0,
-          &quot;nullity&quot;: 0,
-          &quot;verification&quot;: {
-            &quot;maximumNormalizedReconstructionError&quot;: 0,
-            &quot;maximumRightOrthogonalityError&quot;: 0
-          }
         }
       },
       &quot;controller&quot;: {
@@ -3297,11 +3455,37 @@
   },
   &quot;permutationMatches&quot;: true,
   &quot;duplicateSelectionMatches&quot;: true,
+  &quot;duplicateEvidenceSymmetric&quot;: true,
+  &quot;unsupportedRecordsStructured&quot;: true,
+  &quot;classificationParity&quot;: true,
+  &quot;selfTautologiesMatch&quot;: true,
+  &quot;selfContradictionMatches&quot;: true,
+  &quot;affineOnlyRoutingGuarded&quot;: true,
+  &quot;finalRankAmbiguityPreserved&quot;: true,
+  &quot;backendFaultNotOverridden&quot;: true,
   &quot;translationMatches&quot;: true,
   &quot;repeatedExecutions&quot;: 20,
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
   &quot;passed&quot;: true
+}</pre></details></article><article class="card"><header><div><h2>Accepted line-length vertical slice</h2><code>Project v1 → mixed solve → physical verification</code></div><span class="pass">PASS</span></header><p class="purpose">Route one durable driving line length through the public headless evaluator while keeping an unrelated affine-only component on the direct reducer, then verify Project round-trip, reference evidence, finite-line refusal, temporary-goal selection, repeatability, and browser-target equivalence.</p><dl><dt>Selected length</dt><dd>5 mm</dd><dt>Physical error</dt><dd>0 mm</dd><dt>Routing</dt><dd>affine · mixed-distance</dd><dt>Evidence</dt><dd>driving/satisfied · reference/satisfied</dd><dt>Temporary goal</dt><dd>free reached · affine-fixed limited</dd><dt>Invalid intent</dt><dd>zero target nonconvergence · negative target Project-rejected</dd><dt>Persistence</dt><dd>round-trip matched · transient evidence absent</dd><dt>Repeatability</dt><dd>identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;passed&quot;: true,
+  &quot;failures&quot;: [],
+  &quot;selectedLengthMm&quot;: 5,
+  &quot;maximumPhysicalErrorMm&quot;: 0,
+  &quot;componentFamilies&quot;: [
+    &quot;affine&quot;,
+    &quot;mixed-distance&quot;
+  ],
+  &quot;drivingEvidence&quot;: &quot;driving/satisfied&quot;,
+  &quot;referenceEvidence&quot;: &quot;reference/satisfied&quot;,
+  &quot;zeroTargetRejection&quot;: &quot;nonconvergence&quot;,
+  &quot;freeDragGoal&quot;: &quot;reached&quot;,
+  &quot;limitedDragGoal&quot;: &quot;limited&quot;,
+  &quot;negativeTargetRejectedByProject&quot;: true,
+  &quot;projectRoundTripMatches&quot;: true,
+  &quot;deterministic&quot;: true,
+  &quot;transientEvidenceAbsent&quot;: true
 }</pre></details></article><article class="card"><header><div><h2>Empty Sketch remains authoritative geometry</h2><code>empty-sketch</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the zero-sized subsystem without inventing constraints or a profile requirement.</p><svg viewBox="0 0 360 230" role="img" aria-label="Empty Sketch remains authoritative geometry"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><text x="132" y="112">empty Sketch</text><text x="116" y="132">no affine variables</text></svg><dl><dt>Expected</dt><dd>complete · success</dd><dt>Actual</dt><dd>complete · success · 0 components · 0 exact affine free modes · no physical measurement</dd><dt>Components</dt><dd>No components</dd><dt>Constraints</dt><dd>No constraints</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;status&quot;: &quot;complete&quot;,
   &quot;outcome&quot;: &quot;success&quot;,
@@ -4922,7 +5106,7 @@
         &quot;scale&quot;: 12
       },
       &quot;numericalFloorMm&quot;: 0.000017763568415318787,
-      &quot;message&quot;: &quot;Physical verification is ambiguous at the component numerical floor.&quot;
+      &quot;message&quot;: &quot;A semantic affine condition lies inside the coordinate-scale physical gray band.&quot;
     }
   ],
   &quot;constraints&quot;: [
