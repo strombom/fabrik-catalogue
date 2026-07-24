@@ -37,7 +37,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
 <nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html" aria-current="page">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
 <main>
 <header>
-  <div class="summary">26/26 expected observations match</div>
+  <div class="summary">27/27 expected observations match</div>
   <h1>Exact fillet strips and connected corner arrangement.</h1>
   <p>Orange Edges are explicit seeds; dashed teal Edges are included by tangent following. Blue is a reconstructed closed B-rep; gold marks generated contact, termination, and junction Edges. Cyan, green, and violet retain solved strip construction. Connected cases classify the local toric candidate before topology allocation; a crossed common-Face trim is replaced by the exact shared seam of the two cylindrical strips.</p>
 </header>
@@ -47,7 +47,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Box horizontal edge</h2>
       <p>Baseline exact quarter-round strip between a cap and side Face.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.461e-3 mm³ volume error; 1.338e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 2.22e-16 mm contact; 0.00e+0 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -57,7 +57,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Degree-two straight Edge</h2>
       <p>Eligibility follows measured geometry rather than a degree-one primitive label.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.461e-3 mm³ volume error; 1.338e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 2.22e-16 mm contact; 0.00e+0 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -67,7 +67,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Remote Face accuracy remains isolated</h2>
       <p>A remote Face with nonzero uncertainty remains in the output summary without loosening local support recognition or contaminating the generated fillet Face.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.461e-3 mm³ volume error; 4.000e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 2.22e-16 mm contact; 0.00e+0 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 4.045e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -77,7 +77,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Recognition soft-target fallback</h2>
       <p>A measured straight-Edge deviation may miss the preferred quarter-budget target and still publish when its sequentially composed result remains inside the Design hard limit.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 2.116e-3 mm³ volume error; 6.335e-3 mm accuracy; 6.00e-3 mm generated-Face accuracy; local input 4.00e-3 mm, measured recognition deviation 2.00e-3 mm, soft target 1.50e-3 mm, hard recognition limit 6.00e-3 mm; composition add-sequential then maximum-independent; 2.22e-16 mm contact; 0.00e+0 rad tangency; 66 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 2.116e-3 mm³ volume error; 6.380e-3 mm accuracy; 6.00e-3 mm generated-Face accuracy; local input 4.00e-3 mm, measured recognition deviation 2.00e-3 mm, soft target 1.50e-3 mm, hard recognition limit 6.00e-3 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 66 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -87,7 +87,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Box vertical edge</h2>
       <p>The selected Edge orientation changes without changing rolling-ball semantics.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 3.385e-3 mm³ volume error; 1.338e-3 mm accuracy; 1.70e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.97e-16 mm contact; 1.49e-8 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 3.385e-3 mm³ volume error; 1.410e-3 mm accuracy; 1.70e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 7.16e-5 mm contact; 1.46e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -97,7 +97,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Two independent vertical fillets</h2>
       <p>One request rebuilds two disjoint corner strips atomically from the same source snapshot.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 8 Faces, 18 Edges; 6.769e-3 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 8 Faces, 18 Edges; 6.733e-3 mm³ volume error; 1.410e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -107,7 +107,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Independent strip accuracy remains isolated</h2>
       <p>One uncertain seed Edge raises the atomic result summary and its own generated Face without contaminating a disjoint fillet Face.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 8 Faces, 18 Edges; 6.769e-3 mm³ volume error; 5.338e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 8 Faces, 18 Edges; 6.769e-3 mm³ volume error; 5.410e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -117,7 +117,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Four vertical cube fillets</h2>
       <p>One constant-radius request rounds all four disjoint vertical corner Edges and rebuilds every shared support Face atomically.</p>
-      <p class="evidence">4 explicit seed Edges plus 0 tangent-followed Edges formed 4 solved stripes with 4 spans and 0 transitions from 4 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 10 Faces, 24 Edges; 1.354e-2 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">4 explicit seed Edges plus 0 tangent-followed Edges formed 4 solved stripes with 4 spans and 0 transitions from 4 effective Edges; 0 internal subdivision Vertices removed; 8 boundary Edges and 6 Faces planned; 10 Faces, 24 Edges; 1.354e-2 mm³ volume error; 1.410e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -127,7 +127,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Two fillets sharing a support Face</h2>
       <p>Opposite endpoint trims are merged on shared boundary Edges while their common support Face is rebuilt once.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 6 boundary Edges and 5 Faces planned; 8 Faces, 18 Edges; 6.769e-3 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 solved stripes with 2 spans and 0 transitions from 2 effective Edges; 0 internal subdivision Vertices removed; 6 boundary Edges and 5 Faces planned; 8 Faces, 18 Edges; 6.733e-3 mm³ volume error; 1.410e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -137,7 +137,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Propagated split Edge</h2>
       <p>One explicit seed automatically follows its curve-tangent subdivision and reconstructs both as one continuous fillet strip.</p>
-      <p class="evidence">1 explicit seed Edge plus 1 tangent-followed Edge formed 1 solved stripe with 1 span and 0 transitions from 2 effective Edges; 1 internal subdivision Vertex removed; 4 boundary Edges and 4 Faces planned; 7 Faces, 15 Edges; 8.461e-3 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">1 explicit seed Edge plus 1 tangent-followed Edge formed 1 solved stripe with 1 span and 0 transitions from 2 effective Edges; 1 internal subdivision Vertex removed; 4 boundary Edges and 4 Faces planned; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -157,7 +157,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Oblique dihedral</h2>
       <p>The true center axis is derived from offset planes rather than copied from the seed Edge.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 7.311e-3 mm³ volume error; 2.106e-3 mm accuracy; 3.14e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 3.14e-16 mm contact; 2.11e-8 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 7.310e-3 mm³ volume error; 2.137e-3 mm accuracy; 3.14e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 3.09e-5 mm contact; 1.46e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -167,7 +167,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Rigidly transformed box</h2>
       <p>Support recognition and exact strip solution remain model-space invariant.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.338e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 9.93e-16 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 7.49e-15 mm contact; 2.58e-8 rad tangency; 34 pcurve segments; 1/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 9.93e-16 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 4.36e-11 rad tangency; 34 pcurve segments; 1/2 nearby-Face bounds candidates.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -217,7 +217,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Intersected two-strip corner</h2>
       <p>Two adjacent perpendicular equal-radius rounds meet on one exact model-space conic seam and rebuild one closed Solid.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G0 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 8-Face closed Solid; 6.184e-3 mm³ volume error; 3.507e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G0 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 8-Face closed Solid; 6.182e-3 mm³ volume error; 3.597e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · junction-analysis: accepted · junction-arrangement: accepted · junction-materialization: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -227,7 +227,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Transformed two-strip corner</h2>
       <p>Rigid placement preserves the intersected seam, synchronized pcurves, topology history, and reconstructed Solid.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G0 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 8-Face closed Solid; 6.183e-3 mm³ volume error; 3.507e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G0 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 8-Face closed Solid; 6.182e-3 mm³ volume error; 3.597e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · junction-analysis: accepted · junction-arrangement: accepted · junction-materialization: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -237,7 +237,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Three-strip two-corner chain</h2>
       <p>One atomic request constructs a middle fillet strip owned by an intersected corner seam at both ends.</p>
-      <p class="evidence">3 explicit seed Edges plus 0 tangent-followed Edges formed 3 exact cylindrical strips sharing 2 G0 section seam(s); 8 generated Vertices, 10 generated Edges, and 20 synchronized boundary uses rebuild a 9-Face closed Solid; 1.023e-2 mm³ volume error; 3.507e-3 mm accuracy.</p>
+      <p class="evidence">3 explicit seed Edges plus 0 tangent-followed Edges formed 3 exact cylindrical strips sharing 2 G0 section seam(s); 8 generated Vertices, 10 generated Edges, and 20 synchronized boundary uses rebuild a 9-Face closed Solid; 1.023e-2 mm³ volume error; 3.597e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · junction-analysis: accepted · junction-arrangement: accepted · junction-materialization: accepted · junction-analysis: accepted · junction-arrangement: accepted · junction-materialization: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -247,7 +247,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Tangent selected contour</h2>
       <p>Reversed-order collinear Edges, including one degree-two curve and distinct coplanar side Faces, reconstruct as two support-owned fillet Faces with one smooth shared section.</p>
-      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G1 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 9-Face closed Solid; 8.461e-3 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">2 explicit seed Edges plus 0 tangent-followed Edges formed 2 exact cylindrical strips sharing 1 G1 section seam(s); 6 generated Vertices, 7 generated Edges, and 14 synchronized boundary uses rebuild a 9-Face closed Solid; 8.371e-3 mm³ volume error; 1.473e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · arrangement: accepted · neighborhood-analysis: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -257,7 +257,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Tangent-followed three-span contour</h2>
       <p>One explicit middle Edge expands across two distinct coplanar support-Face transitions and reconstructs a middle fillet span owned by a smooth seam at both ends.</p>
-      <p class="evidence">1 explicit seed Edge plus 2 tangent-followed Edges formed 3 exact cylindrical strips sharing 2 G1 section seam(s); 8 generated Vertices, 10 generated Edges, and 20 synchronized boundary uses rebuild a 11-Face closed Solid; 1.269e-2 mm³ volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">1 explicit seed Edge plus 2 tangent-followed Edges formed 3 exact cylindrical strips sharing 2 G1 section seam(s); 8 generated Vertices, 10 generated Edges, and 20 synchronized boundary uses rebuild a 11-Face closed Solid; 1.256e-2 mm³ volume error; 1.473e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · arrangement: accepted · neighborhood-analysis: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -267,7 +267,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Equal-radius spherical corner</h2>
       <p>Three perpendicular equal-radius fillets meeting at one Vertex publish three cylindrical strips and one exact spherical junction as a validated Solid with complete topology lineage.</p>
-      <p class="evidence">3 cylindrical strips and one exact spherical junction rebuild a 10-Face closed Solid with 9 generated Vertices, 13 generated Edges, 25 synchronized boundary uses, and complete spherical-corner lineage; 3.381e-3 mm³ analytical volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">3 cylindrical strips and one exact spherical junction rebuild a 10-Face closed Solid with 9 generated Vertices, 13 generated Edges, 25 synchronized boundary uses, and complete spherical-corner lineage; 3.294e-3 mm³ analytical volume error; 1.689e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · junction-analysis: accepted · junction-materialization: accepted · neighborhood-analysis: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -277,7 +277,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Transformed spherical corner</h2>
       <p>Rigid placement preserves spherical branch solving, G1 seam validation, topology lineage, and published Solid volume without axis-specific reconstruction.</p>
-      <p class="evidence">3 cylindrical strips and one exact spherical junction rebuild a 10-Face closed Solid with 9 generated Vertices, 13 generated Edges, 25 synchronized boundary uses, and complete spherical-corner lineage; 3.294e-3 mm³ analytical volume error; 1.338e-3 mm accuracy.</p>
+      <p class="evidence">3 cylindrical strips and one exact spherical junction rebuild a 10-Face closed Solid with 9 generated Vertices, 13 generated Edges, 25 synchronized boundary uses, and complete spherical-corner lineage; 3.294e-3 mm³ analytical volume error; 1.706e-3 mm accuracy.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · junction-analysis: accepted · junction-materialization: accepted · neighborhood-analysis: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
   </article>
@@ -300,7 +300,16 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <p class="evidence">Expected unsupported-support; received unsupported-support. 1 contour(s) [0]; junctions: termination@V0, termination@V1.          A changing-support stripe span currently requires exactly one planar and one regular cylindrical NURBS support.</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: rejected</p>
     </div>
-  </article></section>
+  </article>
+<article class="case pass">
+  <div class="visual"><svg viewBox="0 0 440 280" role="img" aria-label="Localized cylindrical support deviation"><rect width="440" height="280" fill="#06101d"/><path d="M70 230 C70 85 185 35 330 60" fill="none" stroke="#38bdf8" stroke-width="5"/><path d="M290 70 C310 42 338 44 354 65" fill="none" stroke="#fb7185" stroke-width="7"/><text x="28" y="258" fill="#94a3b8" font-family="system-ui" font-size="15">narrow off-cylinder knot span</text></svg></div>
+  <div class="copy">
+    <div class="eyebrow">MATCH · recognition rejection guard</div>
+    <h2>Continuous cylinder and fillet certification</h2>
+    <p>A degree-ten rational ruled surface and its first derivatives agree with a cylinder at all five former per-span sample lines, but a smooth radial bulge exists strictly between them.</p>
+    <p class="evidence">Adaptive cylinder certification rejects the hidden deviation at a 0.01 mm linear and 0.01 rad angular tolerance; former sample residual 8.09e-14 mm. The final exact-surface certificate bounds the same control-net perturbation by 8.24e+0 mm.</p>
+  </div>
+</article></section>
 </main>
 </body>
 </html>

@@ -11,7 +11,7 @@
 @media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
 @media print{.bench-nav{display:none}}
 
-:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch affine constraint solver</h1><p class="summary"><strong>8/8</strong> subsystem scenarios match · 4 complete · 4 structured rejections · 1e-7 mm physical tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, physical and domain verification, minimum-change selection, bounded recovery, freedom, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). Nonlinear constraints and browser editing/acceptance remain later stages.</p><main class="grid"><article class="card"><header><div><h2>Empty Sketch remains authoritative geometry</h2><code>empty-sketch</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the zero-sized subsystem without inventing constraints or a profile requirement.</p><svg viewBox="0 0 360 230" role="img" aria-label="Empty Sketch remains authoritative geometry"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><text x="132" y="112">empty Sketch</text><text x="116" y="132">no affine variables</text></svg><dl><dt>Expected</dt><dd>complete · success</dd><dt>Actual</dt><dd>complete · success · 0 components · 0 exact affine free modes · no physical measurement</dd><dt>Components</dt><dd>No components</dd><dt>Constraints</dt><dd>No constraints</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch affine constraint solver</h1><p class="summary"><strong>10/10</strong> subsystem scenarios match · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.325 ms · p95 1.883 ms / 16 ms budget · max 2.838 ms · 200 measured runs</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, cause-specific temporary point-goal evidence, physical and domain verification, minimum-change selection, bounded recovery, freedom, persistence separation, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). The bundled browser-target application path must also keep its calibrated ordinary-preview p95 within the named budget. Browser gesture commit and production acceptance are covered by the application-session bench; nonlinear constraints remain later work.</p><main class="grid"><article class="card"><header><div><h2>Empty Sketch remains authoritative geometry</h2><code>empty-sketch</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the zero-sized subsystem without inventing constraints or a profile requirement.</p><svg viewBox="0 0 360 230" role="img" aria-label="Empty Sketch remains authoritative geometry"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><text x="132" y="112">empty Sketch</text><text x="116" y="132">no affine variables</text></svg><dl><dt>Expected</dt><dd>complete · success</dd><dt>Actual</dt><dd>complete · success · 0 components · 0 exact affine free modes · no physical measurement</dd><dt>Components</dt><dd>No components</dd><dt>Constraints</dt><dd>No constraints</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;status&quot;: &quot;complete&quot;,
   &quot;outcome&quot;: &quot;success&quot;,
   &quot;authoritative&quot;: true,
@@ -493,6 +493,260 @@
       &quot;numericalFloorMm&quot;: 4.263256414560601e-14
     }
   ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Temporary drag goal remains subordinate to hard constraints</h2><code>temporary-drag-goal</code></div><span class="pass">PASS</span></header><p class="purpose">Prioritize one pointer target over reference preservation without trading away horizontal or fixed-coordinate intent, changing an unrelated component, or persisting preview state.</p><svg viewBox="0 0 360 230" role="img" aria-label="Temporary drag goal remains subordinate to hard constraints"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="40" y1="125.18181818181819" x2="65.45454545454545" y2="120.0909090909091"/><circle cx="40" cy="125.18181818181819" r="4"/><circle cx="65.45454545454545" cy="120.0909090909091" r="4"/><title>drag-line</title></g><g class="reference"><line x1="294.54545454545456" y1="112.45454545454545" x2="320" y2="104.81818181818181"/><circle cx="294.54545454545456" cy="112.45454545454545" r="4"/><circle cx="320" cy="104.81818181818181" r="4"/><title>drag-sibling</title></g><g class="selected"><line x1="40" y1="104.81818181818181" x2="65.45454545454545" y2="104.81818181818181"/><circle cx="40" cy="104.81818181818181" r="4"/><circle cx="65.45454545454545" cy="104.81818181818181" r="4"/><title>drag-line</title></g><g class="selected"><line x1="294.54545454545456" y1="112.45454545454545" x2="320" y2="104.81818181818181"/><circle cx="294.54545454545456" cy="112.45454545454545" r="4"/><circle cx="320" cy="104.81818181818181" r="4"/><title>drag-sibling</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 2 components · 6 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:drag-line: success-with-freedom, 2 free, 3.55e-14 mm floor<br>component:drag-sibling: success-with-freedom, 4 free, 1.95e-13 mm floor</dd><dt>Constraints</dt><dd>drag-fixed-end-x: driving, satisfied, 10.000000 mm, 3.55e-14 mm floor<br>drag-horizontal: driving, satisfied, 0.0000000 mm, 3.55e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;drag-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 8
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 8
+      }
+    },
+    {
+      &quot;id&quot;: &quot;drag-sibling&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 100,
+        &quot;y&quot;: 5
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 8
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:drag-line&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;drag-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;drag-fixed-end-x&quot;,
+        &quot;drag-horizontal&quot;
+      ],
+      &quot;structuralFreedom&quot;: 2,
+      &quot;localFirstOrderFreedom&quot;: 2,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 20
+      },
+      &quot;numericalFloorMm&quot;: 3.552713678800501e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:drag-sibling&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;drag-sibling&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 100,
+        &quot;originY&quot;: 5,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.9539925233402755e-13
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;drag-fixed-end-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;drag-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:drag-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 10,
+      &quot;measuredValueMm&quot;: 10,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 3.552713678800501e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;drag-horizontal&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;drag-line&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:drag-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 3.552713678800501e-14
+    }
+  ],
+  &quot;temporaryDragGoal&quot;: {
+    &quot;point&quot;: {
+      &quot;entityId&quot;: &quot;drag-line&quot;,
+      &quot;endpoint&quot;: &quot;end&quot;
+    },
+    &quot;target&quot;: {
+      &quot;x&quot;: 20,
+      &quot;y&quot;: 8
+    },
+    &quot;state&quot;: &quot;limited&quot;,
+    &quot;achieved&quot;: {
+      &quot;x&quot;: 10,
+      &quot;y&quot;: 8
+    },
+    &quot;errorMm&quot;: 10,
+    &quot;limitedBy&quot;: [
+      &quot;driving-constraints&quot;
+    ]
+  }
+}</pre></details></article>
+<article class="card"><header><div><h2>Temporary drag goal remains subordinate to entity validity</h2><code>temporary-drag-domain</code></div><span class="pass">PASS</span></header><p class="purpose">Keep the minimum line-length domain distinct from driving constraints when a pointer target would collapse a line.</p><svg viewBox="0 0 360 230" role="img" aria-label="Temporary drag goal remains subordinate to entity validity"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="40" y1="115" x2="320" y2="115"/><circle cx="40" cy="115" r="4"/><circle cx="320" cy="115" r="4"/><title>drag-domain</title></g><g class="selected"><line x1="40" y1="115" x2="40.0000280000005" y2="115"/><circle cx="40" cy="115" r="4"/><circle cx="40.0000280000005" cy="115" r="4"/><title>drag-domain</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 1 component · 2 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:drag-domain: success-with-freedom, 2 free, 1.78e-14 mm floor, recovery recovered after 2/128, 1.000e+1 mm reference displacement</dd><dt>Constraints</dt><dd>drag-domain-start-x: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor<br>drag-domain-start-y: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;drag-domain&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 0.0000010000000177635683,
+        &quot;y&quot;: 0
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:drag-domain&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;drag-domain&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;drag-domain-start-x&quot;,
+        &quot;drag-domain-start-y&quot;
+      ],
+      &quot;structuralFreedom&quot;: 2,
+      &quot;localFirstOrderFreedom&quot;: 2,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14,
+      &quot;domainRecovery&quot;: {
+        &quot;termination&quot;: &quot;recovered&quot;,
+        &quot;passes&quot;: 2,
+        &quot;maximumPasses&quot;: 128,
+        &quot;referenceDisplacementMm&quot;: 9.999998999999983
+      },
+      &quot;message&quot;: &quot;A deterministic free-group correction restored the line validity domain.&quot;
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;drag-domain-start-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;drag-domain&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:drag-domain&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;drag-domain-start-y&quot;,
+      &quot;kind&quot;: &quot;fixed-y&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;drag-domain&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;y&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:drag-domain&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    }
+  ],
+  &quot;temporaryDragGoal&quot;: {
+    &quot;point&quot;: {
+      &quot;entityId&quot;: &quot;drag-domain&quot;,
+      &quot;endpoint&quot;: &quot;end&quot;
+    },
+    &quot;target&quot;: {
+      &quot;x&quot;: 0,
+      &quot;y&quot;: 0
+    },
+    &quot;state&quot;: &quot;limited&quot;,
+    &quot;achieved&quot;: {
+      &quot;x&quot;: 0.0000010000000177635683,
+      &quot;y&quot;: 0
+    },
+    &quot;errorMm&quot;: 0.0000010000000177635683,
+    &quot;limitedBy&quot;: [
+      &quot;entity-domain&quot;
+    ]
+  }
 }</pre></details></article>
 <article class="card"><header><div><h2>Coincidence retains endpoint identity and rotation invariance</h2><code>coincidence-invariance</code></div><span class="pass">PASS</span></header><p class="purpose">Select the Euclidean midpoint of independent semantic endpoints and preserve the result under permutation and a quarter turn.</p><svg viewBox="0 0 360 230" role="img" aria-label="Coincidence retains endpoint identity and rotation invariance"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="80" y1="190" x2="146.66666666666666" y2="156.66666666666669"/><circle cx="80" cy="190" r="4"/><circle cx="146.66666666666666" cy="156.66666666666669" r="4"/><title>coincident-a</title></g><g class="reference"><line x1="213.33333333333334" y1="90" x2="280" y2="40"/><circle cx="213.33333333333334" cy="90" r="4"/><circle cx="280" cy="40" r="4"/><title>coincident-b</title></g><g class="selected"><line x1="80" y1="190" x2="180" y2="123.33333333333333"/><circle cx="80" cy="190" r="4"/><circle cx="180" cy="123.33333333333333" r="4"/><title>coincident-a</title></g><g class="selected"><line x1="180" y1="123.33333333333333" x2="280" y2="40"/><circle cx="180" cy="123.33333333333333" r="4"/><circle cx="280" cy="40" r="4"/><title>coincident-b</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 1 component · 6 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:coincident-a: success-with-freedom, 6 free, 2.13e-14 mm floor</dd><dt>Constraints</dt><dd>coincident-a-b: driving, satisfied, 0.0000000 mm, 2.13e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · quarter-turn invariant · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;status&quot;: &quot;complete&quot;,
