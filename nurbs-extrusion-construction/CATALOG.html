@@ -55,7 +55,7 @@
   <header>
     <div class="eyebrow">GEOMETRY CONSTRUCTION <code>profile → NURBS B-rep</code></div>
     <h1>Extrusion Construction</h1>
-    <p>Exact lifted caps and ruled side surfaces across transformed, concave, holed, and rationally curved planar profiles. Every complete case is a validated Solid with independently checked volume and operation-local topology provenance.</p>
+    <p>Exact lifted caps and ruled side surfaces across transformed, concave, holed, and rationally curved planar profiles. Every complete case is a validated Solid with independently checked volume and complete normalized topology history.</p>
     <div class="summary"><span><strong>13/13</strong> expected outcomes</span><span><strong>8</strong> solids</span><span><strong>5</strong> structured rejections</span><span><strong>0.001</strong> mm tolerance</span></div>
   </header>
   <section class="grid"><article class="case case--pass">
@@ -64,7 +64,7 @@
       <div class="eyebrow"><span>PASS</span><code>rectangular_positive</code></div>
       <h2>Rectangular positive extrusion</h2>
       <p class="purpose">Baseline closed solid and source-to-result topology mapping.</p>
-      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 26 construction origins</p><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
       <div class="expected">Expected complete · 60.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -73,7 +73,7 @@
       <div class="eyebrow"><span>PASS</span><code>rectangular_reverse</code></div>
       <h2>Reverse-side extrusion</h2>
       <p class="purpose">Signed distance reverses construction without changing solid orientation.</p>
-      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>24.000000</strong> mm³</span><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>24.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 26 construction origins</p><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
       <div class="expected">Expected complete · 24.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -82,7 +82,7 @@
       <div class="eyebrow"><span>PASS</span><code>tilted_world_frame</code></div>
       <h2>Tilted world placement</h2>
       <p class="purpose">Construction is frame-independent and not specialized to world axes.</p>
-      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>30.000000</strong> mm³</span><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 1.42e-14 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>30.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 26 construction origins</p><p>Accuracy 0.00e+0 mm · 6 Faces; 12 Edges; 1.42e-14 mm³ volume error</p></div>
       <div class="expected">Expected complete · 30.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -91,7 +91,7 @@
       <div class="eyebrow"><span>PASS</span><code>concave_profile</code></div>
       <h2>Concave L profile</h2>
       <p class="purpose">A non-convex loop uses the same cap and ruled-side construction.</p>
-      <div class="metrics"><span><strong>8</strong> Faces</span><span><strong>18</strong> Edges</span><span><strong>12</strong> Vertices</span><span><strong>40.000000</strong> mm³</span><p>Accuracy 1.02e-15 mm · 8 Faces; 18 Edges; 0.00e+0 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>8</strong> Faces</span><span><strong>18</strong> Edges</span><span><strong>12</strong> Vertices</span><span><strong>40.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 38 construction origins</p><p>Accuracy 1.02e-15 mm · 8 Faces; 18 Edges; 0.00e+0 mm³ volume error</p></div>
       <div class="expected">Expected complete · 40.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -100,7 +100,7 @@
       <div class="eyebrow"><span>PASS</span><code>through_hole</code></div>
       <h2>Profile with through-hole</h2>
       <p class="purpose">Inner-loop orientation is normalized and retained on both caps.</p>
-      <div class="metrics"><span><strong>10</strong> Faces</span><span><strong>24</strong> Edges</span><span><strong>16</strong> Vertices</span><span><strong>96.000000</strong> mm³</span><p>Accuracy 9.22e-16 mm · 10 Faces; 24 Edges; 1.42e-14 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>10</strong> Faces</span><span><strong>24</strong> Edges</span><span><strong>16</strong> Vertices</span><span><strong>96.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 50 construction origins</p><p>Accuracy 9.22e-16 mm · 10 Faces; 24 Edges; 1.42e-14 mm³ volume error</p></div>
       <div class="expected">Expected complete · 96.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -109,7 +109,7 @@
       <div class="eyebrow"><span>PASS</span><code>rational_round</code></div>
       <h2>Rational rounded corner</h2>
       <p class="purpose">A degree-two rational edge produces an exact ruled NURBS side.</p>
-      <div class="metrics"><span><strong>7</strong> Faces</span><span><strong>15</strong> Edges</span><span><strong>10</strong> Vertices</span><span><strong>71.356129</strong> mm³</span><p>Accuracy 8.88e-16 mm · 7 Faces; 15 Edges; 6.58e-5 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>7</strong> Faces</span><span><strong>15</strong> Edges</span><span><strong>10</strong> Vertices</span><span><strong>71.356129</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 32 construction origins</p><p>Accuracy 8.88e-16 mm · 7 Faces; 15 Edges; 6.58e-5 mm³ volume error</p></div>
       <div class="expected">Expected complete · 71.356194 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -118,7 +118,7 @@
       <div class="eyebrow"><span>PASS</span><code>nonzero_profile_accuracy</code></div>
       <h2>Nonzero profile accuracy</h2>
       <p class="purpose">Exact lifting preserves inherited profile accuracy without adding one contribution per constructed Face.</p>
-      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><p>Accuracy 4.00e-4 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 26 construction origins</p><p>Accuracy 4.00e-4 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
       <div class="expected">Expected complete · 60.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
@@ -127,7 +127,7 @@
       <div class="eyebrow"><span>PASS</span><code>exact_hard_limit_pass_through</code></div>
       <h2>Exact hard-limit pass-through</h2>
       <p class="purpose">Accuracy equal to the Design tolerance is accepted when exact construction introduces no new error.</p>
-      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><p>Accuracy 1.00e-3 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+      <div class="metrics"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>8</strong> Vertices</span><span><strong>60.000000</strong> mm³</span><span><strong>complete</strong> history</span><p>History kinds vertex, edge, face · 0 continuations · 0 generated origins · 26 construction origins</p><p>Accuracy 1.00e-3 mm · 6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
       <div class="expected">Expected complete · 60.000000 mm³</div>
     </div>
   </article><article class="case case--pass">
