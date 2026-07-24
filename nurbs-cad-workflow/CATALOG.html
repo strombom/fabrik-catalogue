@@ -26,6 +26,23 @@
     header p { max-width:800px; color:var(--muted); font-size:17px; }
     .summary { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
     .summary span { padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:#101827cc; }
+    .outcome-probes { margin:0 0 28px; padding:22px; border:1px solid var(--line); border-radius:20px; background:#0d1523; }
+    .outcome-probes__heading { display:flex; justify-content:space-between; gap:18px; align-items:flex-start; margin-bottom:15px; }
+    .outcome-probes__heading h2 { margin:0 0 4px; }
+    .outcome-probes__heading p { max-width:760px; margin:0; color:var(--muted); }
+    .outcome-probes__heading > strong { color:var(--green); font-size:22px; }
+    .outcome-probes__grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(235px,1fr)); gap:10px; }
+    .outcome-probe { padding:13px; border:1px solid #315348; border-radius:13px; background:#0a1320; }
+    .outcome-probe--fail { border-color:#7f1d1d; }
+    .outcome-probe > div:first-child { display:flex; justify-content:space-between; gap:8px; }
+    .outcome-probe > div:first-child span { color:var(--green); font-size:10px; font-weight:800; letter-spacing:.1em; }
+    .outcome-probe--fail > div:first-child span { color:var(--red); }
+    .outcome-probe > code { display:block; margin:3px 0 10px; color:var(--muted); font-size:10px; }
+    .outcome-probe dl { display:grid; gap:4px; margin:0; }
+    .outcome-probe dl > div { display:grid; grid-template-columns:58px minmax(0,1fr); gap:6px; }
+    .outcome-probe dt { color:var(--muted); font-size:9px; text-transform:uppercase; }
+    .outcome-probe dd { margin:0; color:#dbeafe; font-size:10px; overflow-wrap:anywhere; }
+    .outcome-probe p { margin:9px 0 0; color:var(--muted); font-size:10px; }
     .grid { display:grid; gap:20px; }
     .case { display:grid; grid-template-columns:320px minmax(0,1fr); overflow:hidden; border:1px solid var(--line); border-radius:20px; background:linear-gradient(145deg,#131e30,#0d1420); box-shadow:0 22px 55px #0005; }
     .case--fail { border-color:#7f1d1d; }
@@ -130,8 +147,102 @@
     <div class="eyebrow">HEADLESS CAD <code>intent → evaluation → display scene → published Part</code></div>
     <h1>CAD Workflow</h1>
     <p>The first caller-neutral modelling sequence. Typed Sketch, Create Extrude, and Fillet commands use ordinary CAD evaluation, preserve the last accepted Project on refusal, and project token-bound preview and accepted tessellations without making display data authoritative.</p>
-    <div class="summary"><span><strong>7/7</strong> expected outcomes</span><span><strong>5</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Part accuracy</strong> equals its body output</span><span><strong>Feature + Part</strong> typed inspection</span><span><strong>Forward + reverse</strong> topology index</span><span><strong>Cold replay</strong> equivalent bindings</span></div>
+    <div class="summary"><span><strong>7/7</strong> expected workflows</span><span><strong>9/9</strong> topology outcomes</span><span><strong>5</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Part accuracy</strong> equals its body output</span><span><strong>Feature + Part</strong> typed inspection</span><span><strong>Forward + reverse</strong> topology index</span><span><strong>Cold replay</strong> equivalent bindings</span></div>
   </header>
+  <section class="outcome-probes">
+    <div class="outcome-probes__heading"><div><h2>Topology consumer outcomes</h2><p>Structured Stage 3 resolution evidence, including explicit technical probes where current modelling operations cannot yet construct the topology event.</p></div><strong>9/9</strong></div>
+    <div class="outcome-probes__grid"><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Resolved one-to-one selector</strong><span>PASS</span></div>
+      <code>resolved-one-to-one</code>
+      <dl>
+        <div><dt>Expected</dt><dd>resolved/contract-satisfied</dd></div>
+        <div><dt>Actual</dt><dd>resolved/contract-satisfied</dd></div>
+<div><dt>Stage</dt><dd>consumer-policy</dd></div>
+<div><dt>Evidence</dt><dd>1 candidates · split no · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>An accepted Extrude Edge root resolves through the ordinary index.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>One source produces several candidates</strong><span>PASS</span></div>
+      <code>split-cardinality</code>
+      <dl>
+        <div><dt>Expected</dt><dd>ambiguous/cardinality-ambiguous</dd></div>
+        <div><dt>Actual</dt><dd>ambiguous/cardinality-ambiguous</dd></div>
+<div><dt>Stage</dt><dd>candidate-discovery</dd></div>
+<div><dt>Evidence</dt><dd>2 candidates · split yes · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>A technical normalized-history probe supplies two final Edge candidates.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Promised history coverage unavailable</strong><span>PASS</span></div>
+      <code>missing-coverage</code>
+      <dl>
+        <div><dt>Expected</dt><dd>source-unavailable/history-coverage-unavailable</dd></div>
+        <div><dt>Actual</dt><dd>source-unavailable/history-coverage-unavailable</dd></div>
+<div><dt>Stage</dt><dd>source-availability</dd></div>
+<div><dt>Evidence</dt><dd>0 candidates · split no · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>A deliberately incomplete authoritative record remains a bench-only contract probe.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Distinct roots converge on one seed</strong><span>PASS</span></div>
+      <code>merged-root-distinctness</code>
+      <dl>
+        <div><dt>Expected</dt><dd>policy-violation/distinctness-violated</dd></div>
+        <div><dt>Actual</dt><dd>policy-violation/distinctness-violated</dd></div>
+<div><dt>Stage</dt><dd>consumer-policy</dd></div>
+<div><dt>Evidence</dt><dd>1 candidates · split no · merge no · distinctness violated</dd></div>
+      </dl>
+      <p>Two accepted sweep selectors for one profile Vertex remain distinct intent and fail before Fillet geometry.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Removed source topology</strong><span>PASS</span></div>
+      <code>removed-source-topology</code>
+      <dl>
+        <div><dt>Expected</dt><dd>missing/topology-removed</dd></div>
+        <div><dt>Actual</dt><dd>missing/topology-removed</dd></div>
+<div><dt>Stage</dt><dd>candidate-discovery</dd></div>
+<div><dt>Evidence</dt><dd>0 candidates · split no · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>The Edge consumed by the accepted Fillet has no surviving current image.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Generated current Edge has no selector</strong><span>PASS</span></div>
+      <code>generated-pick</code>
+      <dl>
+        <div><dt>Expected</dt><dd>rejected/unsupported-lineage</dd></div>
+        <div><dt>Actual</dt><dd>rejected/unsupported-lineage</dd></div>
+
+
+      </dl>
+      <p>Reverse provenance reports the generation cause but does not invent portable Project-v1 intent.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Stale pick refused before provenance</strong><span>PASS</span></div>
+      <code>stale-pick</code>
+      <dl>
+        <div><dt>Expected</dt><dd>rejected/stale-pick</dd></div>
+        <div><dt>Actual</dt><dd>rejected/stale-pick</dd></div>
+
+
+      </dl>
+      <p>The scene-token guard runs before body or provenance lookup.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Dependent Feature remains blocked</strong><span>PASS</span></div>
+      <code>dependent-blocked-upstream</code>
+      <dl>
+        <div><dt>Expected</dt><dd>blocked-upstream/upstream-output-unavailable</dd></div>
+        <div><dt>Actual</dt><dd>blocked-upstream/upstream-output-unavailable</dd></div>
+<div><dt>Stage</dt><dd>upstream-dependency</dd></div>
+<div><dt>Evidence</dt><dd>0 candidates · split no · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>A downstream Fillet records the unavailable input occurrence and nests the causal Feature diagnostic without attempting geometry.</p>
+    </article><article class="outcome-probe outcome-probe--pass">
+      <div><strong>Causal failure with independent sibling</strong><span>PASS</span></div>
+      <code>causal-and-independent</code>
+      <dl>
+        <div><dt>Expected</dt><dd>source-unavailable/semantic-root-unavailable</dd></div>
+        <div><dt>Actual</dt><dd>source-unavailable/semantic-root-unavailable</dd></div>
+<div><dt>Stage</dt><dd>source-availability</dd></div>
+<div><dt>Evidence</dt><dd>0 candidates · split no · merge no · distinctness not-evaluated</dd></div>
+      </dl>
+      <p>A later independent Part continues to a complete Extrude after the causal Fillet rejects.</p>
+    </article></div>
+  </section>
   <section class="grid"><article id="rectangle_create_extrude" class="case case--pass">
     <div class="visual"><section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of Closed Sketch to published solid">
     <div class="result-view__label">Accepted Part</div>
@@ -249,6 +360,9 @@
         <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-face → face#1</dd></div>
         <div><dt>Reverse roots</dt><dd><code>extrude-cap-face</code></dd></div>
         <div><dt>Pick conversion</dt><dd><code>extrude-cap-face</code></dd></div>
+        <div><dt>Resolution</dt><dd><code>resolved</code> · consumer-policy · contract-satisfied</dd></div>
+        <div><dt>Contract</dt><dd>1..1 face; observed 1; split no; merge no</dd></div>
+        <div><dt>Invariants</dt><dd>planarity:satisfied, semantic-frame:satisfied, accuracy-budget:satisfied</dd></div>
       </dl>
     </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
@@ -318,6 +432,9 @@
         <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-side-face → face#2</dd></div>
         <div><dt>Reverse roots</dt><dd><code>extrude-side-face</code></dd></div>
         <div><dt>Pick conversion</dt><dd><code>extrude-side-face</code></dd></div>
+        <div><dt>Resolution</dt><dd><code>resolved</code> · consumer-policy · contract-satisfied</dd></div>
+        <div><dt>Contract</dt><dd>1..1 face; observed 1; split no; merge no</dd></div>
+        <div><dt>Invariants</dt><dd>planarity:satisfied, semantic-frame:satisfied, accuracy-budget:satisfied</dd></div>
       </dl>
     </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
@@ -432,6 +549,9 @@
         <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-edge → edge#0</dd></div>
         <div><dt>Reverse roots</dt><dd><code>extrude-profile-edge</code></dd></div>
         <div><dt>Pick conversion</dt><dd><code>extrude-profile-edge</code></dd></div>
+        <div><dt>Resolution</dt><dd><code>resolved</code> · consumer-policy · contract-satisfied</dd></div>
+        <div><dt>Contract</dt><dd>1..1 edge; observed 1; split no; merge no</dd></div>
+        <div><dt>Invariants</dt><dd>none</dd></div>
       </dl>
     </details><details class="topology-evidence">
       <summary><strong>extrude-cap-face</strong><span>face#1 of 1 · forward/reverse agree</span></summary>
@@ -441,6 +561,9 @@
         <div><dt>Path</dt><dd>extrude_00000000-0000-4000-8000-000000000004/body[0]: generated extrude-cap-face → face#1<br>fillet_00000000-0000-4000-8000-000000000005/body[0]: preserved → face#1</dd></div>
         <div><dt>Reverse roots</dt><dd><code>extrude-cap-face</code></dd></div>
         <div><dt>Pick conversion</dt><dd><code>extrude-cap-face</code></dd></div>
+        <div><dt>Resolution</dt><dd><code>resolved</code> · consumer-policy · contract-satisfied</dd></div>
+        <div><dt>Contract</dt><dd>1..1 face; observed 1; split no; merge no</dd></div>
+        <div><dt>Invariants</dt><dd>planarity:satisfied, semantic-frame:satisfied, accuracy-budget:satisfied</dd></div>
       </dl>
     </details><p class="topology-evidence-group__cold">Cold reevaluation: <strong>equivalent</strong></p></section>
       <div class="result"><span><strong>7</strong> Faces</span><span><strong>15</strong> Edges</span><span><strong>172</strong> display triangles</span><span><strong>1595.700</strong> mm³</span><p>7 Faces; 15 Edges; 8.37e-3 mm³ volume error</p></div>
