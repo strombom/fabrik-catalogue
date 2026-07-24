@@ -11,7 +11,7 @@
 @media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
 @media print{.bench-nav{display:none}}
 
-:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · distance semantics <strong class="pass">passed</strong> · mixed component <strong class="pass">passed</strong> · accepted distance constraints <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.588 ms · p95 2.939 ms / 16 ms frozen gate · max 3.868 ms · 200 measured runs</p><p class="scope">The compact affine corpus and nonlinear probes exercise the standalone solvers, Project v1 validation and file round-trip, and the public headless Sketch evaluator. The browser-target build matches the direct affine corpus and numerical probes (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0), including accepted line-length and point-distance adapters. Affine-only components continue through the direct reducer; driving distance constraints enter the mixed nullspace controller, with point distance merging only the affine components containing its two subjects. Independent physical and finite-line verification remains authoritative. The application path stays within its frozen ordinary-preview p95 gate. Browser create/edit, branch selection, refusal recovery, production rematerialization, Project undo/redo, and save/reload are covered by the application-session bench. Adaptive continuation remains later Stage 4 work.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · distance semantics <strong class="pass">passed</strong> · mixed component <strong class="pass">passed</strong> · continuation <strong class="pass">passed</strong> · accepted distance constraints <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.365 ms · p95 1.931 ms / 16 ms frozen gate · max 3.127 ms · 200 measured runs</p><p class="scope">The compact affine corpus and nonlinear probes exercise the standalone solvers, Project v1 validation and file round-trip, and the public headless Sketch evaluator. The browser-target build matches the direct affine corpus and numerical probes (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0), including accepted line-length, point-distance, and adaptive-continuation adapters. Affine-only components continue through the direct reducer; positive driving distance constraints enter the mixed nullspace controller, while exact-zero point distance delegates its two coordinate equalities to the same affine reduction. Point distance merges only the affine components containing its subjects. Large accepted dimension changes start from accepted measurements, retain directed branches, and bisect retryable target intervals within explicit work. Independent physical and finite-line verification remains authoritative. The application path stays within its frozen ordinary-preview p95 gate. Browser create/edit, branch selection, refusal recovery, production rematerialization, Project undo/redo, and save/reload are covered by the application-session bench.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-numerical-backend-probe-v1&quot;,
   &quot;backend&quot;: {
     &quot;implementation&quot;: &quot;ml-matrix&quot;,
@@ -800,7 +800,7 @@
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
   &quot;passed&quot;: true
-}</pre></details></article><article class="card"><header><div><h2>Stage 4 distance semantics slice</h2><code>point distance · line length</code></div><span class="pass">PASS</span></header><p class="purpose">Compile semantic distance constraints into normalized smooth residuals and analytic Jacobians, drive the trust-region controller, and independently measure physical geometry without leaking compiler records into Project v1.</p><dl><dt>Semantics</dt><dd>driving and reference · self tautology/contradiction · negative quantities</dd><dt>Initialization</dt><dd>4 coincident positive-distance branches cover the complete direction hierarchy</dd><dt>Jacobian</dt><dd>6.889e-11 maximum central-difference error</dd><dt>Domain</dt><dd>zero line-length target remains separate from minimum line validity</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 distance semantics slice</h2><code>point distance · line length</code></div><span class="pass">PASS</span></header><p class="purpose">Compile exact-zero point distance into affine equality and positive distance into normalized smooth residuals with analytic Jacobians, then independently measure physical geometry without leaking compiler records into Project v1.</p><dl><dt>Semantics</dt><dd>driving and reference · self tautology/contradiction · negative quantities</dd><dt>Exact zero</dt><dd>2 affine rows · 0 nonlinear rows · 2 active rank · 6 local freedoms</dd><dt>Initialization</dt><dd>4 coincident positive-distance branches cover the complete direction hierarchy</dd><dt>Jacobian</dt><dd>6.889e-11 maximum central-difference error</dd><dt>Domain</dt><dd>zero line-length target remains separate from minimum line validity</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-distance-constraint-probe-v1&quot;,
   &quot;compilerPolicy&quot;: {
     &quot;minimumLineLengthMm&quot;: 0.01,
@@ -867,6 +867,7 @@
           0
         ],
         &quot;residualCount&quot;: 1,
+        &quot;affineEquations&quot;: [],
         &quot;normalization&quot;: {
           &quot;originX&quot;: 2,
           &quot;originY&quot;: 2,
@@ -1115,6 +1116,7 @@
           0.2
         ],
         &quot;residualCount&quot;: 1,
+        &quot;affineEquations&quot;: [],
         &quot;normalization&quot;: {
           &quot;originX&quot;: 1.5,
           &quot;originY&quot;: 2,
@@ -1618,6 +1620,7 @@
           -0.0634138796727848
         ],
         &quot;residualCount&quot;: 4,
+        &quot;affineEquations&quot;: [],
         &quot;normalization&quot;: {
           &quot;originX&quot;: 26.833333333333336,
           &quot;originY&quot;: 0.16666666666666674,
@@ -2059,6 +2062,7 @@
             0
           ],
           &quot;residualCount&quot;: 0,
+          &quot;affineEquations&quot;: [],
           &quot;normalization&quot;: {
             &quot;originX&quot;: 1,
             &quot;originY&quot;: 0,
@@ -2127,6 +2131,161 @@
           &quot;message&quot;: &quot;A point cannot have a positive distance from itself.&quot;
         }
       },
+      &quot;distinctZero&quot;: {
+        &quot;status&quot;: &quot;complete&quot;,
+        &quot;system&quot;: {
+          &quot;initialValues&quot;: [
+            -1,
+            0,
+            1,
+            0
+          ],
+          &quot;residualCount&quot;: 0,
+          &quot;affineEquations&quot;: [
+            {
+              &quot;constraintId&quot;: &quot;distinct-zero-compile&quot;,
+              &quot;first&quot;: &quot;[\&quot;coordinate\&quot;,\&quot;self-line\&quot;,\&quot;start\&quot;,\&quot;x\&quot;]&quot;,
+              &quot;second&quot;: &quot;[\&quot;coordinate\&quot;,\&quot;self-line\&quot;,\&quot;end\&quot;,\&quot;x\&quot;]&quot;,
+              &quot;difference&quot;: 0
+            },
+            {
+              &quot;constraintId&quot;: &quot;distinct-zero-compile&quot;,
+              &quot;first&quot;: &quot;[\&quot;coordinate\&quot;,\&quot;self-line\&quot;,\&quot;start\&quot;,\&quot;y\&quot;]&quot;,
+              &quot;second&quot;: &quot;[\&quot;coordinate\&quot;,\&quot;self-line\&quot;,\&quot;end\&quot;,\&quot;y\&quot;]&quot;,
+              &quot;difference&quot;: 0
+            }
+          ],
+          &quot;normalization&quot;: {
+            &quot;originX&quot;: 1,
+            &quot;originY&quot;: 0,
+            &quot;scaleMm&quot;: 1
+          },
+          &quot;parameterOrder&quot;: [
+            {
+              &quot;columnIndex&quot;: 0,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 1,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 2,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 3,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;constraints&quot;: [
+            {
+              &quot;constraintId&quot;: &quot;distinct-zero-compile&quot;,
+              &quot;kind&quot;: &quot;point-distance&quot;,
+              &quot;participation&quot;: &quot;driving&quot;,
+              &quot;semanticState&quot;: &quot;affine-equations&quot;,
+              &quot;subjects&quot;: [
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;start&quot;
+                  }
+                },
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;end&quot;
+                  }
+                }
+              ],
+              &quot;resolvedValueMm&quot;: 0
+            }
+          ],
+          &quot;seeds&quot;: []
+        }
+      },
+      &quot;tinyPositive&quot;: {
+        &quot;status&quot;: &quot;complete&quot;,
+        &quot;system&quot;: {
+          &quot;initialValues&quot;: [
+            -1,
+            0,
+            1,
+            0
+          ],
+          &quot;residualCount&quot;: 1,
+          &quot;affineEquations&quot;: [],
+          &quot;normalization&quot;: {
+            &quot;originX&quot;: 1,
+            &quot;originY&quot;: 0,
+            &quot;scaleMm&quot;: 1
+          },
+          &quot;parameterOrder&quot;: [
+            {
+              &quot;columnIndex&quot;: 0,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 1,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 2,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 3,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;constraints&quot;: [
+            {
+              &quot;constraintId&quot;: &quot;tiny-positive-compile&quot;,
+              &quot;kind&quot;: &quot;point-distance&quot;,
+              &quot;participation&quot;: &quot;driving&quot;,
+              &quot;semanticState&quot;: &quot;driving-equation&quot;,
+              &quot;subjects&quot;: [
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;start&quot;
+                  }
+                },
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;end&quot;
+                  }
+                }
+              ],
+              &quot;resolvedValueMm&quot;: 1e-12,
+              &quot;rowIndex&quot;: 0,
+              &quot;rowScaleMm&quot;: 1e-12
+            }
+          ],
+          &quot;seeds&quot;: []
+        }
+      },
       &quot;negativePointDistance&quot;: {
         &quot;status&quot;: &quot;rejected&quot;,
         &quot;rejection&quot;: {
@@ -2143,6 +2302,117 @@
           &quot;path&quot;: &quot;constraints[negative-length].valueMm&quot;,
           &quot;constraintId&quot;: &quot;negative-length&quot;,
           &quot;message&quot;: &quot;Point distance and line length cannot be negative.&quot;
+        }
+      }
+    },
+    &quot;exactZeroPointDistance&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;zero-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 1.5
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: -1.9999999999999996,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;zero-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 1.5
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 6,
+            &quot;y&quot;: 3
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;distinct-zero&quot;,
+          &quot;kind&quot;: &quot;point-distance&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;zero-a&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;zero-b&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;distinct-zero&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;affine-equations&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;zero-a&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              },
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;zero-b&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 0
+          }
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 2,
+          &quot;originY&quot;: 1.5,
+          &quot;scaleMm&quot;: 4.272001872658765
+        },
+        &quot;affineRowCount&quot;: 2,
+        &quot;affineRank&quot;: 2,
+        &quot;affineNullity&quot;: 6,
+        &quot;affineNumericalFloorMm&quot;: 1.0658141036401503e-14,
+        &quot;maximumAffineResidualMm&quot;: 0,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 0,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 6,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 0,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 6,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 0
+          }
         }
       }
     },
@@ -2186,6 +2456,7 @@
           0
         ],
         &quot;residualCount&quot;: 1,
+        &quot;affineEquations&quot;: [],
         &quot;normalization&quot;: {
           &quot;originX&quot;: 0.5,
           &quot;originY&quot;: 0,
@@ -2381,6 +2652,8 @@
   &quot;policy&quot;: {
     &quot;physicalLengthToleranceMm&quot;: 1e-7,
     &quot;maximumAffineDomainRecoveryPasses&quot;: 128,
+    &quot;maximumContinuationSubdivisions&quot;: 32,
+    &quot;minimumContinuationStepFraction&quot;: 0.000244140625,
     &quot;distanceCompiler&quot;: {
       &quot;minimumLineLengthMm&quot;: 0.000001,
       &quot;initialDirectionThresholdMm&quot;: 1e-9,
@@ -3468,6 +3741,696 @@
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
   &quot;passed&quot;: true
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 adaptive continuation slice</h2><code>accepted dimensions → bounded target bisection</code></div><span class="pass">PASS</span></header><p class="purpose">Continue large distance edits from accepted geometry, bisect retryable or branch-reversing target intervals, preserve directed branches, and stop with bounded-work evidence rather than an infeasibility claim.</p><dl><dt>Recovery</dt><dd>14 accepted / 21 attempted corrections · 7 halvings / 32 maximum attempts</dd><dt>Branches</dt><dd>positive 100 mm · negative -100 mm · tiny/zero/regrow verified</dd><dt>Allocation</dt><dd>both free -1.0000000000000022 / 3.000000000000002 mm · first fixed 0 / 4.0000000000000036 mm · second fixed -2.0000000000000044 / 2 mm</dd><dt>Work</dt><dd>83 controller iterations · 104 evaluations · 5 easy-correction growths</dd><dt>Exhaustion</dt><dd>exhausted-work at 4 attempts · minimum-step separately verified · no infeasibility claim</dd><dt>Conflict</dt><dd>compatible duplicate preserved · stable conflict semantic-contradiction before subdivision</dd><dt>Stability</dt><dd>repeat identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;passed&quot;: true,
+  &quot;failures&quot;: [],
+  &quot;policy&quot;: {
+    &quot;maximumContinuationSubdivisions&quot;: 32,
+    &quot;maximumIterationsPerSegment&quot;: 4,
+    &quot;minimumContinuationStepFraction&quot;: 0.000244140625
+  },
+  &quot;positive&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;outcome&quot;: &quot;success&quot;,
+    &quot;endX&quot;: 100,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;completed&quot;,
+      &quot;attemptedIncrements&quot;: 21,
+      &quot;acceptedIncrements&quot;: 14,
+      &quot;controllerIterations&quot;: 83,
+      &quot;controllerEvaluations&quot;: 104,
+      &quot;subdivisions&quot;: 7,
+      &quot;maximumAttempts&quot;: 32,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 0.0078125,
+      &quot;stepGrowths&quot;: 5,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 1,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 100,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;
+      ],
+      &quot;lastBranchComparison&quot;: {
+        &quot;compatible&quot;: true,
+        &quot;minimumDirectionDot&quot;: 1
+      },
+      &quot;lastRollback&quot;: {
+        &quot;fromProgress&quot;: 0,
+        &quot;toProgress&quot;: 0.015625,
+        &quot;outcome&quot;: &quot;exhausted-work&quot;
+      },
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;success&quot;,
+        &quot;controllerTermination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        }
+      }
+    }
+  },
+  &quot;negative&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;outcome&quot;: &quot;success&quot;,
+    &quot;endX&quot;: -100,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;completed&quot;,
+      &quot;attemptedIncrements&quot;: 21,
+      &quot;acceptedIncrements&quot;: 14,
+      &quot;controllerIterations&quot;: 83,
+      &quot;controllerEvaluations&quot;: 104,
+      &quot;subdivisions&quot;: 7,
+      &quot;maximumAttempts&quot;: 32,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 0.0078125,
+      &quot;stepGrowths&quot;: 5,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 1,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: -100,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;
+      ],
+      &quot;lastBranchComparison&quot;: {
+        &quot;compatible&quot;: true,
+        &quot;minimumDirectionDot&quot;: 1
+      },
+      &quot;lastRollback&quot;: {
+        &quot;fromProgress&quot;: 0,
+        &quot;toProgress&quot;: 0.015625,
+        &quot;outcome&quot;: &quot;exhausted-work&quot;
+      },
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;success&quot;,
+        &quot;controllerTermination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        }
+      }
+    }
+  },
+  &quot;exhausted&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;outcome&quot;: &quot;exhausted-work&quot;,
+    &quot;endX&quot;: 1,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;exhausted-work&quot;,
+      &quot;attemptedIncrements&quot;: 4,
+      &quot;acceptedIncrements&quot;: 0,
+      &quot;controllerIterations&quot;: 16,
+      &quot;controllerEvaluations&quot;: 20,
+      &quot;subdivisions&quot;: 4,
+      &quot;maximumAttempts&quot;: 4,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 0.125,
+      &quot;stepGrowths&quot;: 0,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 0,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 1
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;
+      ],
+      &quot;lastRollback&quot;: {
+        &quot;fromProgress&quot;: 0,
+        &quot;toProgress&quot;: 0.125,
+        &quot;outcome&quot;: &quot;exhausted-work&quot;
+      },
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;exhausted-work&quot;,
+        &quot;controllerTermination&quot;: {
+          &quot;outcome&quot;: &quot;exhausted-work&quot;,
+          &quot;cause&quot;: &quot;maximum-iterations&quot;,
+          &quot;limit&quot;: 4
+        }
+      },
+      &quot;exhaustionCause&quot;: &quot;maximum-attempts&quot;
+    },
+    &quot;rejection&quot;: {
+      &quot;path&quot;: &quot;continuation&quot;,
+      &quot;message&quot;: &quot;Adaptive Sketch continuation exhausted maximum-attempts after reaching progress 0; maximumContinuationSubdivisions is 4 correction attempts and minimumContinuationStepFraction is 0.000244140625.&quot;
+    }
+  },
+  &quot;minimumStepExhausted&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;outcome&quot;: &quot;exhausted-work&quot;,
+    &quot;endX&quot;: 1,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;exhausted-work&quot;,
+      &quot;attemptedIncrements&quot;: 3,
+      &quot;acceptedIncrements&quot;: 0,
+      &quot;controllerIterations&quot;: 12,
+      &quot;controllerEvaluations&quot;: 15,
+      &quot;subdivisions&quot;: 3,
+      &quot;maximumAttempts&quot;: 32,
+      &quot;minimumStepFraction&quot;: 0.2,
+      &quot;smallestAttemptedStep&quot;: 0.25,
+      &quot;stepGrowths&quot;: 0,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 0,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 1
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;
+      ],
+      &quot;lastRollback&quot;: {
+        &quot;fromProgress&quot;: 0,
+        &quot;toProgress&quot;: 0.25,
+        &quot;outcome&quot;: &quot;exhausted-work&quot;
+      },
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;exhausted-work&quot;,
+        &quot;controllerTermination&quot;: {
+          &quot;outcome&quot;: &quot;exhausted-work&quot;,
+          &quot;cause&quot;: &quot;maximum-iterations&quot;,
+          &quot;limit&quot;: 4
+        }
+      },
+      &quot;exhaustionCause&quot;: &quot;minimum-step&quot;
+    },
+    &quot;rejection&quot;: {
+      &quot;path&quot;: &quot;continuation&quot;,
+      &quot;message&quot;: &quot;Adaptive Sketch continuation exhausted minimum-step after reaching progress 0; maximumContinuationSubdivisions is 32 correction attempts and minimumContinuationStepFraction is 0.2.&quot;
+    }
+  },
+  &quot;compatibleDuplicate&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;outcome&quot;: &quot;success&quot;,
+    &quot;endX&quot;: 100,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;completed&quot;,
+      &quot;attemptedIncrements&quot;: 21,
+      &quot;acceptedIncrements&quot;: 14,
+      &quot;controllerIterations&quot;: 83,
+      &quot;controllerEvaluations&quot;: 104,
+      &quot;subdivisions&quot;: 7,
+      &quot;maximumAttempts&quot;: 32,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 0.0078125,
+      &quot;stepGrowths&quot;: 5,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 1,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        },
+        {
+          &quot;constraintId&quot;: &quot;continuation-length-duplicate&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        },
+        {
+          &quot;constraintId&quot;: &quot;continuation-length-duplicate&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 100,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;,
+        &quot;exhausted-work&quot;
+      ],
+      &quot;lastBranchComparison&quot;: {
+        &quot;compatible&quot;: true,
+        &quot;minimumDirectionDot&quot;: 1
+      },
+      &quot;lastRollback&quot;: {
+        &quot;fromProgress&quot;: 0,
+        &quot;toProgress&quot;: 0.015625,
+        &quot;outcome&quot;: &quot;exhausted-work&quot;
+      },
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;success&quot;,
+        &quot;controllerTermination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        }
+      }
+    }
+  },
+  &quot;stableConflict&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;outcome&quot;: &quot;semantic-contradiction&quot;,
+    &quot;endX&quot;: 1,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;rejected&quot;,
+      &quot;attemptedIncrements&quot;: 0,
+      &quot;acceptedIncrements&quot;: 0,
+      &quot;controllerIterations&quot;: 0,
+      &quot;controllerEvaluations&quot;: 0,
+      &quot;subdivisions&quot;: 0,
+      &quot;maximumAttempts&quot;: 32,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 1,
+      &quot;stepGrowths&quot;: 0,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 0,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        },
+        {
+          &quot;constraintId&quot;: &quot;continuation-length-conflict&quot;,
+          &quot;valueMm&quot;: 101
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 1
+        },
+        {
+          &quot;constraintId&quot;: &quot;continuation-length-conflict&quot;,
+          &quot;valueMm&quot;: 1
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [],
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;semantic-contradiction&quot;
+      }
+    },
+    &quot;rejection&quot;: {
+      &quot;path&quot;: &quot;distanceConstraints&quot;,
+      &quot;message&quot;: &quot;Driving Euclidean-distance constraints on the same semantic subjects have incompatible target values.&quot;
+    }
+  },
+  &quot;tinySequence&quot;: {
+    &quot;tiny&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;distanceMm&quot;: 1.998623488930207e-12,
+      &quot;directionX&quot;: 1.998623488930207e-12,
+      &quot;continuation&quot;: {
+        &quot;termination&quot;: &quot;completed&quot;,
+        &quot;attemptedIncrements&quot;: 1,
+        &quot;acceptedIncrements&quot;: 1,
+        &quot;controllerIterations&quot;: 39,
+        &quot;controllerEvaluations&quot;: 40,
+        &quot;subdivisions&quot;: 0,
+        &quot;maximumAttempts&quot;: 32,
+        &quot;minimumStepFraction&quot;: 0.000244140625,
+        &quot;smallestAttemptedStep&quot;: 1,
+        &quot;stepGrowths&quot;: 0,
+        &quot;requestedProgress&quot;: 1,
+        &quot;finalProgress&quot;: 1,
+        &quot;requestedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 1e-12
+          }
+        ],
+        &quot;reachedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 1e-12
+          }
+        ],
+        &quot;lastVerifiedEntities&quot;: [
+          {
+            &quot;id&quot;: &quot;tiny-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: -2,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: -9.993117444651034e-13,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;tiny-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 9.993117444651034e-13,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 2,
+              &quot;y&quot;: 0
+            }
+          }
+        ],
+        &quot;retryOutcomes&quot;: [],
+        &quot;lastBranchComparison&quot;: {
+          &quot;compatible&quot;: true
+        },
+        &quot;lastCorrection&quot;: {
+          &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+          &quot;controllerTermination&quot;: {
+            &quot;outcome&quot;: &quot;converged&quot;,
+            &quot;cause&quot;: &quot;residual-tolerance&quot;
+          }
+        }
+      }
+    },
+    &quot;zero&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;distanceMm&quot;: 0,
+      &quot;directionX&quot;: 0,
+      &quot;continuation&quot;: {
+        &quot;termination&quot;: &quot;completed&quot;,
+        &quot;attemptedIncrements&quot;: 1,
+        &quot;acceptedIncrements&quot;: 1,
+        &quot;controllerIterations&quot;: 0,
+        &quot;controllerEvaluations&quot;: 0,
+        &quot;subdivisions&quot;: 0,
+        &quot;maximumAttempts&quot;: 32,
+        &quot;minimumStepFraction&quot;: 0.000244140625,
+        &quot;smallestAttemptedStep&quot;: 1,
+        &quot;stepGrowths&quot;: 0,
+        &quot;requestedProgress&quot;: 1,
+        &quot;finalProgress&quot;: 1,
+        &quot;requestedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 0
+          }
+        ],
+        &quot;reachedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 0
+          }
+        ],
+        &quot;lastVerifiedEntities&quot;: [
+          {
+            &quot;id&quot;: &quot;tiny-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: -2,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;tiny-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 2,
+              &quot;y&quot;: 0
+            }
+          }
+        ],
+        &quot;retryOutcomes&quot;: [],
+        &quot;lastBranchComparison&quot;: {
+          &quot;compatible&quot;: true
+        },
+        &quot;lastCorrection&quot;: {
+          &quot;outcome&quot;: &quot;success-with-freedom&quot;
+        }
+      }
+    },
+    &quot;regrown&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;distanceMm&quot;: 2,
+      &quot;directionX&quot;: 2,
+      &quot;seedSource&quot;: &quot;preferred-direction&quot;,
+      &quot;continuation&quot;: {
+        &quot;termination&quot;: &quot;completed&quot;,
+        &quot;attemptedIncrements&quot;: 1,
+        &quot;acceptedIncrements&quot;: 1,
+        &quot;controllerIterations&quot;: 0,
+        &quot;controllerEvaluations&quot;: 1,
+        &quot;subdivisions&quot;: 0,
+        &quot;maximumAttempts&quot;: 32,
+        &quot;minimumStepFraction&quot;: 0.000244140625,
+        &quot;smallestAttemptedStep&quot;: 1,
+        &quot;stepGrowths&quot;: 0,
+        &quot;requestedProgress&quot;: 1,
+        &quot;finalProgress&quot;: 1,
+        &quot;requestedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 2
+          }
+        ],
+        &quot;reachedValuesMm&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;tiny-distance&quot;,
+            &quot;valueMm&quot;: 2
+          }
+        ],
+        &quot;lastVerifiedEntities&quot;: [
+          {
+            &quot;id&quot;: &quot;tiny-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: -2,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: -1,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;tiny-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 1,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 2,
+              &quot;y&quot;: 0
+            }
+          }
+        ],
+        &quot;retryOutcomes&quot;: [],
+        &quot;lastBranchComparison&quot;: {
+          &quot;compatible&quot;: true
+        },
+        &quot;lastCorrection&quot;: {
+          &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+          &quot;controllerTermination&quot;: {
+            &quot;outcome&quot;: &quot;converged&quot;,
+            &quot;cause&quot;: &quot;residual-tolerance&quot;
+          }
+        }
+      }
+    }
+  },
+  &quot;allocation&quot;: {
+    &quot;bothFree&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;firstX&quot;: -1.0000000000000022,
+      &quot;secondX&quot;: 3.000000000000002
+    },
+    &quot;firstFixed&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;firstX&quot;: 0,
+      &quot;secondX&quot;: 4.0000000000000036
+    },
+    &quot;secondFixed&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;firstX&quot;: -2.0000000000000044,
+      &quot;secondX&quot;: 2
+    },
+    &quot;allComplete&quot;: true
+  },
+  &quot;invalidLimit&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;outcome&quot;: &quot;invalid-input&quot;,
+    &quot;endX&quot;: 1,
+    &quot;continuation&quot;: {
+      &quot;termination&quot;: &quot;rejected&quot;,
+      &quot;attemptedIncrements&quot;: 0,
+      &quot;acceptedIncrements&quot;: 0,
+      &quot;controllerIterations&quot;: 0,
+      &quot;controllerEvaluations&quot;: 0,
+      &quot;subdivisions&quot;: 0,
+      &quot;maximumAttempts&quot;: 0,
+      &quot;minimumStepFraction&quot;: 0.000244140625,
+      &quot;smallestAttemptedStep&quot;: 1,
+      &quot;stepGrowths&quot;: 0,
+      &quot;requestedProgress&quot;: 1,
+      &quot;finalProgress&quot;: 0,
+      &quot;requestedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 100
+        }
+      ],
+      &quot;reachedValuesMm&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;continuation-length&quot;,
+          &quot;valueMm&quot;: 1
+        }
+      ],
+      &quot;lastVerifiedEntities&quot;: [
+        {
+          &quot;id&quot;: &quot;continuation-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 1,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;retryOutcomes&quot;: [],
+      &quot;lastCorrection&quot;: {
+        &quot;outcome&quot;: &quot;invalid-input&quot;
+      }
+    },
+    &quot;rejection&quot;: {
+      &quot;path&quot;: &quot;policy.maximumContinuationSubdivisions&quot;,
+      &quot;message&quot;: &quot;maximumContinuationSubdivisions must be a positive integer.&quot;
+    }
+  },
+  &quot;deterministic&quot;: true,
+  &quot;permutationStable&quot;: true
 }</pre></details></article><article class="card"><header><div><h2>Accepted point-distance vertical slice</h2><code>Project v1 → merged affine components → mixed solve</code></div><span class="pass">PASS</span></header><p class="purpose">Connect two independently affine-reduced point subjects through one durable Euclidean distance, select a deterministic coincident branch, and verify physical evidence, temporary-goal branch choice, self semantics, persistence, and browser-target equivalence.</p><dl><dt>Selected distance</dt><dd>5.000000000000004 mm · direction 0,1</dd><dt>Physical error</dt><dd>4.440892098500626e-15 mm</dd><dt>Routing</dt><dd>affine · mixed-distance · 2 merged entities</dd><dt>Initialization</dt><dd>preferred-direction</dd><dt>Evidence</dt><dd>driving/satisfied · reference/satisfied</dd><dt>Temporary goal</dt><dd>reached</dd><dt>Self semantics</dt><dd>zero success-with-freedom · positive semantic-contradiction</dd><dt>Invalid intent</dt><dd>negative target Project-rejected · zero direction Project-rejected</dd><dt>Persistence</dt><dd>round-trip matched · transient evidence absent</dd><dt>Repeatability</dt><dd>identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;passed&quot;: true,
   &quot;failures&quot;: [],
@@ -3491,7 +4454,7 @@
   &quot;deterministic&quot;: true,
   &quot;permutationStable&quot;: true,
   &quot;transientEvidenceAbsent&quot;: true
-}</pre></details></article><article class="card"><header><div><h2>Accepted line-length vertical slice</h2><code>Project v1 → mixed solve → physical verification</code></div><span class="pass">PASS</span></header><p class="purpose">Route one durable driving line length through the public headless evaluator while keeping an unrelated affine-only component on the direct reducer, then verify Project round-trip, reference evidence, finite-line refusal, temporary-goal selection, repeatability, and browser-target equivalence.</p><dl><dt>Selected length</dt><dd>5 mm</dd><dt>Physical error</dt><dd>0 mm</dd><dt>Routing</dt><dd>affine · mixed-distance</dd><dt>Evidence</dt><dd>driving/satisfied · reference/satisfied</dd><dt>Temporary goal</dt><dd>free reached · affine-fixed limited</dd><dt>Invalid intent</dt><dd>zero target nonconvergence · negative target Project-rejected</dd><dt>Persistence</dt><dd>round-trip matched · transient evidence absent</dd><dt>Repeatability</dt><dd>identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+}</pre></details></article><article class="card"><header><div><h2>Accepted line-length vertical slice</h2><code>Project v1 → mixed solve → physical verification</code></div><span class="pass">PASS</span></header><p class="purpose">Route one durable driving line length through the public headless evaluator while keeping an unrelated affine-only component on the direct reducer, then verify Project round-trip, reference evidence, finite-line refusal, temporary-goal selection, repeatability, and browser-target equivalence.</p><dl><dt>Selected length</dt><dd>5 mm</dd><dt>Physical error</dt><dd>0 mm</dd><dt>Routing</dt><dd>affine · mixed-distance</dd><dt>Evidence</dt><dd>driving/satisfied · reference/satisfied</dd><dt>Temporary goal</dt><dd>free reached · affine-fixed limited</dd><dt>Invalid intent</dt><dd>zero target exhausted-work · negative target Project-rejected</dd><dt>Persistence</dt><dd>round-trip matched · transient evidence absent</dd><dt>Repeatability</dt><dd>identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;passed&quot;: true,
   &quot;failures&quot;: [],
   &quot;selectedLengthMm&quot;: 5,
@@ -3502,7 +4465,7 @@
   ],
   &quot;drivingEvidence&quot;: &quot;driving/satisfied&quot;,
   &quot;referenceEvidence&quot;: &quot;reference/satisfied&quot;,
-  &quot;zeroTargetRejection&quot;: &quot;nonconvergence&quot;,
+  &quot;zeroTargetRejection&quot;: &quot;exhausted-work&quot;,
   &quot;freeDragGoal&quot;: &quot;reached&quot;,
   &quot;limitedDragGoal&quot;: &quot;limited&quot;,
   &quot;negativeTargetRejectedByProject&quot;: true,
