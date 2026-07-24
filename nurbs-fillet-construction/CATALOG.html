@@ -37,7 +37,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
 <nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html" aria-current="page">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
 <main>
 <header>
-  <div class="summary">30/30 expected observations match</div>
+  <div class="summary">31/31 expected observations match</div>
   <h1>Exact fillet strips and connected corner arrangement.</h1>
   <p>Orange Edges are explicit seeds; dashed teal Edges are included by tangent following. Blue is a reconstructed closed B-rep; gold marks generated contact, termination, and junction Edges. Every completed reconstruction also reports complete Vertex, Edge, and Face history coverage, continuation count, and generated-origin count.</p>
 </header>
@@ -47,7 +47,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Box horizontal edge</h2>
       <p>Baseline exact quarter-round strip between a cap and side Face.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 5.04e-5 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -58,7 +58,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Degree-two straight Edge</h2>
       <p>Eligibility follows measured geometry rather than a degree-one primitive label.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 5.04e-5 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -69,7 +69,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Remote Face accuracy remains isolated</h2>
       <p>A remote Face with nonzero uncertainty remains in the output summary without loosening local support recognition or contaminating the generated fillet Face.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 4.045e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 4.045e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 5.04e-5 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -80,7 +80,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Recognition soft-target fallback</h2>
       <p>A measured straight-Edge deviation may miss the preferred quarter-budget target and still publish when its sequentially composed result remains inside the Design hard limit.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 2.116e-3 mm³ volume error; 6.380e-3 mm accuracy; 6.00e-3 mm generated-Face accuracy; local input 4.00e-3 mm, measured recognition deviation 2.00e-3 mm, soft target 1.50e-3 mm, hard recognition limit 6.00e-3 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 3.64e-11 rad tangency; 66 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 2.116e-3 mm³ volume error; 6.380e-3 mm accuracy; 6.00e-3 mm generated-Face accuracy; local input 4.00e-3 mm, measured recognition deviation 2.00e-3 mm, soft target 1.50e-3 mm, hard recognition limit 6.00e-3 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 5.04e-5 rad tangency; 66 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -91,7 +91,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Box vertical edge</h2>
       <p>The selected Edge orientation changes without changing rolling-ball semantics.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 3.385e-3 mm³ volume error; 1.410e-3 mm accuracy; 1.70e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 7.16e-5 mm contact; 1.46e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 3.385e-3 mm³ volume error; 1.410e-3 mm accuracy; 1.70e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 7.16e-5 mm contact; 5.04e-5 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -168,7 +168,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Oblique dihedral</h2>
       <p>The true center axis is derived from offset planes rather than copied from the seed Edge.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 7.310e-3 mm³ volume error; 2.137e-3 mm accuracy; 3.14e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 3.09e-5 mm contact; 1.46e-11 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 7.310e-3 mm³ volume error; 2.137e-3 mm accuracy; 3.14e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 0.00e+0 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 3.09e-5 mm contact; 6.35e-5 rad tangency; 34 pcurve segments; 0/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -179,7 +179,7 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
       <div class="eyebrow">MATCH · complete B-rep</div>
       <h2>Rigidly transformed box</h2>
       <p>Support recognition and exact strip solution remain model-space invariant.</p>
-      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 9.93e-16 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 4.36e-11 rad tangency; 34 pcurve segments; 1/2 nearby-Face bounds candidates.</p>
+      <p class="evidence">1 planned replacement trims 4 boundary Edges and modifies 4 Faces; 7 Faces, 15 Edges; 8.371e-3 mm³ volume error; 1.383e-3 mm accuracy; 1.03e-9 mm generated-Face accuracy; local input 0.00e+0 mm, measured recognition deviation 9.93e-16 mm, soft target 2.50e-3 mm, hard recognition limit 1.00e-2 mm; composition add-sequential then maximum-independent; 4.47e-5 mm contact; 5.04e-5 rad tangency; 34 pcurve segments; 1/2 nearby-Face bounds candidates.</p>
       <p class="history">complete history · kinds vertex, edge, face · 26 continuations · 9 generated origins</p>
       <p class="stages">input-validation: accepted · selection-analysis: accepted · selection-analysis: accepted · support-analysis: accepted · strip-solution: accepted · neighborhood-analysis: accepted · arrangement: accepted · replacement-planning: accepted · materialization: accepted · topology-rebuild: accepted · output-validation: accepted</p>
     </div>
@@ -365,6 +365,15 @@ svg{display:block;width:100%;height:auto}.source{stroke:#334155;stroke-width:1.5
     <h2>Native cylinder traversal orientation</h2>
     <p>A C0 rational-quadratic cylinder traverses its first circular span forward and its second backward while remaining exactly on the same radius.</p>
     <p class="evidence">Sampled radial-normal signs are 1 then -1. Whole-span certification returned outside-tolerance; recognition returned not-recognized.</p>
+  </div>
+</article>
+<article class="case pass">
+  <div class="visual"><svg viewBox="0 0 440 280" role="img" aria-label="Hidden seam-normal excursion"><rect width="440" height="280" fill="#06101d"/><path d="M40 178 L400 178" fill="none" stroke="#38bdf8" stroke-width="5"/><path d="M40 178 C100 178 100 132 220 178 C340 224 340 178 400 178" fill="none" stroke="#fb7185" stroke-width="6"/><circle cx="220" cy="178" r="7" fill="#facc15"/><text x="28" y="248" fill="#94a3b8" font-family="system-ui" font-size="15">midpoint agrees; whole seam does not</text></svg></div>
+  <div class="copy">
+    <div class="eyebrow">MATCH · whole-edge tangency guard</div>
+    <h2>Planar-strip seam tangency</h2>
+    <p>An in-domain synchronized pcurve returns to the exact contact locus at the midpoint but makes a smooth hidden excursion on either side. Its positional residual remains within the 0.01 mm contact tolerance.</p>
+    <p class="evidence">Contact relationships returned complete/complete with a 2.858e-3 mm bound; midpoint angular error 0.000e+0 rad. Whole-Edge normal certification returned outside-tolerance with 2.830e-3 rad against a 1.000e-3 rad limit.</p>
   </div>
 </article></section>
 </main>

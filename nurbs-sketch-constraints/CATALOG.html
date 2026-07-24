@@ -11,7 +11,7 @@
 @media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
 @media print{.bench-nav{display:none}}
 
-:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.370 ms · p95 2.059 ms / 16 ms frozen gate · max 2.797 ms · 200 measured runs</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, cause-specific temporary point-goal evidence, physical and domain verification, minimum-change selection, bounded recovery, freedom, persistence separation, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). The browser-target build also exercises the isolated Stage 4 rank-revealing adapter and Fabrik-owned trust-region controller without routing affine selection through either path. The application path remains within its frozen ordinary-preview p95 gate. Browser gesture commit and production acceptance are covered by the application-session bench; nonlinear constraint semantics and accepted workflow remain later work.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch constraint solver</h1><p class="summary"><strong>10/10</strong> affine subsystem scenarios match · dense backend <strong class="pass">passed</strong> · trust region <strong class="pass">passed</strong> · distance semantics <strong class="pass">passed</strong> · mixed component <strong class="pass">passed</strong> · 6 complete · 4 structured rejections · 1e-7 mm physical tolerance · 1e-7 mm drag-goal tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="summary"><strong>Ordinary preview:</strong> 100 connected lines + 199 driving constraints · p50 1.340 ms · p95 2.167 ms / 16 ms frozen gate · max 3.065 ms · 200 measured runs</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, cause-specific temporary point-goal evidence, physical and domain verification, minimum-change selection, bounded recovery, freedom, persistence separation, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). The browser-target build also exercises the isolated Stage 4 rank-revealing adapter, Fabrik-owned trust-region controller, standalone point-distance/line-length compiler, and mixed affine-nullspace component solver without routing accepted Project evaluation through those nonlinear paths. The application path remains within its frozen ordinary-preview p95 gate. Browser gesture commit and production acceptance are covered by the application-session bench; continuation, publication evidence, and accepted nonlinear workflow remain later work.</p><main class="grid"><article class="card"><header><div><h2>Stage 4 dense backend slice</h2><code>ml-matrix 6.14.0</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the isolated rank-revealing backend boundary now used for trust-region minimum-norm steps and rank ambiguity. The working affine reducer does not depend on this path.</p><dl><dt>Execution</dt><dd>synchronous-javascript · MIT</dd><dt>Rank deficient</dt><dd>1 active · 2 null · residual 0.000e+0</dd><dt>Gray band</dt><dd>1 active · 1 ambiguous · 0 null</dd><dt>Degenerate</dt><dd>0×3 and 3×0 systems finite · invalid arithmetic structured</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-numerical-backend-probe-v1&quot;,
   &quot;backend&quot;: {
     &quot;implementation&quot;: &quot;ml-matrix&quot;,
@@ -193,7 +193,7 @@
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
   &quot;passed&quot;: true
-}</pre></details></article><article class="card"><header><div><h2>Stage 4 trust-region slice</h2><code>Fabrik Powell dogleg controller</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the Fabrik-owned bounded controller over normalized residual/Jacobian callbacks before point-distance and line-length semantics use it. Numerical convergence remains separate from physical publication success.</p><dl><dt>Convergence</dt><dd>quadratic 7 iterations · rank-deficient symmetric minimum norm</dd><dt>Domain</dt><dd>1 invalid trial rejected, then recovered</dd><dt>Outcomes</dt><dd>converged · converged · converged · stalled · exhausted-work · numerical-ambiguity · nonconvergence · domain-failure · arithmetic-failure · internal-fault · internal-fault · invalid-input</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 trust-region slice</h2><code>Fabrik Powell dogleg controller</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the Fabrik-owned bounded controller now used by the standalone point-distance and line-length compiler. Numerical convergence remains separate from physical publication success.</p><dl><dt>Convergence</dt><dd>quadratic 7 iterations · rank-deficient symmetric minimum norm</dd><dt>Domain</dt><dd>1 invalid trial rejected, then recovered</dd><dt>Outcomes</dt><dd>converged · converged · converged · stalled · exhausted-work · numerical-ambiguity · nonconvergence · domain-failure · arithmetic-failure · internal-fault · internal-fault · invalid-input</dd><dt>Repeatability</dt><dd>20 executions identical · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
   &quot;schema&quot;: &quot;fabrik-sketch-trust-region-probe-v1&quot;,
   &quot;policy&quot;: {
     &quot;residualTolerance&quot;: 1e-10,
@@ -796,6 +796,2508 @@
       }
     }
   },
+  &quot;repeatedExecutions&quot;: 20,
+  &quot;deterministic&quot;: true,
+  &quot;failures&quot;: [],
+  &quot;passed&quot;: true
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 distance semantics slice</h2><code>point distance · line length</code></div><span class="pass">PASS</span></header><p class="purpose">Compile semantic distance constraints into normalized smooth residuals and analytic Jacobians, drive the trust-region controller, and independently measure physical geometry without changing Project v1.</p><dl><dt>Semantics</dt><dd>driving and reference · self tautology/contradiction · negative quantities</dd><dt>Initialization</dt><dd>4 coincident positive-distance branches cover the complete direction hierarchy</dd><dt>Jacobian</dt><dd>6.889e-11 maximum central-difference error</dd><dt>Domain</dt><dd>zero line-length target remains separate from minimum line validity</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;schema&quot;: &quot;fabrik-sketch-distance-constraint-probe-v1&quot;,
+  &quot;compilerPolicy&quot;: {
+    &quot;minimumLineLengthMm&quot;: 0.01,
+    &quot;initialDirectionThresholdMm&quot;: 1e-9,
+    &quot;minimumNormalizationScaleMm&quot;: 1
+  },
+  &quot;trustRegionPolicy&quot;: {
+    &quot;residualTolerance&quot;: 1e-12,
+    &quot;stepTolerance&quot;: 1e-13,
+    &quot;initialRadius&quot;: 4,
+    &quot;minimumRadius&quot;: 1e-12,
+    &quot;maximumRadius&quot;: 16,
+    &quot;minimumGainRatio&quot;: 0.0001,
+    &quot;shrinkGainRatio&quot;: 0.25,
+    &quot;expandGainRatio&quot;: 0.75,
+    &quot;radiusShrinkFactor&quot;: 0.25,
+    &quot;radiusExpansionFactor&quot;: 2,
+    &quot;maximumIterations&quot;: 100,
+    &quot;maximumConsecutiveRejectedSteps&quot;: 8
+  },
+  &quot;rankPolicy&quot;: {
+    &quot;relativeRankNullThreshold&quot;: 1e-12,
+    &quot;relativeRankActiveThreshold&quot;: 1e-8,
+    &quot;verificationTolerance&quot;: 1e-10
+  },
+  &quot;scenarios&quot;: {
+    &quot;lineLength&quot;: {
+      &quot;status&quot;: &quot;solved&quot;,
+      &quot;request&quot;: {
+        &quot;entities&quot;: [
+          {
+            &quot;id&quot;: &quot;length-line&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 1,
+              &quot;y&quot;: 2
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 3,
+              &quot;y&quot;: 2
+            }
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;id&quot;: &quot;length-five&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;length-line&quot;,
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 5
+          }
+        ],
+        &quot;policy&quot;: {
+          &quot;minimumLineLengthMm&quot;: 0.01,
+          &quot;initialDirectionThresholdMm&quot;: 1e-9,
+          &quot;minimumNormalizationScaleMm&quot;: 1
+        }
+      },
+      &quot;compilation&quot;: {
+        &quot;initialValues&quot;: [
+          -0.2,
+          0,
+          0.2,
+          0
+        ],
+        &quot;residualCount&quot;: 1,
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 2,
+          &quot;originY&quot;: 2,
+          &quot;scaleMm&quot;: 5
+        },
+        &quot;parameterOrder&quot;: [
+          {
+            &quot;columnIndex&quot;: 0,
+            &quot;entityId&quot;: &quot;length-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 1,
+            &quot;entityId&quot;: &quot;length-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 2,
+            &quot;entityId&quot;: &quot;length-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 3,
+            &quot;entityId&quot;: &quot;length-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;length-five&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;length-line&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 5,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 5
+          }
+        ],
+        &quot;seeds&quot;: []
+      },
+      &quot;solution&quot;: {
+        &quot;status&quot;: &quot;converged&quot;,
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;values&quot;: [
+          -0.5000000000000232,
+          0,
+          0.5000000000000232,
+          0
+        ],
+        &quot;residuals&quot;: [
+          4.6407322429331543e-14
+        ],
+        &quot;residualNorm&quot;: 4.6407322429331543e-14,
+        &quot;objective&quot;: 1.0768197875299693e-27,
+        &quot;finalRadius&quot;: 0.5,
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 7,
+          &quot;evaluations&quot;: 8,
+          &quot;acceptedSteps&quot;: 5,
+          &quot;rejectedSteps&quot;: 2,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;lastRankAnalysis&quot;: {
+          &quot;rowCount&quot;: 1,
+          &quot;columnCount&quot;: 4,
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 3,
+          &quot;directions&quot;: [
+            {
+              &quot;singularValue&quot;: 1.4142139928758082,
+              &quot;relativeSingularValue&quot;: 1,
+              &quot;state&quot;: &quot;active&quot;,
+              &quot;vector&quot;: [
+                0.7071067811865475,
+                0,
+                -0.7071067811865475,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0.7071067811865476,
+                0,
+                0.7071067811865475,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 2.220446049250313e-16
+          }
+        },
+        &quot;lastStep&quot;: {
+          &quot;kind&quot;: &quot;gauss-newton&quot;,
+          &quot;norm&quot;: 2.1525132369109909e-7,
+          &quot;predictedReduction&quot;: 4.6333160559440845e-14,
+          &quot;actualReduction&quot;: 4.6333160559439766e-14,
+          &quot;gainRatio&quot;: 0.9999999999999767,
+          &quot;accepted&quot;: true
+        }
+      },
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;length-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: -0.5000000000001159,
+            &quot;y&quot;: 2
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 4.5000000000001155,
+            &quot;y&quot;: 2
+          }
+        }
+      ],
+      &quot;measurements&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;length-five&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 5.000000000000231,
+            &quot;targetValueMm&quot;: 5,
+            &quot;physicalErrorMm&quot;: 2.3092638912203256e-13
+          }
+        }
+      ]
+    },
+    &quot;pointDistance&quot;: {
+      &quot;status&quot;: &quot;solved&quot;,
+      &quot;request&quot;: {
+        &quot;entities&quot;: [
+          {
+            &quot;id&quot;: &quot;point-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: -2,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;point-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 3,
+              &quot;y&quot;: 4
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 5,
+              &quot;y&quot;: 4
+            }
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;id&quot;: &quot;point-ten&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;first&quot;: {
+              &quot;entityId&quot;: &quot;point-a&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;second&quot;: {
+              &quot;entityId&quot;: &quot;point-b&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 10
+          },
+          {
+            &quot;id&quot;: &quot;reference-a-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;point-a&quot;,
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;reference&quot;
+          },
+          {
+            &quot;id&quot;: &quot;disabled-huge-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;point-b&quot;,
+            &quot;enabled&quot;: false,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 1000000000
+          }
+        ],
+        &quot;policy&quot;: {
+          &quot;minimumLineLengthMm&quot;: 0.01,
+          &quot;initialDirectionThresholdMm&quot;: 1e-9,
+          &quot;minimumNormalizationScaleMm&quot;: 1
+        }
+      },
+      &quot;compilation&quot;: {
+        &quot;initialValues&quot;: [
+          -0.15,
+          -0.2,
+          -0.35,
+          -0.2,
+          0.15,
+          0.2,
+          0.35,
+          0.2
+        ],
+        &quot;residualCount&quot;: 1,
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 1.5,
+          &quot;originY&quot;: 2,
+          &quot;scaleMm&quot;: 10
+        },
+        &quot;parameterOrder&quot;: [
+          {
+            &quot;columnIndex&quot;: 0,
+            &quot;entityId&quot;: &quot;point-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 1,
+            &quot;entityId&quot;: &quot;point-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 2,
+            &quot;entityId&quot;: &quot;point-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 3,
+            &quot;entityId&quot;: &quot;point-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 4,
+            &quot;entityId&quot;: &quot;point-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 5,
+            &quot;entityId&quot;: &quot;point-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 6,
+            &quot;entityId&quot;: &quot;point-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 7,
+            &quot;entityId&quot;: &quot;point-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;disabled-huge-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;disabled&quot;,
+            &quot;semanticState&quot;: &quot;disabled&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;point-b&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 1000000000
+          },
+          {
+            &quot;constraintId&quot;: &quot;point-ten&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;point-a&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              },
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;point-b&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 10,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 10
+          },
+          {
+            &quot;constraintId&quot;: &quot;reference-a-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;reference&quot;,
+            &quot;semanticState&quot;: &quot;reference-measurement&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;point-a&quot;
+              }
+            ]
+          }
+        ],
+        &quot;seeds&quot;: []
+      },
+      &quot;solution&quot;: {
+        &quot;status&quot;: &quot;converged&quot;,
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;values&quot;: [
+          -0.3000000000000003,
+          -0.4000000000000005,
+          -0.35,
+          -0.2,
+          0.3000000000000003,
+          0.4000000000000005,
+          0.35,
+          0.2
+        ],
+        &quot;residuals&quot;: [
+          1.2212453270876722e-15
+        ],
+        &quot;residualNorm&quot;: 1.2212453270876722e-15,
+        &quot;objective&quot;: 7.457200744667377e-31,
+        &quot;finalRadius&quot;: 4,
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 5,
+          &quot;evaluations&quot;: 6,
+          &quot;acceptedSteps&quot;: 5,
+          &quot;rejectedSteps&quot;: 0,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;lastRankAnalysis&quot;: {
+          &quot;rowCount&quot;: 1,
+          &quot;columnCount&quot;: 8,
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 7,
+          &quot;directions&quot;: [
+            {
+              &quot;singularValue&quot;: 1.4142136280790796,
+              &quot;relativeSingularValue&quot;: 1,
+              &quot;state&quot;: &quot;active&quot;,
+              &quot;vector&quot;: [
+                0.42426406871192857,
+                0.5656854249492381,
+                0,
+                0,
+                -0.42426406871192845,
+                -0.5656854249492381,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0.9055385138137417,
+                -0.2650356625796318,
+                0,
+                0,
+                0.19877674693472375,
+                0.2650356625796318,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                -7.410392729432434e-18,
+                0.7808688094430304,
+                0,
+                0,
+                0.3748170285326546,
+                0.4997560380435395,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                7.353946414660764e-17,
+                2.27687834684471e-18,
+                0,
+                0,
+                0.7999999999999999,
+                -0.6,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 1.3877787163036543e-16,
+            &quot;maximumRightOrthogonalityError&quot;: 2.220446049250313e-16
+          }
+        },
+        &quot;lastStep&quot;: {
+          &quot;kind&quot;: &quot;gauss-newton&quot;,
+          &quot;norm&quot;: 3.285299147139419e-8,
+          &quot;predictedReduction&quot;: 1.0793191489123033e-15,
+          &quot;actualReduction&quot;: 1.0793191489123025e-15,
+          &quot;gainRatio&quot;: 0.9999999999999992,
+          &quot;accepted&quot;: true
+        }
+      },
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;point-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: -1.500000000000003,
+            &quot;y&quot;: -2.0000000000000053
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: -2,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;point-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 4.5000000000000036,
+            &quot;y&quot;: 6.000000000000005
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 5,
+            &quot;y&quot;: 4
+          }
+        }
+      ],
+      &quot;measurements&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;point-ten&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 10.000000000000014,
+            &quot;targetValueMm&quot;: 10,
+            &quot;physicalErrorMm&quot;: 1.4210854715202004e-14
+          }
+        },
+        {
+          &quot;constraintId&quot;: &quot;reference-a-length&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 2.0615528128088347,
+            &quot;physicalErrorMm&quot;: 0
+          }
+        },
+        {
+          &quot;constraintId&quot;: &quot;disabled-huge-length&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 2.0615528128088343,
+            &quot;targetValueMm&quot;: 1000000000,
+            &quot;physicalErrorMm&quot;: 999999997.9384472
+          }
+        }
+      ]
+    },
+    &quot;singularInitialization&quot;: {
+      &quot;status&quot;: &quot;solved&quot;,
+      &quot;request&quot;: {
+        &quot;entities&quot;: [
+          {
+            &quot;id&quot;: &quot;accepted-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 40,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 40,
+              &quot;y&quot;: 2
+            }
+          },
+          {
+            &quot;id&quot;: &quot;accepted-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 40,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 42,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;fallback-line&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 60,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 60,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;persist-a&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: -2,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;persist-b&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 2,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;preferred-line&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 20,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 20,
+              &quot;y&quot;: 0
+            }
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;id&quot;: &quot;constraint-persisted&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;first&quot;: {
+              &quot;entityId&quot;: &quot;persist-a&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;second&quot;: {
+              &quot;entityId&quot;: &quot;persist-b&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 5,
+            &quot;preferredDirection&quot;: {
+              &quot;x&quot;: -1,
+              &quot;y&quot;: 0
+            }
+          },
+          {
+            &quot;id&quot;: &quot;constraint-preferred&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;preferred-line&quot;,
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 4,
+            &quot;preferredDirection&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: -2
+            }
+          },
+          {
+            &quot;id&quot;: &quot;constraint-accepted&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;first&quot;: {
+              &quot;entityId&quot;: &quot;accepted-a&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;second&quot;: {
+              &quot;entityId&quot;: &quot;accepted-b&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;
+            },
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 3
+          },
+          {
+            &quot;id&quot;: &quot;constraint-fallback&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;fallback-line&quot;,
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 2
+          }
+        ],
+        &quot;policy&quot;: {
+          &quot;minimumLineLengthMm&quot;: 0.01,
+          &quot;initialDirectionThresholdMm&quot;: 1e-9,
+          &quot;minimumNormalizationScaleMm&quot;: 1
+        },
+        &quot;persistedDirections&quot;: {
+          &quot;constraint-persisted&quot;: {
+            &quot;x&quot;: 3,
+            &quot;y&quot;: 4
+          }
+        }
+      },
+      &quot;compilation&quot;: {
+        &quot;initialValues&quot;: [
+          0.38536126878076904,
+          -0.04877990744060369,
+          0.38536126878076904,
+          0.05365789818466406,
+          0.38536126878076904,
+          0.03902392595248295,
+          0.4438971577094935,
+          -0.004877990744060371,
+          0.9414522136036511,
+          -0.004877990744060371,
+          0.9999881025323756,
+          -0.004877990744060371,
+          -0.8292584264902627,
+          -0.0634138796727848,
+          -0.8438923987224438,
+          -0.004877990744060371,
+          -0.7414545930971761,
+          0.05365789818466406,
+          -0.726820620864995,
+          -0.004877990744060371,
+          -0.19999762050647518,
+          0.05365789818466406,
+          -0.19999762050647518,
+          -0.0634138796727848
+        ],
+        &quot;residualCount&quot;: 4,
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 26.833333333333336,
+          &quot;originY&quot;: 0.16666666666666674,
+          &quot;scaleMm&quot;: 34.16707316831351
+        },
+        &quot;parameterOrder&quot;: [
+          {
+            &quot;columnIndex&quot;: 0,
+            &quot;entityId&quot;: &quot;accepted-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 1,
+            &quot;entityId&quot;: &quot;accepted-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 2,
+            &quot;entityId&quot;: &quot;accepted-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 3,
+            &quot;entityId&quot;: &quot;accepted-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 4,
+            &quot;entityId&quot;: &quot;accepted-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 5,
+            &quot;entityId&quot;: &quot;accepted-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 6,
+            &quot;entityId&quot;: &quot;accepted-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 7,
+            &quot;entityId&quot;: &quot;accepted-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 8,
+            &quot;entityId&quot;: &quot;fallback-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 9,
+            &quot;entityId&quot;: &quot;fallback-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 10,
+            &quot;entityId&quot;: &quot;fallback-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 11,
+            &quot;entityId&quot;: &quot;fallback-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 12,
+            &quot;entityId&quot;: &quot;persist-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 13,
+            &quot;entityId&quot;: &quot;persist-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 14,
+            &quot;entityId&quot;: &quot;persist-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 15,
+            &quot;entityId&quot;: &quot;persist-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 16,
+            &quot;entityId&quot;: &quot;persist-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 17,
+            &quot;entityId&quot;: &quot;persist-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 18,
+            &quot;entityId&quot;: &quot;persist-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 19,
+            &quot;entityId&quot;: &quot;persist-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 20,
+            &quot;entityId&quot;: &quot;preferred-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 21,
+            &quot;entityId&quot;: &quot;preferred-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 22,
+            &quot;entityId&quot;: &quot;preferred-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 23,
+            &quot;entityId&quot;: &quot;preferred-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;constraint-accepted&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;accepted-a&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              },
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;accepted-b&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 3,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 3
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-fallback&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;fallback-line&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 2,
+            &quot;rowIndex&quot;: 1,
+            &quot;rowScaleMm&quot;: 2
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-persisted&quot;,
+            &quot;kind&quot;: &quot;point-distance&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;persist-a&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              },
+              {
+                &quot;kind&quot;: &quot;point&quot;,
+                &quot;point&quot;: {
+                  &quot;entityId&quot;: &quot;persist-b&quot;,
+                  &quot;endpoint&quot;: &quot;start&quot;
+                }
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 5,
+            &quot;rowIndex&quot;: 2,
+            &quot;rowScaleMm&quot;: 5
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-preferred&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;preferred-line&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 4,
+            &quot;rowIndex&quot;: 3,
+            &quot;rowScaleMm&quot;: 4
+          }
+        ],
+        &quot;seeds&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;constraint-accepted&quot;,
+            &quot;source&quot;: &quot;accepted-first-entity-direction&quot;,
+            &quot;direction&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 1
+            },
+            &quot;selectedSeparationMm&quot;: 3
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-fallback&quot;,
+            &quot;source&quot;: &quot;positive-sketch-x&quot;,
+            &quot;direction&quot;: {
+              &quot;x&quot;: 1,
+              &quot;y&quot;: 0
+            },
+            &quot;selectedSeparationMm&quot;: 2
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-persisted&quot;,
+            &quot;source&quot;: &quot;persisted-point-direction&quot;,
+            &quot;direction&quot;: {
+              &quot;x&quot;: 0.6,
+              &quot;y&quot;: 0.8
+            },
+            &quot;selectedSeparationMm&quot;: 5
+          },
+          {
+            &quot;constraintId&quot;: &quot;constraint-preferred&quot;,
+            &quot;source&quot;: &quot;preferred-direction&quot;,
+            &quot;direction&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: -1
+            },
+            &quot;selectedSeparationMm&quot;: 4
+          }
+        ]
+      },
+      &quot;solution&quot;: {
+        &quot;status&quot;: &quot;converged&quot;,
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;values&quot;: [
+          0.38536126878076904,
+          -0.04877990744060369,
+          0.38536126878076904,
+          0.05365789818466406,
+          0.38536126878076904,
+          0.03902392595248295,
+          0.4438971577094935,
+          -0.004877990744060371,
+          0.9414522136036511,
+          -0.004877990744060371,
+          0.9999881025323756,
+          -0.004877990744060371,
+          -0.8292584264902627,
+          -0.0634138796727848,
+          -0.8438923987224438,
+          -0.004877990744060371,
+          -0.7414545930971761,
+          0.05365789818466406,
+          -0.726820620864995,
+          -0.004877990744060371,
+          -0.19999762050647518,
+          0.05365789818466406,
+          -0.19999762050647518,
+          -0.0634138796727848
+        ],
+        &quot;residuals&quot;: [
+          0,
+          9.63144388870474e-17,
+          1.1854084786098143e-17,
+          1.4817605982622677e-17
+        ],
+        &quot;residualNorm&quot;: 9.816594068870856e-17,
+        &quot;objective&quot;: 4.818275955649523e-33,
+        &quot;finalRadius&quot;: 4,
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 0,
+          &quot;evaluations&quot;: 1,
+          &quot;acceptedSteps&quot;: 0,
+          &quot;rejectedSteps&quot;: 0,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      },
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;accepted-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 40,
+            &quot;y&quot;: -1.5
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 40,
+            &quot;y&quot;: 2
+          }
+        },
+        {
+          &quot;id&quot;: &quot;accepted-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 40,
+            &quot;y&quot;: 1.5
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 42,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;fallback-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 59,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 61,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;persist-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: -1.5,
+            &quot;y&quot;: -2
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: -2,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;persist-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 1.5,
+            &quot;y&quot;: 2
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 0
+          }
+        },
+        {
+          &quot;id&quot;: &quot;preferred-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 20,
+            &quot;y&quot;: 2
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 20,
+            &quot;y&quot;: -2
+          }
+        }
+      ],
+      &quot;measurements&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;constraint-persisted&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 5,
+            &quot;targetValueMm&quot;: 5,
+            &quot;physicalErrorMm&quot;: 0
+          }
+        },
+        {
+          &quot;constraintId&quot;: &quot;constraint-preferred&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 4,
+            &quot;targetValueMm&quot;: 4,
+            &quot;physicalErrorMm&quot;: 0
+          }
+        },
+        {
+          &quot;constraintId&quot;: &quot;constraint-accepted&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 3,
+            &quot;targetValueMm&quot;: 3,
+            &quot;physicalErrorMm&quot;: 0
+          }
+        },
+        {
+          &quot;constraintId&quot;: &quot;constraint-fallback&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 2,
+            &quot;targetValueMm&quot;: 2,
+            &quot;physicalErrorMm&quot;: 0
+          }
+        }
+      ]
+    },
+    &quot;degeneracies&quot;: {
+      &quot;selfZero&quot;: {
+        &quot;status&quot;: &quot;complete&quot;,
+        &quot;system&quot;: {
+          &quot;initialValues&quot;: [
+            -1,
+            0,
+            1,
+            0
+          ],
+          &quot;residualCount&quot;: 0,
+          &quot;normalization&quot;: {
+            &quot;originX&quot;: 1,
+            &quot;originY&quot;: 0,
+            &quot;scaleMm&quot;: 1
+          },
+          &quot;parameterOrder&quot;: [
+            {
+              &quot;columnIndex&quot;: 0,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 1,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;start&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 2,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;x&quot;
+            },
+            {
+              &quot;columnIndex&quot;: 3,
+              &quot;entityId&quot;: &quot;self-line&quot;,
+              &quot;endpoint&quot;: &quot;end&quot;,
+              &quot;coordinate&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;constraints&quot;: [
+            {
+              &quot;constraintId&quot;: &quot;self-zero&quot;,
+              &quot;kind&quot;: &quot;point-distance&quot;,
+              &quot;participation&quot;: &quot;driving&quot;,
+              &quot;semanticState&quot;: &quot;tautology&quot;,
+              &quot;subjects&quot;: [
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;start&quot;
+                  }
+                },
+                {
+                  &quot;kind&quot;: &quot;point&quot;,
+                  &quot;point&quot;: {
+                    &quot;entityId&quot;: &quot;self-line&quot;,
+                    &quot;endpoint&quot;: &quot;start&quot;
+                  }
+                }
+              ],
+              &quot;resolvedValueMm&quot;: 0
+            }
+          ],
+          &quot;seeds&quot;: []
+        }
+      },
+      &quot;selfPositive&quot;: {
+        &quot;status&quot;: &quot;rejected&quot;,
+        &quot;rejection&quot;: {
+          &quot;code&quot;: &quot;semantic-contradiction&quot;,
+          &quot;path&quot;: &quot;constraints[self-positive]&quot;,
+          &quot;constraintId&quot;: &quot;self-positive&quot;,
+          &quot;message&quot;: &quot;A point cannot have a positive distance from itself.&quot;
+        }
+      },
+      &quot;negativePointDistance&quot;: {
+        &quot;status&quot;: &quot;rejected&quot;,
+        &quot;rejection&quot;: {
+          &quot;code&quot;: &quot;invalid-quantity&quot;,
+          &quot;path&quot;: &quot;constraints[negative-point].valueMm&quot;,
+          &quot;constraintId&quot;: &quot;negative-point&quot;,
+          &quot;message&quot;: &quot;Point distance and line length cannot be negative.&quot;
+        }
+      },
+      &quot;negativeLineLength&quot;: {
+        &quot;status&quot;: &quot;rejected&quot;,
+        &quot;rejection&quot;: {
+          &quot;code&quot;: &quot;invalid-quantity&quot;,
+          &quot;path&quot;: &quot;constraints[negative-length].valueMm&quot;,
+          &quot;constraintId&quot;: &quot;negative-length&quot;,
+          &quot;message&quot;: &quot;Point distance and line length cannot be negative.&quot;
+        }
+      }
+    },
+    &quot;zeroLengthDomain&quot;: {
+      &quot;status&quot;: &quot;solved&quot;,
+      &quot;request&quot;: {
+        &quot;entities&quot;: [
+          {
+            &quot;id&quot;: &quot;zero-line&quot;,
+            &quot;start&quot;: {
+              &quot;x&quot;: 0,
+              &quot;y&quot;: 0
+            },
+            &quot;end&quot;: {
+              &quot;x&quot;: 1,
+              &quot;y&quot;: 0
+            }
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;id&quot;: &quot;zero-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;entityId&quot;: &quot;zero-line&quot;,
+            &quot;enabled&quot;: true,
+            &quot;role&quot;: &quot;driving&quot;,
+            &quot;valueMm&quot;: 0
+          }
+        ],
+        &quot;policy&quot;: {
+          &quot;minimumLineLengthMm&quot;: 0.01,
+          &quot;initialDirectionThresholdMm&quot;: 1e-9,
+          &quot;minimumNormalizationScaleMm&quot;: 1
+        }
+      },
+      &quot;compilation&quot;: {
+        &quot;initialValues&quot;: [
+          -0.5,
+          0,
+          0.5,
+          0
+        ],
+        &quot;residualCount&quot;: 1,
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 0.5,
+          &quot;originY&quot;: 0,
+          &quot;scaleMm&quot;: 1
+        },
+        &quot;parameterOrder&quot;: [
+          {
+            &quot;columnIndex&quot;: 0,
+            &quot;entityId&quot;: &quot;zero-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 1,
+            &quot;entityId&quot;: &quot;zero-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 2,
+            &quot;entityId&quot;: &quot;zero-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;x&quot;
+          },
+          {
+            &quot;columnIndex&quot;: 3,
+            &quot;entityId&quot;: &quot;zero-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;,
+            &quot;coordinate&quot;: &quot;y&quot;
+          }
+        ],
+        &quot;constraints&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;zero-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;zero-line&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 0,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 1
+          }
+        ],
+        &quot;seeds&quot;: []
+      },
+      &quot;solution&quot;: {
+        &quot;status&quot;: &quot;terminated&quot;,
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;stalled&quot;,
+          &quot;cause&quot;: &quot;domain-boundary&quot;,
+          &quot;path&quot;: &quot;entities[zero-line]&quot;,
+          &quot;message&quot;: &quot;Line length 0.009999999999699638 mm is below minimumLineLengthMm 0.01 mm.&quot;
+        },
+        &quot;values&quot;: [
+          -0.005000000000556936,
+          0,
+          0.005000000000556936,
+          0
+        ],
+        &quot;residuals&quot;: [
+          0.000050000000011138716
+        ],
+        &quot;residualNorm&quot;: 0.000050000000011138716,
+        &quot;objective&quot;: 1.2500000005569358e-9,
+        &quot;finalRadius&quot;: 1e-12,
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 65,
+          &quot;evaluations&quot;: 66,
+          &quot;acceptedSteps&quot;: 30,
+          &quot;rejectedSteps&quot;: 35,
+          &quot;domainRejectedSteps&quot;: 35
+        },
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;lastRankAnalysis&quot;: {
+          &quot;rowCount&quot;: 1,
+          &quot;columnCount&quot;: 4,
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 3,
+          &quot;directions&quot;: [
+            {
+              &quot;singularValue&quot;: 0.014142135625306203,
+              &quot;relativeSingularValue&quot;: 1,
+              &quot;state&quot;: &quot;active&quot;,
+              &quot;vector&quot;: [
+                0.7071067811865475,
+                0,
+                -0.7071067811865475,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0.7071067811865476,
+                0,
+                0.7071067811865475,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                1,
+                0,
+                0
+              ]
+            },
+            {
+              &quot;singularValue&quot;: 0,
+              &quot;relativeSingularValue&quot;: 0,
+              &quot;state&quot;: &quot;null&quot;,
+              &quot;vector&quot;: [
+                0,
+                0,
+                0,
+                1
+              ]
+            }
+          ],
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 2.220446049250313e-16
+          }
+        },
+        &quot;lastStep&quot;: {
+          &quot;kind&quot;: &quot;cauchy-boundary&quot;,
+          &quot;norm&quot;: 1e-12,
+          &quot;predictedReduction&quot;: 7.071067816228355e-19,
+          &quot;actualReduction&quot;: 7.07106868039677e-19,
+          &quot;gainRatio&quot;: 1.0000001222118693,
+          &quot;accepted&quot;: true
+        },
+        &quot;lastDomainRejection&quot;: {
+          &quot;path&quot;: &quot;entities[zero-line]&quot;,
+          &quot;message&quot;: &quot;Line length 0.009999999999699638 mm is below minimumLineLengthMm 0.01 mm.&quot;
+        }
+      },
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;zero-line&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0.49499999999944305,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 0.5050000000005569,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;measurements&quot;: [
+        {
+          &quot;constraintId&quot;: &quot;zero-length&quot;,
+          &quot;measurement&quot;: {
+            &quot;measuredValueMm&quot;: 0.01000000000111384,
+            &quot;targetValueMm&quot;: 0,
+            &quot;physicalErrorMm&quot;: 0.01000000000111384
+          }
+        }
+      ]
+    },
+    &quot;derivativeVerification&quot;: {
+      &quot;status&quot;: &quot;verified&quot;,
+      &quot;step&quot;: 0.000001,
+      &quot;maximumDifference&quot;: 6.888900561108358e-11,
+      &quot;rowCount&quot;: 2,
+      &quot;columnCount&quot;: 8
+    },
+    &quot;permutationMatches&quot;: true
+  },
+  &quot;repeatedExecutions&quot;: 20,
+  &quot;deterministic&quot;: true,
+  &quot;failures&quot;: [],
+  &quot;passed&quot;: true
+}</pre></details></article><article class="card"><header><div><h2>Stage 4 mixed component slice</h2><code>affine projection → nullspace trust region</code></div><span class="pass">PASS</span></header><p class="purpose">Project deterministic branch seeds onto the exact affine solution set, solve distance rows only in its nullspace, and independently verify every semantic constraint in millimetres.</p><dl><dt>Hard feasibility</dt><dd>fixed · coincidence · horizontal/vertical · signed distance remain satisfied during nonlinear selection</dd><dt>Classification</dt><dd>stable affine contradiction and nonlinear nonconvergence remain distinct</dd><dt>Initialization</dt><dd>coincident positive line length survives affine projection</dd><dt>Invariance</dt><dd>duplicate stable · large translation stable</dd><dt>Repeatability</dt><dd>20 executions identical · permutation stable · browser-target matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;schema&quot;: &quot;fabrik-sketch-mixed-component-probe-v1&quot;,
+  &quot;policy&quot;: {
+    &quot;physicalLengthToleranceMm&quot;: 1e-7,
+    &quot;distanceCompiler&quot;: {
+      &quot;minimumLineLengthMm&quot;: 0.000001,
+      &quot;initialDirectionThresholdMm&quot;: 1e-9,
+      &quot;minimumNormalizationScaleMm&quot;: 1
+    },
+    &quot;trustRegion&quot;: {
+      &quot;residualTolerance&quot;: 1e-12,
+      &quot;stepTolerance&quot;: 1e-13,
+      &quot;initialRadius&quot;: 4,
+      &quot;minimumRadius&quot;: 1e-12,
+      &quot;maximumRadius&quot;: 16,
+      &quot;minimumGainRatio&quot;: 0.0001,
+      &quot;shrinkGainRatio&quot;: 0.25,
+      &quot;expandGainRatio&quot;: 0.75,
+      &quot;radiusShrinkFactor&quot;: 0.25,
+      &quot;radiusExpansionFactor&quot;: 2,
+      &quot;maximumIterations&quot;: 100,
+      &quot;maximumConsecutiveRejectedSteps&quot;: 8
+    },
+    &quot;rank&quot;: {
+      &quot;relativeRankNullThreshold&quot;: 1e-12,
+      &quot;relativeRankActiveThreshold&quot;: 1e-8,
+      &quot;verificationTolerance&quot;: 1e-10
+    }
+  },
+  &quot;scenarios&quot;: {
+    &quot;anchoredLength&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;anchored&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 5,
+            &quot;y&quot;: 4.440892098500626e-16
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;anchor-horizontal&quot;,
+          &quot;kind&quot;: &quot;horizontal&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;anchored&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: 4.440892098500626e-16,
+          &quot;physicalErrorMm&quot;: 4.440892098500626e-16
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;anchor-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;anchored&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 5,
+          &quot;measuredValueMm&quot;: 5,
+          &quot;physicalErrorMm&quot;: 0,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;anchor-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;anchored&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 5,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 5
+          }
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;anchor-length-reference&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;reference&quot;,
+          &quot;state&quot;: &quot;reference-measurement&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;anchored&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: 5,
+          &quot;physicalErrorMm&quot;: 0,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;anchor-length-reference&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;reference&quot;,
+            &quot;semanticState&quot;: &quot;reference-measurement&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;anchored&quot;
+              }
+            ]
+          }
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;anchor-x&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;anchored&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;anchor-y&quot;,
+          &quot;kind&quot;: &quot;fixed-y&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;anchored&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 1.5,
+          &quot;originY&quot;: 1.5,
+          &quot;scaleMm&quot;: 5
+        },
+        &quot;affineRowCount&quot;: 3,
+        &quot;affineRank&quot;: 3,
+        &quot;affineNullity&quot;: 1,
+        &quot;maximumAffineResidualMm&quot;: 2.7755575615628914e-16,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 1,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 0,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 0,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 0
+          }
+        }
+      },
+      &quot;controller&quot;: {
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 5,
+          &quot;evaluations&quot;: 6,
+          &quot;acceptedSteps&quot;: 5,
+          &quot;rejectedSteps&quot;: 0,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;residualNorm&quot;: 0,
+        &quot;finalRadius&quot;: 4,
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      }
+    },
+    &quot;affineChain&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;chain-a&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 2.7755575615628914e-17
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 4,
+            &quot;y&quot;: 2.7755575615628914e-17
+          }
+        },
+        {
+          &quot;id&quot;: &quot;chain-b&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 4,
+            &quot;y&quot;: 2.7755575615628914e-17
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 4,
+            &quot;y&quot;: 2.9999999999999996
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-a-horizontal&quot;,
+          &quot;kind&quot;: &quot;horizontal&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;chain-a&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-a-span&quot;,
+          &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-a&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-a&quot;,
+                &quot;endpoint&quot;: &quot;end&quot;
+              }
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 4,
+          &quot;measuredValueMm&quot;: 4,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;chain-b-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;chain-b&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 3,
+          &quot;measuredValueMm&quot;: 2.9999999999999996,
+          &quot;physicalErrorMm&quot;: 4.440892098500626e-16,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;chain-b-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;chain-b&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 3,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 3
+          }
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-b-vertical&quot;,
+          &quot;kind&quot;: &quot;vertical&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;chain-b&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-joint&quot;,
+          &quot;kind&quot;: &quot;coincidence&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-a&quot;,
+                &quot;endpoint&quot;: &quot;end&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-b&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            }
+          ],
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-start-x&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-a&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;chain-start-y&quot;,
+          &quot;kind&quot;: &quot;fixed-y&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;chain-a&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 2.7755575615628914e-17,
+          &quot;physicalErrorMm&quot;: 2.7755575615628914e-17
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 3,
+          &quot;originY&quot;: 0.25,
+          &quot;scaleMm&quot;: 3.0103986446980735
+        },
+        &quot;affineRowCount&quot;: 7,
+        &quot;affineRank&quot;: 7,
+        &quot;affineNullity&quot;: 1,
+        &quot;maximumAffineResidualMm&quot;: 0,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 1,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 0,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 0,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 0
+          }
+        }
+      },
+      &quot;controller&quot;: {
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 7,
+          &quot;evaluations&quot;: 8,
+          &quot;acceptedSteps&quot;: 6,
+          &quot;rejectedSteps&quot;: 1,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;residualNorm&quot;: 1.1140712962147224e-16,
+        &quot;finalRadius&quot;: 0.5,
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      }
+    },
+    &quot;singularInitialization&quot;: {
+      &quot;status&quot;: &quot;complete&quot;,
+      &quot;outcome&quot;: &quot;success&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;singular&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 1.1102230246251568e-16
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 2.0000000000000018,
+            &quot;y&quot;: -2.2204460492503136e-16
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;singular-horizontal&quot;,
+          &quot;kind&quot;: &quot;horizontal&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;singular&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: -3.3306690738754706e-16,
+          &quot;physicalErrorMm&quot;: 3.3306690738754706e-16
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;singular-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;singular&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 2,
+          &quot;measuredValueMm&quot;: 2.0000000000000018,
+          &quot;physicalErrorMm&quot;: 1.7763568394002505e-15,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;singular-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;singular&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 2,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 2
+          }
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;singular-start-x&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;singular&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;singular-start-y&quot;,
+          &quot;kind&quot;: &quot;fixed-y&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;singular&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 1.1102230246251568e-16,
+          &quot;physicalErrorMm&quot;: 1.1102230246251568e-16
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 0,
+          &quot;originY&quot;: 0,
+          &quot;scaleMm&quot;: 2
+        },
+        &quot;affineRowCount&quot;: 3,
+        &quot;affineRank&quot;: 3,
+        &quot;affineNullity&quot;: 1,
+        &quot;maximumAffineResidualMm&quot;: 3.3306690738754706e-16,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 1,
+        &quot;seeds&quot;: [
+          {
+            &quot;constraintId&quot;: &quot;singular-length&quot;,
+            &quot;source&quot;: &quot;preferred-direction&quot;,
+            &quot;direction&quot;: {
+              &quot;x&quot;: 1,
+              &quot;y&quot;: 0
+            },
+            &quot;selectedSeparationMm&quot;: 2
+          }
+        ],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 0,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 1,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 0,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 0
+          }
+        }
+      },
+      &quot;controller&quot;: {
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;converged&quot;,
+          &quot;cause&quot;: &quot;residual-tolerance&quot;
+        },
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 5,
+          &quot;evaluations&quot;: 6,
+          &quot;acceptedSteps&quot;: 5,
+          &quot;rejectedSteps&quot;: 0,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;residualNorm&quot;: 8.881784197001252e-16,
+        &quot;finalRadius&quot;: 4,
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      }
+    },
+    &quot;affineContradiction&quot;: {
+      &quot;status&quot;: &quot;rejected&quot;,
+      &quot;outcome&quot;: &quot;verified-affine-contradiction&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;affine-conflict&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0.5,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;affine-conflict-a&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;violated&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;affine-conflict&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0.5,
+          &quot;physicalErrorMm&quot;: 0.5
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;affine-conflict-b&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;violated&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;affine-conflict&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 1,
+          &quot;measuredValueMm&quot;: 0.5,
+          &quot;physicalErrorMm&quot;: 0.5
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 1,
+          &quot;originY&quot;: 0,
+          &quot;scaleMm&quot;: 1
+        },
+        &quot;affineRowCount&quot;: 2,
+        &quot;affineRank&quot;: 1,
+        &quot;affineNullity&quot;: 3,
+        &quot;maximumAffineResidualMm&quot;: 0.5,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 0,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      },
+      &quot;rejection&quot;: {
+        &quot;code&quot;: &quot;verified-affine-contradiction&quot;,
+        &quot;path&quot;: &quot;affineConstraints&quot;,
+        &quot;message&quot;: &quot;The stable affine subsystem has 0.5 mm physical error, above physicalLengthToleranceMm 1e-7 mm.&quot;
+      }
+    },
+    &quot;nonlinearConflict&quot;: {
+      &quot;status&quot;: &quot;rejected&quot;,
+      &quot;outcome&quot;: &quot;nonconvergence&quot;,
+      &quot;entities&quot;: [
+        {
+          &quot;id&quot;: &quot;distance-conflict&quot;,
+          &quot;start&quot;: {
+            &quot;x&quot;: 0,
+            &quot;y&quot;: 0
+          },
+          &quot;end&quot;: {
+            &quot;x&quot;: 2,
+            &quot;y&quot;: 0
+          }
+        }
+      ],
+      &quot;constraints&quot;: [
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;distance-conflict-horizontal&quot;,
+          &quot;kind&quot;: &quot;horizontal&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;distance-conflict&quot;
+            }
+          ],
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;distance&quot;,
+          &quot;constraintId&quot;: &quot;distance-conflict-length&quot;,
+          &quot;kind&quot;: &quot;line-length&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;violated&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;line&quot;,
+              &quot;entityId&quot;: &quot;distance-conflict&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 3,
+          &quot;measuredValueMm&quot;: 2,
+          &quot;physicalErrorMm&quot;: 1,
+          &quot;compilation&quot;: {
+            &quot;constraintId&quot;: &quot;distance-conflict-length&quot;,
+            &quot;kind&quot;: &quot;line-length&quot;,
+            &quot;participation&quot;: &quot;driving&quot;,
+            &quot;semanticState&quot;: &quot;driving-equation&quot;,
+            &quot;subjects&quot;: [
+              {
+                &quot;kind&quot;: &quot;line&quot;,
+                &quot;entityId&quot;: &quot;distance-conflict&quot;
+              }
+            ],
+            &quot;resolvedValueMm&quot;: 3,
+            &quot;rowIndex&quot;: 0,
+            &quot;rowScaleMm&quot;: 3
+          }
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;distance-conflict-span&quot;,
+          &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;distance-conflict&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;distance-conflict&quot;,
+                &quot;endpoint&quot;: &quot;end&quot;
+              }
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 2,
+          &quot;measuredValueMm&quot;: 2,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;distance-conflict-x&quot;,
+          &quot;kind&quot;: &quot;fixed-x&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;distance-conflict&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;x&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        },
+        {
+          &quot;family&quot;: &quot;affine&quot;,
+          &quot;constraintId&quot;: &quot;distance-conflict-y&quot;,
+          &quot;kind&quot;: &quot;fixed-y&quot;,
+          &quot;participation&quot;: &quot;driving&quot;,
+          &quot;state&quot;: &quot;satisfied&quot;,
+          &quot;subjects&quot;: [
+            {
+              &quot;kind&quot;: &quot;point&quot;,
+              &quot;point&quot;: {
+                &quot;entityId&quot;: &quot;distance-conflict&quot;,
+                &quot;endpoint&quot;: &quot;start&quot;
+              }
+            },
+            {
+              &quot;kind&quot;: &quot;sketch-axis&quot;,
+              &quot;axis&quot;: &quot;y&quot;
+            }
+          ],
+          &quot;resolvedValueMm&quot;: 0,
+          &quot;measuredValueMm&quot;: 0,
+          &quot;physicalErrorMm&quot;: 0
+        }
+      ],
+      &quot;invalidEntityIds&quot;: [],
+      &quot;reduction&quot;: {
+        &quot;normalization&quot;: {
+          &quot;originX&quot;: 1,
+          &quot;originY&quot;: 0,
+          &quot;scaleMm&quot;: 3
+        },
+        &quot;affineRowCount&quot;: 4,
+        &quot;affineRank&quot;: 4,
+        &quot;affineNullity&quot;: 0,
+        &quot;maximumAffineResidualMm&quot;: 0,
+        &quot;nonlinearParameterization&quot;: &quot;affine-nullspace&quot;,
+        &quot;distanceRowCount&quot;: 1,
+        &quot;seeds&quot;: [],
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        },
+        &quot;localFirstOrderFreedom&quot;: 0,
+        &quot;localRank&quot;: {
+          &quot;activeRank&quot;: 0,
+          &quot;ambiguousRank&quot;: 0,
+          &quot;nullity&quot;: 0,
+          &quot;verification&quot;: {
+            &quot;maximumNormalizedReconstructionError&quot;: 0,
+            &quot;maximumRightOrthogonalityError&quot;: 0
+          }
+        }
+      },
+      &quot;controller&quot;: {
+        &quot;termination&quot;: {
+          &quot;outcome&quot;: &quot;stalled&quot;,
+          &quot;cause&quot;: &quot;zero-gradient&quot;
+        },
+        &quot;work&quot;: {
+          &quot;iterations&quot;: 1,
+          &quot;evaluations&quot;: 1,
+          &quot;acceptedSteps&quot;: 0,
+          &quot;rejectedSteps&quot;: 0,
+          &quot;domainRejectedSteps&quot;: 0
+        },
+        &quot;residualNorm&quot;: 0.2777777777777778,
+        &quot;finalRadius&quot;: 4,
+        &quot;backend&quot;: {
+          &quot;implementation&quot;: &quot;ml-matrix&quot;,
+          &quot;version&quot;: &quot;6.14.0&quot;,
+          &quot;license&quot;: &quot;MIT&quot;,
+          &quot;execution&quot;: &quot;synchronous-javascript&quot;
+        }
+      },
+      &quot;rejection&quot;: {
+        &quot;code&quot;: &quot;nonconvergence&quot;,
+        &quot;path&quot;: &quot;trustRegion&quot;,
+        &quot;message&quot;: &quot;The nonlinear controller ended with stalled/zero-gradient.&quot;
+      }
+    }
+  },
+  &quot;permutationMatches&quot;: true,
+  &quot;duplicateSelectionMatches&quot;: true,
+  &quot;translationMatches&quot;: true,
   &quot;repeatedExecutions&quot;: 20,
   &quot;deterministic&quot;: true,
   &quot;failures&quot;: [],
