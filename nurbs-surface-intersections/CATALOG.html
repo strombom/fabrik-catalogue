@@ -244,11 +244,11 @@
         <h1>Practical NURBS surface-intersection catalogue</h1>
       </div>
       <div class="summary" aria-label="Run summary">
-        <span><strong>24</strong> cases</span>
-        <span class="summary--pass"><strong>24</strong> passed</span>
+        <span><strong>25</strong> cases</span>
+        <span class="summary--pass"><strong>25</strong> passed</span>
         <span class="summary--fail"><strong>0</strong> failed</span>
         <span><strong>0</strong> not run</span>
-        <span><strong>1229.221 ms</strong> runtime</span>
+        <span><strong>1450.942 ms</strong> runtime</span>
       </div>
     </header>
     <section class="catalogue" aria-label="Surface-intersection cases">
@@ -274,6 +274,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>line</code> · degree 1 · 1 span · 5.55e-16 mm</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -305,6 +309,10 @@
           <dt>Output</dt>
           <dd><code>trace-polyline</code> · degree 1 · 1745 spans · 3.57e-07 mm</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>Open curved section through a rational swept-profile surface.</dd>
@@ -334,6 +342,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>line</code> · degree 1 · 1 span · 6.66e-16 mm</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -365,6 +377,10 @@
           <dt>Output</dt>
           <dd><code>line</code> · degree 1 · 1 span · 8.26e-12 mm<br><code>line</code> · degree 1 · 1 span · 8.26e-12 mm</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>Two nearby regular components must both be discovered and kept separate.</dd>
@@ -394,6 +410,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>line</code> · degree 1 · 1 span · 7.3e-16 mm<br><code>line</code> · degree 1 · 1 span · 4.58e-16 mm</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>640 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -425,6 +445,10 @@
           <dt>Output</dt>
           <dd><code>circle</code> · degree 2 · 4 spans · 2.65e-07 mm · radius 1 mm · recognized</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>640 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>A rational cylindrical patch produces one closed seam-crossing loop.</dd>
@@ -454,6 +478,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>circle</code> · degree 2 · 4 spans · 2.28e-07 mm · radius 0.953939 mm · recognized</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>1152 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -485,6 +513,10 @@
           <dt>Output</dt>
           <dd><code>line</code> · degree 1 · 1 span · 3.61e-16 mm</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>A short but comfortably resolved component terminates at surface boundaries.</dd>
@@ -514,6 +546,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>circle</code> · degree 2 · 4 spans · 1.95e-08 mm · radius 0.001 mm · recognized</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>640 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -545,6 +581,10 @@
           <dt>Output</dt>
           <dd><code>circle</code> · degree 2 · 4 spans · 1.53e-05 mm · radius 1000 mm · recognized</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>640 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>The same general path handles metre-scale geometry with an explicit tolerance.</dd>
@@ -574,6 +614,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -605,6 +649,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>An exact uniform gap remains empty even when it is smaller than the Design tolerance.</dd>
@@ -635,9 +683,47 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>An exact plane gap hidden by the two declared support-accuracy envelopes is unresolved rather than empty or coincident.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Near-parallel crossing planes</h2>
+      <code>near_parallel_planes_cross</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/near_parallel_planes_cross.svg" alt="Reference render for Near-parallel crossing planes" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured below-resolution rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>below-resolution</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>A shallow but measurable signed-distance change across bounded planar supports rejects below resolution instead of being reported empty.</dd>
         </div>
       </dl>
     </div>
@@ -664,6 +750,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -695,6 +785,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>A curved near miss remains empty when its exact minimum gap is smaller than the Design tolerance.</dd>
@@ -724,6 +818,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -755,6 +853,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>1024 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>Overlapping control bounds do not turn nested cylindrical surfaces into an intersection.</dd>
@@ -784,6 +886,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -815,6 +921,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>1152 triangles</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>An isolated tangent contact is deliberately rejected by the first curve-only capability.</dd>
@@ -844,6 +954,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -875,6 +989,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>Malformed non-positive rational weights are rejected before numerical work.</dd>
@@ -904,6 +1022,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd>—</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -935,6 +1057,10 @@
           <dt>Output</dt>
           <dd>—</dd>
         </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>none</dd>
+        </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>The operation rejects before numerical work when no output-error budget remains.</dd>
@@ -964,6 +1090,10 @@
         <div class="fact">
           <dt>Output</dt>
           <dd><code>circular-arc</code> · degree 2 · 1 span · 1.94e-07 mm · radius 1 mm · sweep 90° · recognized</dd>
+        </div>
+        <div class="fact">
+          <dt>Candidate mesh</dt>
+          <dd>256 triangles</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
