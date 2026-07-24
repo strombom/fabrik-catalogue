@@ -1,0 +1,1835 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Fabrik 2D Sketch constraint solver</title><style>
+.bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
+
+:root{color-scheme:dark;font-family:Inter,system-ui,sans-serif;background:#050b14;color:#dbe5ed}body{margin:0;background:#050b14;color:#dbe5ed}.content{width:min(100% - 2rem,1500px);margin:auto;padding:38px 0}h1{margin:0 0 8px;font-size:2rem}.summary{color:#91a4b7;margin:0 0 8px}.scope{color:#6f8499;margin:0 0 28px;max-width:1000px;line-height:1.5}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}.card{background:#0d1725;border:1px solid #26384b;border-radius:12px;overflow:hidden}.card header{display:flex;justify-content:space-between;gap:18px;align-items:start;padding:20px 20px 8px}.card h2{margin:0 0 7px;font-size:1.1rem}.card code{color:#8fa4b8}.purpose{margin:0;padding:0 20px 18px;color:#aebdca;line-height:1.45}.card svg{width:100%;height:230px;display:block;border-block:1px solid #26384b;background:#08111f}.card svg rect{fill:#08111f}.axis{stroke:#26384b;stroke-width:1}.reference{stroke:#64748b;fill:#64748b;stroke-width:3;stroke-dasharray:8 7}.selected{stroke:#38bdf8;fill:#34d399;stroke-width:3}.card svg text{fill:#64748b;font:12px system-ui}.card svg .selected-label{fill:#38bdf8}.pass{color:#34d399;font-weight:800}.fail,.failure-text{color:#fb7185;font-weight:800}dl{display:grid;grid-template-columns:90px 1fr;gap:9px 14px;padding:18px;margin:0;font-size:.9rem}dt{color:#8fa4b8}dd{margin:0;line-height:1.45}details{border-top:1px solid #26384b;padding:14px 18px}summary{cursor:pointer;color:#8fa4b8}pre{white-space:pre-wrap;overflow-wrap:anywhere;color:#b9c9d8;font-size:.75rem}</style></head><body><nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html" aria-current="page">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav><div class="content"><h1>2D Sketch affine constraint solver</h1><p class="summary"><strong>8/8</strong> subsystem scenarios match · 4 complete · 4 structured rejections · 1e-7 mm physical tolerance · 0.000001 mm minimum line · 1e-9 mm selection invariance · 128 recovery passes</p><p class="scope">The same compact corpus exercises the standalone affine module, Project v1 validation and file round-trip, and the public headless Sketch evaluator. It covers deterministic affine reduction, physical and domain verification, minimum-change selection, bounded recovery, freedom, and structured evidence. Browser-target result matched the direct corpus result (esbuild 0.28.1 · browser/es2022 bundle · executed by v24.18.0). Nonlinear constraints and browser editing/acceptance remain later stages.</p><main class="grid"><article class="card"><header><div><h2>Empty Sketch remains authoritative geometry</h2><code>empty-sketch</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise the zero-sized subsystem without inventing constraints or a profile requirement.</p><svg viewBox="0 0 360 230" role="img" aria-label="Empty Sketch remains authoritative geometry"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><text x="132" y="112">empty Sketch</text><text x="116" y="132">no affine variables</text></svg><dl><dt>Expected</dt><dd>complete · success</dd><dt>Actual</dt><dd>complete · success · 0 components · 0 exact affine free modes · no physical measurement</dd><dt>Components</dt><dd>No components</dd><dt>Constraints</dt><dd>No constraints</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [],
+  &quot;components&quot;: [],
+  &quot;constraints&quot;: []
+}</pre></details></article>
+<article class="card"><header><div><h2>Affine selection, dimensions, anchors, and freedom</h2><code>affine-selection</code></div><span class="pass">PASS</span></header><p class="purpose">Solve the complete affine vocabulary across independent components while preserving minimum-change selection and honest freedom.</p><svg viewBox="0 0 360 230" role="img" aria-label="Affine selection, dimensions, anchors, and freedom"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="84.375" y1="77.5" x2="121.875" y2="62.5"/><circle cx="84.375" cy="77.5" r="4"/><circle cx="121.875" cy="62.5" r="4"/><title>affine-distance-x</title></g><g class="reference"><line x1="159.375" y1="77.5" x2="189.375" y2="40"/><circle cx="159.375" cy="77.5" r="4"/><circle cx="189.375" cy="40" r="4"/><title>affine-distance-y</title></g><g class="reference"><line x1="204.375" y1="178.75" x2="226.875" y2="156.25"/><circle cx="204.375" cy="178.75" r="4"/><circle cx="226.875" cy="156.25" r="4"/><title>affine-fixed-start</title></g><g class="reference"><line x1="84.375" y1="190" x2="121.875" y2="171.25"/><circle cx="84.375" cy="190" r="4"/><circle cx="121.875" cy="171.25" r="4"/><title>affine-free</title></g><g class="reference"><line x1="234.375" y1="77.5" x2="271.875" y2="70"/><circle cx="234.375" cy="77.5" r="4"/><circle cx="271.875" cy="70" r="4"/><title>affine-fully-fixed</title></g><g class="reference"><line x1="84.375" y1="115" x2="121.875" y2="107.5"/><circle cx="84.375" cy="115" r="4"/><circle cx="121.875" cy="107.5" r="4"/><title>affine-horizontal</title></g><g class="reference"><line x1="159.375" y1="190" x2="174.375" y2="152.5"/><circle cx="159.375" cy="190" r="4"/><circle cx="174.375" cy="152.5" r="4"/><title>affine-vertical</title></g><g class="selected"><line x1="95.625" y1="77.5" x2="110.625" y2="62.5"/><circle cx="95.625" cy="77.5" r="4"/><circle cx="110.625" cy="62.5" r="4"/><title>affine-distance-x</title></g><g class="selected"><line x1="159.375" y1="51.25" x2="189.375" y2="66.25"/><circle cx="159.375" cy="51.25" r="4"/><circle cx="189.375" cy="66.25" r="4"/><title>affine-distance-y</title></g><g class="selected"><line x1="196.875" y1="190" x2="226.875" y2="156.25"/><circle cx="196.875" cy="190" r="4"/><circle cx="226.875" cy="156.25" r="4"/><title>affine-fixed-start</title></g><g class="selected"><line x1="84.375" y1="190" x2="121.875" y2="171.25"/><circle cx="84.375" cy="190" r="4"/><circle cx="121.875" cy="171.25" r="4"/><title>affine-free</title></g><g class="selected"><line x1="238.125" y1="70" x2="275.625" y2="70"/><circle cx="238.125" cy="70" r="4"/><circle cx="275.625" cy="70" r="4"/><title>affine-fully-fixed</title></g><g class="selected"><line x1="84.375" y1="111.25" x2="121.875" y2="111.25"/><circle cx="84.375" cy="111.25" r="4"/><circle cx="121.875" cy="111.25" r="4"/><title>affine-horizontal</title></g><g class="selected"><line x1="166.875" y1="190" x2="166.875" y2="152.5"/><circle cx="166.875" cy="190" r="4"/><circle cx="166.875" cy="152.5" r="4"/><title>affine-vertical</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 7 components · 18 exact affine free modes · 8.882e-16 mm maximum error</dd><dt>Components</dt><dd>component:affine-distance-x: success-with-freedom, 3 free, 6.04e-14 mm floor<br>component:affine-distance-y: success-with-freedom, 3 free, 7.11e-14 mm floor<br>component:affine-fixed-start: success-with-freedom, 2 free, 6.75e-14 mm floor<br>component:affine-free: success-with-freedom, 4 free, 1.78e-14 mm floor<br>component:affine-fully-fixed: success, 0 free, 8.88e-14 mm floor<br>component:affine-horizontal: success-with-freedom, 3 free, 3.91e-14 mm floor<br>component:affine-vertical: success-with-freedom, 3 free, 4.26e-14 mm floor</dd><dt>Constraints</dt><dd>distance-x: driving, satisfied, 4.0000000 mm, 6.04e-14 mm floor<br>distance-y: driving, satisfied, -4.0000000 mm, 7.11e-14 mm floor<br>fixed-start-x: driving, satisfied, 30.000000 mm, 6.75e-14 mm floor<br>fixed-start-y: driving, satisfied, 0.0000000 mm, 6.75e-14 mm floor<br>fully-end-x: driving, satisfied, 51.000000 mm, 8.88e-14 mm floor<br>fully-end-y: driving, satisfied, 32.000000 mm, 8.88e-14 mm floor<br>fully-start-x: driving, satisfied, 41.000000 mm, 8.88e-14 mm floor<br>fully-start-y: driving, satisfied, 32.000000 mm, 8.88e-14 mm floor<br>horizontal: driving, satisfied, 0.0000000 mm, 3.91e-14 mm floor<br>vertical: driving, satisfied, 0.0000000 mm, 4.26e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · quarter-turn invariant · translation invariant · semantic IDs invariant · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;affine-distance-x&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 2.999999999999999,
+        &quot;y&quot;: 30
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 7,
+        &quot;y&quot;: 34
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-distance-y&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 20,
+        &quot;y&quot;: 37
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 28,
+        &quot;y&quot;: 33
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-fixed-start&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 30,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 38,
+        &quot;y&quot;: 9
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-free&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 5
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-fully-fixed&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 41,
+        &quot;y&quot;: 32
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 51,
+        &quot;y&quot;: 32
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-horizontal&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 21
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 21
+      }
+    },
+    {
+      &quot;id&quot;: &quot;affine-vertical&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 22,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 22,
+        &quot;y&quot;: 10
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:affine-distance-x&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-distance-x&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;distance-x&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 30,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 6.039613253960852e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-distance-y&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-distance-y&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;distance-y&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 20,
+        &quot;originY&quot;: 30,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-fixed-start&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-fixed-start&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;fixed-start-x&quot;,
+        &quot;fixed-start-y&quot;
+      ],
+      &quot;structuralFreedom&quot;: 2,
+      &quot;localFirstOrderFreedom&quot;: 2,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 32,
+        &quot;originY&quot;: 3,
+        &quot;scale&quot;: 6
+      },
+      &quot;numericalFloorMm&quot;: 6.750155989720952e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-free&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-free&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-fully-fixed&quot;,
+      &quot;outcome&quot;: &quot;success&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-fully-fixed&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;fully-end-x&quot;,
+        &quot;fully-end-y&quot;,
+        &quot;fully-start-x&quot;,
+        &quot;fully-start-y&quot;
+      ],
+      &quot;structuralFreedom&quot;: 0,
+      &quot;localFirstOrderFreedom&quot;: 0,
+      &quot;affineRank&quot;: 4,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 40,
+        &quot;originY&quot;: 30,
+        &quot;scale&quot;: 11
+      },
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-horizontal&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-horizontal&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;horizontal&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 20,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 3.907985046680551e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:affine-vertical&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;affine-vertical&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;vertical&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 20,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 4.263256414560601e-14
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;distance-x&quot;,
+      &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-distance-x&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-distance-x&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-distance-x&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 4,
+      &quot;measuredValueMm&quot;: 4.000000000000001,
+      &quot;physicalErrorMm&quot;: 8.881784197001252e-16,
+      &quot;numericalFloorMm&quot;: 6.039613253960852e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;distance-y&quot;,
+      &quot;kind&quot;: &quot;signed-vertical-distance&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-distance-y&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-distance-y&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-distance-y&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: -4,
+      &quot;measuredValueMm&quot;: -4,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fixed-start-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fixed-start&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fixed-start&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 30,
+      &quot;measuredValueMm&quot;: 30,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 6.750155989720952e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fixed-start-y&quot;,
+      &quot;kind&quot;: &quot;fixed-y&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fixed-start&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;y&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fixed-start&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 6.750155989720952e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fully-end-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fully-fixed&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fully-fixed&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 51,
+      &quot;measuredValueMm&quot;: 51,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fully-end-y&quot;,
+      &quot;kind&quot;: &quot;fixed-y&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fully-fixed&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;y&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fully-fixed&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 32,
+      &quot;measuredValueMm&quot;: 32,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fully-start-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fully-fixed&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fully-fixed&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 41,
+      &quot;measuredValueMm&quot;: 41,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;fully-start-y&quot;,
+      &quot;kind&quot;: &quot;fixed-y&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;affine-fully-fixed&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;y&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-fully-fixed&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 32,
+      &quot;measuredValueMm&quot;: 32,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;horizontal&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;affine-horizontal&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-horizontal&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 3.907985046680551e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;vertical&quot;,
+      &quot;kind&quot;: &quot;vertical&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;affine-vertical&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:affine-vertical&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 4.263256414560601e-14
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Coincidence retains endpoint identity and rotation invariance</h2><code>coincidence-invariance</code></div><span class="pass">PASS</span></header><p class="purpose">Select the Euclidean midpoint of independent semantic endpoints and preserve the result under permutation and a quarter turn.</p><svg viewBox="0 0 360 230" role="img" aria-label="Coincidence retains endpoint identity and rotation invariance"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="80" y1="190" x2="146.66666666666666" y2="156.66666666666669"/><circle cx="80" cy="190" r="4"/><circle cx="146.66666666666666" cy="156.66666666666669" r="4"/><title>coincident-a</title></g><g class="reference"><line x1="213.33333333333334" y1="90" x2="280" y2="40"/><circle cx="213.33333333333334" cy="90" r="4"/><circle cx="280" cy="40" r="4"/><title>coincident-b</title></g><g class="selected"><line x1="80" y1="190" x2="180" y2="123.33333333333333"/><circle cx="80" cy="190" r="4"/><circle cx="180" cy="123.33333333333333" r="4"/><title>coincident-a</title></g><g class="selected"><line x1="180" y1="123.33333333333333" x2="280" y2="40"/><circle cx="180" cy="123.33333333333333" r="4"/><circle cx="280" cy="40" r="4"/><title>coincident-b</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 1 component · 6 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:coincident-a: success-with-freedom, 6 free, 2.13e-14 mm floor</dd><dt>Constraints</dt><dd>coincident-a-b: driving, satisfied, 0.0000000 mm, 2.13e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · quarter-turn invariant · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;coincident-a&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 6,
+        &quot;y&quot;: 4
+      }
+    },
+    {
+      &quot;id&quot;: &quot;coincident-b&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 6,
+        &quot;y&quot;: 4
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 12,
+        &quot;y&quot;: 9
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:coincident-a&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;coincident-a&quot;,
+        &quot;coincident-b&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;coincident-a-b&quot;
+      ],
+      &quot;structuralFreedom&quot;: 6,
+      &quot;localFirstOrderFreedom&quot;: 6,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 12
+      },
+      &quot;numericalFloorMm&quot;: 2.1316282072803006e-14
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;coincident-a-b&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;coincident-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;coincident-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:coincident-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 2.1316282072803006e-14
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Duplicate, reference, and disabled intent remain distinct</h2><code>intent-participation</code></div><span class="pass">PASS</span></header><p class="purpose">Keep selection duplicate-invariant while reference measurements and disabled intent remain non-driving.</p><svg viewBox="0 0 360 230" role="img" aria-label="Duplicate, reference, and disabled intent remain distinct"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="150" y1="190" x2="200" y2="170"/><circle cx="150" cy="190" r="4"/><circle cx="200" cy="170" r="4"/><title>disabled-line</title></g><g class="reference"><line x1="100" y1="190" x2="200" y2="170"/><circle cx="100" cy="190" r="4"/><circle cx="200" cy="170" r="4"/><title>duplicate-line</title></g><g class="reference"><line x1="100" y1="90" x2="120" y2="80"/><circle cx="100" cy="90" r="4"/><circle cx="120" cy="80" r="4"/><title>reference-a</title></g><g class="reference"><line x1="220" y1="60" x2="260" y2="40"/><circle cx="220" cy="60" r="4"/><circle cx="260" cy="40" r="4"/><title>reference-b</title></g><g class="reference"><line x1="100" y1="190" x2="200" y2="170"/><circle cx="100" cy="190" r="4"/><circle cx="200" cy="170" r="4"/><title>single-line</title></g><g class="selected"><line x1="150" y1="190" x2="200" y2="170"/><circle cx="150" cy="190" r="4"/><circle cx="200" cy="170" r="4"/><title>disabled-line</title></g><g class="selected"><line x1="100" y1="180" x2="200" y2="180"/><circle cx="100" cy="180" r="4"/><circle cx="200" cy="180" r="4"/><title>duplicate-line</title></g><g class="selected"><line x1="100" y1="90" x2="120" y2="80"/><circle cx="100" cy="90" r="4"/><circle cx="120" cy="80" r="4"/><title>reference-a</title></g><g class="selected"><line x1="220" y1="60" x2="260" y2="40"/><circle cx="220" cy="60" r="4"/><circle cx="260" cy="40" r="4"/><title>reference-b</title></g><g class="selected"><line x1="100" y1="180" x2="200" y2="180"/><circle cx="100" cy="180" r="4"/><circle cx="200" cy="180" r="4"/><title>single-line</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>complete · success-with-freedom</dd><dt>Actual</dt><dd>complete · success-with-freedom · 5 components · 18 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:disabled-line: success-with-freedom, 4 free, 1.78e-14 mm floor<br>component:duplicate-line: success-with-freedom, 3 free, 1.78e-14 mm floor<br>component:reference-a: success-with-freedom, 4 free, 1.95e-14 mm floor<br>component:reference-b: success-with-freedom, 4 free, 2.84e-14 mm floor<br>component:single-line: success-with-freedom, 3 free, 1.78e-14 mm floor</dd><dt>Constraints</dt><dd>disabled-x: disabled, unevaluated<br>duplicate-horizontal-a: driving, satisfied, 0.0000000 mm, duplicate:duplicate-horizontal-a+duplicate-horizontal-b, 1.78e-14 mm floor<br>duplicate-horizontal-b: driving, satisfied, 0.0000000 mm, duplicate:duplicate-horizontal-a+duplicate-horizontal-b, 1.78e-14 mm floor<br>reference-x: reference, satisfied, 12.000000 mm, 2.84e-14 mm floor<br>single-horizontal: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor</dd><dt>Stability</dt><dd>permutation stable · duplicate selection stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;complete&quot;,
+  &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+  &quot;authoritative&quot;: true,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;disabled-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 5,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 2
+      }
+    },
+    {
+      &quot;id&quot;: &quot;duplicate-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 1
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 1
+      }
+    },
+    {
+      &quot;id&quot;: &quot;reference-a&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 10
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 2,
+        &quot;y&quot;: 11
+      }
+    },
+    {
+      &quot;id&quot;: &quot;reference-b&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 12,
+        &quot;y&quot;: 13
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 16,
+        &quot;y&quot;: 15
+      }
+    },
+    {
+      &quot;id&quot;: &quot;single-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 1
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 1
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:disabled-line&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;disabled-line&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 5,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 5
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:duplicate-line&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;duplicate-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;duplicate-horizontal-a&quot;,
+        &quot;duplicate-horizontal-b&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:reference-a&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;reference-a&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 10,
+        &quot;scale&quot;: 2
+      },
+      &quot;numericalFloorMm&quot;: 1.9539925233402755e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:reference-b&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;reference-b&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 12,
+        &quot;originY&quot;: 13,
+        &quot;scale&quot;: 4
+      },
+      &quot;numericalFloorMm&quot;: 2.842170943040401e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:single-line&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;single-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;single-horizontal&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;disabled-x&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;disabled&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;disabled-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:disabled-line&quot;
+      ],
+      &quot;state&quot;: &quot;unevaluated&quot;
+    },
+    {
+      &quot;constraintId&quot;: &quot;duplicate-horizontal-a&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;duplicate-line&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:duplicate-line&quot;
+      ],
+      &quot;dependencyGroupIds&quot;: [
+        &quot;duplicate:duplicate-horizontal-a+duplicate-horizontal-b&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;duplicate-horizontal-b&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;duplicate-line&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:duplicate-line&quot;
+      ],
+      &quot;dependencyGroupIds&quot;: [
+        &quot;duplicate:duplicate-horizontal-a+duplicate-horizontal-b&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;reference-x&quot;,
+      &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+      &quot;participation&quot;: &quot;reference&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;reference-a&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;reference-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:reference-a&quot;,
+        &quot;component:reference-b&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;measuredValueMm&quot;: 12,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 2.842170943040401e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;single-horizontal&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;single-line&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:single-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Semantic, affine, ambiguous, and free components coexist</h2><code>classification-and-components</code></div><span class="pass">PASS</span></header><p class="purpose">Preserve every component condition while Sketch-level authority is rejected by stronger semantic and affine contradictions.</p><svg viewBox="0 0 360 230" role="img" aria-label="Semantic, affine, ambiguous, and free components coexist"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="90.9090909090909" y1="125.18181818181819" x2="116.36363636363637" y2="125.18181818181819"/><circle cx="90.9090909090909" cy="125.18181818181819" r="4"/><circle cx="116.36363636363637" cy="125.18181818181819" r="4"/><title>ambiguous-line</title></g><g class="reference"><line x1="141.8181818181818" y1="125.18181818181819" x2="167.27272727272728" y2="125.18181818181819"/><circle cx="141.8181818181818" cy="125.18181818181819" r="4"/><circle cx="167.27272727272728" cy="125.18181818181819" r="4"/><title>conflict-line</title></g><g class="reference"><line x1="40" y1="125.18181818181819" x2="65.45454545454545" y2="125.18181818181819"/><circle cx="40" cy="125.18181818181819" r="4"/><circle cx="65.45454545454545" cy="125.18181818181819" r="4"/><title>equal-line</title></g><g class="reference"><line x1="294.54545454545456" y1="112.45454545454545" x2="320" y2="104.81818181818181"/><circle cx="294.54545454545456" cy="112.45454545454545" r="4"/><circle cx="320" cy="104.81818181818181" r="4"/><title>free-sibling</title></g><g class="reference"><line x1="243.63636363636363" y1="125.18181818181819" x2="269.0909090909091" y2="122.63636363636364"/><circle cx="243.63636363636363" cy="125.18181818181819" r="4"/><circle cx="269.0909090909091" cy="122.63636363636364" r="4"/><title>self-contradiction</title></g><g class="reference"><line x1="192.72727272727272" y1="125.18181818181819" x2="218.1818181818182" y2="122.63636363636364"/><circle cx="192.72727272727272" cy="125.18181818181819" r="4"/><circle cx="218.1818181818182" cy="122.63636363636364" r="4"/><title>self-tautology</title></g><g class="selected"><line x1="90.9090909090909" y1="125.18181818181819" x2="116.36363636363637" y2="125.18181818181819"/><circle cx="90.9090909090909" cy="125.18181818181819" r="4"/><circle cx="116.36363636363637" cy="125.18181818181819" r="4"/><title>ambiguous-line</title></g><g class="selected"><line x1="141.8181818181818" y1="125.18181818181819" x2="167.27272727272728" y2="125.18181818181819"/><circle cx="141.8181818181818" cy="125.18181818181819" r="4"/><circle cx="167.27272727272728" cy="125.18181818181819" r="4"/><title>conflict-line</title></g><g class="selected"><line x1="40" y1="125.18181818181819" x2="65.45454545454545" y2="125.18181818181819"/><circle cx="40" cy="125.18181818181819" r="4"/><circle cx="65.45454545454545" cy="125.18181818181819" r="4"/><title>equal-line</title></g><g class="selected"><line x1="294.54545454545456" y1="112.45454545454545" x2="320" y2="104.81818181818181"/><circle cx="294.54545454545456" cy="112.45454545454545" r="4"/><circle cx="320" cy="104.81818181818181" r="4"/><title>free-sibling</title></g><g class="selected"><line x1="243.63636363636363" y1="125.18181818181819" x2="269.0909090909091" y2="122.63636363636364"/><circle cx="243.63636363636363" cy="125.18181818181819" r="4"/><circle cx="269.0909090909091" cy="122.63636363636364" r="4"/><title>self-contradiction</title></g><g class="selected"><line x1="192.72727272727272" y1="125.18181818181819" x2="218.1818181818182" y2="122.63636363636364"/><circle cx="192.72727272727272" cy="125.18181818181819" r="4"/><circle cx="218.1818181818182" cy="122.63636363636364" r="4"/><title>self-tautology</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>rejected · semantic-contradiction</dd><dt>Actual</dt><dd>rejected · semantic-contradiction · 6 components · 14 exact affine free modes · 2.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:ambiguous-line: numerical-ambiguity, 3 free, 5.33e-14 mm floor<br>component:conflict-line: verified-affine-contradiction, 8.88e-14 mm floor<br>component:equal-line: success-with-freedom, 3 free, 1.78e-14 mm floor<br>component:free-sibling: success-with-freedom, 4 free, 1.95e-13 mm floor<br>component:self-contradiction: semantic-contradiction, 1.60e-13 mm floor<br>component:self-tautology: success-with-freedom, 4 free, 1.24e-13 mm floor</dd><dt>Constraints</dt><dd>ambiguous-base: driving, satisfied, 20.000000 mm, 5.33e-14 mm floor<br>ambiguous-limit: driving, ambiguous, 20.000000 mm, 5.33e-14 mm floor<br>conflict-base: driving, unevaluated<br>conflict-large: driving, unevaluated<br>equal-base: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor<br>equal-limit: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor<br>self-coincidence: driving, satisfied, 0.0000000 mm, 1.24e-13 mm floor<br>self-nonzero: driving, invalid, 0.0000000 mm, 1.60e-13 mm floor<br>self-zero: driving, satisfied, 0.0000000 mm, 1.24e-13 mm floor</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;outcome&quot;: &quot;semantic-contradiction&quot;,
+  &quot;authoritative&quot;: false,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;ambiguous-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 20,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 30,
+        &quot;y&quot;: 0
+      }
+    },
+    {
+      &quot;id&quot;: &quot;conflict-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 40,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 50,
+        &quot;y&quot;: 0
+      }
+    },
+    {
+      &quot;id&quot;: &quot;equal-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 0,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10,
+        &quot;y&quot;: 0
+      }
+    },
+    {
+      &quot;id&quot;: &quot;free-sibling&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 100,
+        &quot;y&quot;: 5
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 110,
+        &quot;y&quot;: 8
+      }
+    },
+    {
+      &quot;id&quot;: &quot;self-contradiction&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 80,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 90,
+        &quot;y&quot;: 1
+      }
+    },
+    {
+      &quot;id&quot;: &quot;self-tautology&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 60,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 70,
+        &quot;y&quot;: 1
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:ambiguous-line&quot;,
+      &quot;outcome&quot;: &quot;numerical-ambiguity&quot;,
+      &quot;entityIds&quot;: [
+        &quot;ambiguous-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;ambiguous-base&quot;,
+        &quot;ambiguous-limit&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 20,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 5.3290705182007514e-14,
+      &quot;message&quot;: &quot;Physical verification is ambiguous at the component numerical floor.&quot;
+    },
+    {
+      &quot;componentId&quot;: &quot;component:conflict-line&quot;,
+      &quot;outcome&quot;: &quot;verified-affine-contradiction&quot;,
+      &quot;entityIds&quot;: [
+        &quot;conflict-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;conflict-base&quot;,
+        &quot;conflict-large&quot;
+      ],
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 40,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 8.881784197001252e-14,
+      &quot;conflictGroupIds&quot;: [
+        &quot;affine-conflict:component:conflict-line&quot;
+      ],
+      &quot;message&quot;: &quot;The canonical affine subsystem contains incompatible differences.&quot;
+    },
+    {
+      &quot;componentId&quot;: &quot;component:equal-line&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;equal-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;equal-base&quot;,
+        &quot;equal-limit&quot;
+      ],
+      &quot;structuralFreedom&quot;: 3,
+      &quot;localFirstOrderFreedom&quot;: 3,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;componentId&quot;: &quot;component:free-sibling&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;free-sibling&quot;
+      ],
+      &quot;constraintIds&quot;: [],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 100,
+        &quot;originY&quot;: 5,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.9539925233402755e-13
+    },
+    {
+      &quot;componentId&quot;: &quot;component:self-contradiction&quot;,
+      &quot;outcome&quot;: &quot;semantic-contradiction&quot;,
+      &quot;entityIds&quot;: [
+        &quot;self-contradiction&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;self-nonzero&quot;
+      ],
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 80,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.5987211554602254e-13,
+      &quot;conflictGroupIds&quot;: [
+        &quot;semantic-conflict:self-nonzero&quot;
+      ],
+      &quot;message&quot;: &quot;Accepted semantic subjects and values contradict directly.&quot;
+    },
+    {
+      &quot;componentId&quot;: &quot;component:self-tautology&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;self-tautology&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;self-coincidence&quot;,
+        &quot;self-zero&quot;
+      ],
+      &quot;structuralFreedom&quot;: 4,
+      &quot;localFirstOrderFreedom&quot;: 4,
+      &quot;affineRank&quot;: 0,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 60,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.2434497875801753e-13
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;ambiguous-base&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;ambiguous-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:ambiguous-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 20,
+      &quot;measuredValueMm&quot;: 20,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 5.3290705182007514e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;ambiguous-limit&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;ambiguous-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:ambiguous-line&quot;
+      ],
+      &quot;state&quot;: &quot;ambiguous&quot;,
+      &quot;resolvedValueMm&quot;: 20.000000100000005,
+      &quot;measuredValueMm&quot;: 20,
+      &quot;physicalErrorMm&quot;: 1.0000000472132342e-7,
+      &quot;numericalFloorMm&quot;: 5.3290705182007514e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;conflict-base&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;conflict-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:conflict-line&quot;
+      ],
+      &quot;state&quot;: &quot;unevaluated&quot;,
+      &quot;conflictGroupIds&quot;: [
+        &quot;affine-conflict:component:conflict-line&quot;
+      ]
+    },
+    {
+      &quot;constraintId&quot;: &quot;conflict-large&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;conflict-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:conflict-line&quot;
+      ],
+      &quot;state&quot;: &quot;unevaluated&quot;,
+      &quot;conflictGroupIds&quot;: [
+        &quot;affine-conflict:component:conflict-line&quot;
+      ]
+    },
+    {
+      &quot;constraintId&quot;: &quot;equal-base&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;equal-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:equal-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;equal-limit&quot;,
+      &quot;kind&quot;: &quot;fixed-x&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;equal-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;sketch-axis&quot;,
+          &quot;axis&quot;: &quot;x&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:equal-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 1e-7,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 1e-7,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;self-coincidence&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-tautology&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-tautology&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:self-tautology&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.2434497875801753e-13
+    },
+    {
+      &quot;constraintId&quot;: &quot;self-nonzero&quot;,
+      &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-contradiction&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-contradiction&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:self-contradiction&quot;
+      ],
+      &quot;state&quot;: &quot;invalid&quot;,
+      &quot;resolvedValueMm&quot;: 2,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 2,
+      &quot;numericalFloorMm&quot;: 1.5987211554602254e-13,
+      &quot;conflictGroupIds&quot;: [
+        &quot;semantic-conflict:self-nonzero&quot;
+      ],
+      &quot;message&quot;: &quot;The constraint contradicts its own semantic subjects.&quot;
+    },
+    {
+      &quot;constraintId&quot;: &quot;self-zero&quot;,
+      &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-tautology&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;self-tautology&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:self-tautology&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.2434497875801753e-13
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Translated stability and numerical-floor ambiguity</h2><code>coordinate-scale</code></div><span class="pass">PASS</span></header><p class="purpose">Keep a resolvable translated component stable while rejecting a sub-resolution dimensional decision at a larger coordinate scale.</p><svg viewBox="0 0 360 230" role="img" aria-label="Translated stability and numerical-floor ambiguity"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="40" y1="113.58585871484543" x2="40.00000011313131" y2="113.58585865827976"/><circle cx="40" cy="113.58585871484543" r="4"/><circle cx="40.00000011313131" cy="113.58585865827976" r="4"/><title>stable-a</title></g><g class="reference"><line x1="40.00000022626264" y1="113.58585854514845" x2="40.00000033939395" y2="113.58585846029997"/><circle cx="40.00000022626264" cy="113.58585854514845" r="4"/><circle cx="40.00000033939395" cy="113.58585846029997" r="4"/><title>stable-b</title></g><g class="reference"><line x1="319.999999660606" y1="116.41414153970003" x2="319.9999997737374" y2="116.41414148313437"/><circle cx="319.999999660606" cy="116.41414153970003" r="4"/><circle cx="319.9999997737374" cy="116.41414148313437" r="4"/><title>uncertain-a</title></g><g class="reference"><line x1="319.9999998868687" y1="116.41414137000307" x2="320" y2="116.41414128515457"/><circle cx="319.9999998868687" cy="116.41414137000307" r="4"/><circle cx="320" cy="116.41414128515457" r="4"/><title>uncertain-b</title></g><g class="selected"><line x1="40" y1="113.58585871484543" x2="40.00000016969696" y2="113.58585860171411"/><circle cx="40" cy="113.58585871484543" r="4"/><circle cx="40.00000016969696" cy="113.58585860171411" r="4"/><title>stable-a</title></g><g class="selected"><line x1="40.00000016969696" y1="113.58585860171411" x2="40.00000033939395" y2="113.58585846029997"/><circle cx="40.00000016969696" cy="113.58585860171411" r="4"/><circle cx="40.00000033939395" cy="113.58585846029997" r="4"/><title>stable-b</title></g><g class="selected"><line x1="319.999999660606" y1="116.41414153970003" x2="319.99999983030307" y2="116.41414148313437"/><circle cx="319.999999660606" cy="116.41414153970003" r="4"/><circle cx="319.99999983030307" cy="116.41414148313437" r="4"/><title>uncertain-a</title></g><g class="selected"><line x1="319.99999983030307" y1="116.41414137000307" x2="320" y2="116.41414128515457"/><circle cx="319.99999983030307" cy="116.41414137000307" r="4"/><circle cx="320" cy="116.41414128515457" r="4"/><title>uncertain-b</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>rejected · numerical-ambiguity</dd><dt>Actual</dt><dd>rejected · numerical-ambiguity · 2 components · 13 exact affine free modes · 1.000e-6 mm maximum error</dd><dt>Components</dt><dd>component:stable-a: success-with-freedom, 6 free, 1.78e-7 mm floor<br>component:uncertain-a: numerical-ambiguity, 7 free, 1.78e-5 mm floor</dd><dt>Constraints</dt><dd>stable-coincidence: driving, satisfied, 0.0000000 mm, 1.78e-7 mm floor<br>uncertain-distance: driving, ambiguous, 0.0000000 mm, 1.78e-5 mm floor</dd><dt>Stability</dt><dd>permutation stable · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;outcome&quot;: &quot;numerical-ambiguity&quot;,
+  &quot;authoritative&quot;: false,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;stable-a&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 100000000,
+        &quot;y&quot;: 100000000
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 100000006,
+        &quot;y&quot;: 100000004
+      }
+    },
+    {
+      &quot;id&quot;: &quot;stable-b&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 100000006,
+        &quot;y&quot;: 100000004
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 100000012,
+        &quot;y&quot;: 100000009
+      }
+    },
+    {
+      &quot;id&quot;: &quot;uncertain-a&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 10000000000,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10000000006,
+        &quot;y&quot;: 2
+      }
+    },
+    {
+      &quot;id&quot;: &quot;uncertain-b&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 10000000006,
+        &quot;y&quot;: 6
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 10000000012,
+        &quot;y&quot;: 9
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:stable-a&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;stable-a&quot;,
+        &quot;stable-b&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;stable-coincidence&quot;
+      ],
+      &quot;structuralFreedom&quot;: 6,
+      &quot;localFirstOrderFreedom&quot;: 6,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 100000000,
+        &quot;originY&quot;: 100000000,
+        &quot;scale&quot;: 12
+      },
+      &quot;numericalFloorMm&quot;: 1.7763570525630712e-7
+    },
+    {
+      &quot;componentId&quot;: &quot;component:uncertain-a&quot;,
+      &quot;outcome&quot;: &quot;numerical-ambiguity&quot;,
+      &quot;entityIds&quot;: [
+        &quot;uncertain-a&quot;,
+        &quot;uncertain-b&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;uncertain-distance&quot;
+      ],
+      &quot;structuralFreedom&quot;: 7,
+      &quot;localFirstOrderFreedom&quot;: 7,
+      &quot;affineRank&quot;: 1,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 10000000000,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 12
+      },
+      &quot;numericalFloorMm&quot;: 0.000017763568415318787,
+      &quot;message&quot;: &quot;Physical verification is ambiguous at the component numerical floor.&quot;
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;stable-coincidence&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;stable-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;stable-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:stable-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763570525630712e-7
+    },
+    {
+      &quot;constraintId&quot;: &quot;uncertain-distance&quot;,
+      &quot;kind&quot;: &quot;signed-horizontal-distance&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;uncertain-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;uncertain-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:uncertain-a&quot;
+      ],
+      &quot;state&quot;: &quot;ambiguous&quot;,
+      &quot;resolvedValueMm&quot;: 0.000001,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0.000001,
+      &quot;numericalFloorMm&quot;: 0.000017763568415318787
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Line-domain recovery, infeasibility, and exhaustion</h2><code>line-domain</code></div><span class="pass">PASS</span></header><p class="purpose">Recover coupled near-threshold and mixed-direction components while preserving a constraint-forced collapse, minimum-change evidence, invariance, and bounded-work exhaustion.</p><svg viewBox="0 0 360 230" role="img" aria-label="Line-domain recovery, infeasibility, and exhaustion"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="254.99999647462582" y1="40.00000352537418" x2="254.99999647462582" y2="40.00000352537418"/><circle cx="254.99999647462582" cy="40.00000352537418" r="4"/><circle cx="254.99999647462582" cy="40.00000352537418" r="4"/><title>direction-center</title></g><g class="reference"><line x1="254.99999647462582" y1="40.00000352537418" x2="254.99999897462575" y2="40.00000352537418"/><circle cx="254.99999647462582" cy="40.00000352537418" r="4"/><circle cx="254.99999897462575" cy="40.00000352537418" r="4"/><title>direction-horizontal</title></g><g class="reference"><line x1="254.99999647462582" y1="40.00000352537418" x2="254.99999647462582" y2="40.000001025374246"/><circle cx="254.99999647462582" cy="40.00000352537418" r="4"/><circle cx="254.99999647462582" cy="40.000001025374246" r="4"/><title>direction-vertical</title></g><g class="reference"><line x1="105" y1="190" x2="154.99999882487526" y2="190"/><circle cx="105" cy="190" r="4"/><circle cx="154.99999882487526" cy="190" r="4"/><title>forced-line</title></g><g class="reference"><line x1="119.99999589746267" y1="170.00000047004988" x2="119.9999983974626" y2="170.00000047004988"/><circle cx="119.99999589746267" cy="170.00000047004988" r="4"/><circle cx="119.9999983974626" cy="170.00000047004988" r="4"/><title>recover-a</title></g><g class="reference"><line x1="119.9999983974626" y1="170.00000047004988" x2="120.00000089746254" y2="170.00000047004988"/><circle cx="119.9999983974626" cy="170.00000047004988" r="4"/><circle cx="120.00000089746254" cy="170.00000047004988" r="4"/><title>recover-b</title></g><g class="reference"><line x1="120.00000089746254" y1="170.00000047004988" x2="120.00000339746249" y2="170.00000047004988"/><circle cx="120.00000089746254" cy="170.00000047004988" r="4"/><circle cx="120.00000339746249" cy="170.00000047004988" r="4"/><title>recover-c</title></g><g class="selected"><line x1="254.99999525012072" y1="40.00000474987927" x2="254.99999878565472" y2="40.000001214345275"/><circle cx="254.99999525012072" cy="40.00000474987927" r="4"/><circle cx="254.99999878565472" cy="40.000001214345275" r="4"/><title>direction-center</title></g><g class="selected"><line x1="254.99999525012072" y1="40.00000474987927" x2="255" y2="40.000003188262056"/><circle cx="254.99999525012072" cy="40.00000474987927" r="4"/><circle cx="255" cy="40.000003188262056" r="4"/><title>direction-horizontal</title></g><g class="selected"><line x1="254.99999525012072" y1="40.00000474987927" x2="254.99999681173796" y2="40"/><circle cx="254.99999525012072" cy="40.00000474987927" r="4"/><circle cx="254.99999681173796" cy="40" r="4"/><title>direction-vertical</title></g><g class="selected"><line x1="129.99999941243763" y1="190" x2="129.99999941243763" y2="190"/><circle cx="129.99999941243763" cy="190" r="4"/><circle cx="129.99999941243763" cy="190" r="4"/><title>forced-line</title></g><g class="selected"><line x1="119.9999921474627" y1="170.00000047004988" x2="119.99999714746264" y2="170.00000047004988"/><circle cx="119.9999921474627" cy="170.00000047004988" r="4"/><circle cx="119.99999714746264" cy="170.00000047004988" r="4"/><title>recover-a</title></g><g class="selected"><line x1="119.99999714746264" y1="170.00000047004988" x2="120.00000214746254" y2="170.00000047004988"/><circle cx="119.99999714746264" cy="170.00000047004988" r="4"/><circle cx="120.00000214746254" cy="170.00000047004988" r="4"/><title>recover-b</title></g><g class="selected"><line x1="120.00000214746254" y1="170.00000047004988" x2="120.00000714746244" y2="170.00000047004988"/><circle cx="120.00000214746254" cy="170.00000047004988" r="4"/><circle cx="120.00000714746244" cy="170.00000047004988" r="4"/><title>recover-c</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>rejected · entity-domain-failure</dd><dt>Actual</dt><dd>rejected · entity-domain-failure · 3 components · 15 exact affine free modes · 0.000e+0 mm maximum error</dd><dt>Components</dt><dd>component:direction-center: success-with-freedom, 8 free, 5.33e-14 mm floor, recovery recovered after 106/128, 9.383e-7 mm reference displacement<br>component:forced-line: entity-domain-failure, 2 free, invalid forced-line, 1.78e-14 mm floor, recovery infeasible after 0/128<br>component:recover-a: success-with-freedom, 5 free, 7.11e-15 mm floor, recovery recovered after 18/128, 1.173e-6 mm reference displacement</dd><dt>Constraints</dt><dd>collapse-forced: driving, satisfied, 0.0000000 mm, 1.78e-14 mm floor<br>direction-join-horizontal: driving, satisfied, 0.0000000 mm, 5.33e-14 mm floor<br>direction-join-vertical: driving, satisfied, 0.0000000 mm, 5.33e-14 mm floor<br>horizontal-a: driving, satisfied, 0.0000000 mm, 7.11e-15 mm floor<br>horizontal-b: driving, satisfied, 0.0000000 mm, 7.11e-15 mm floor<br>horizontal-c: driving, satisfied, 0.0000000 mm, 7.11e-15 mm floor<br>join-recoverable-a-b: driving, satisfied, 0.0000000 mm, 7.11e-15 mm floor<br>join-recoverable-b-c: driving, satisfied, 0.0000000 mm, 7.11e-15 mm floor</dd><dt>Stability</dt><dd>permutation stable · quarter-turn invariant · translation invariant · semantic IDs invariant · work-limit exhaustion visible · Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;outcome&quot;: &quot;entity-domain-failure&quot;,
+  &quot;authoritative&quot;: false,
+  &quot;entities&quot;: [
+    {
+      &quot;id&quot;: &quot;direction-center&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 29.999999755098976,
+        &quot;y&quot;: 29.999999755098976
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 30.000000462205794,
+        &quot;y&quot;: 30.000000462205794
+      }
+    },
+    {
+      &quot;id&quot;: &quot;direction-horizontal&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 29.999999755098976,
+        &quot;y&quot;: 29.999999755098976
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 30.000000705074854,
+        &quot;y&quot;: 30.000000067422427
+      }
+    },
+    {
+      &quot;id&quot;: &quot;direction-vertical&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 29.999999755098976,
+        &quot;y&quot;: 29.999999755098976
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 30.000000067422427,
+        &quot;y&quot;: 30.000000705074854
+      }
+    },
+    {
+      &quot;id&quot;: &quot;forced-line&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 5,
+        &quot;y&quot;: 0
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 5,
+        &quot;y&quot;: 0
+      }
+    },
+    {
+      &quot;id&quot;: &quot;recover-a&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 2.9999984999999914,
+        &quot;y&quot;: 4
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 2.9999994999999986,
+        &quot;y&quot;: 4
+      }
+    },
+    {
+      &quot;id&quot;: &quot;recover-b&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 2.9999994999999986,
+        &quot;y&quot;: 4
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 3.0000005000000014,
+        &quot;y&quot;: 4
+      }
+    },
+    {
+      &quot;id&quot;: &quot;recover-c&quot;,
+      &quot;start&quot;: {
+        &quot;x&quot;: 3.0000005000000014,
+        &quot;y&quot;: 4
+      },
+      &quot;end&quot;: {
+        &quot;x&quot;: 3.0000015000000086,
+        &quot;y&quot;: 4
+      }
+    }
+  ],
+  &quot;components&quot;: [
+    {
+      &quot;componentId&quot;: &quot;component:direction-center&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;direction-center&quot;,
+        &quot;direction-horizontal&quot;,
+        &quot;direction-vertical&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;direction-join-horizontal&quot;,
+        &quot;direction-join-vertical&quot;
+      ],
+      &quot;structuralFreedom&quot;: 8,
+      &quot;localFirstOrderFreedom&quot;: 8,
+      &quot;affineRank&quot;: 4,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 30,
+        &quot;originY&quot;: 30,
+        &quot;scale&quot;: 1
+      },
+      &quot;numericalFloorMm&quot;: 5.329070607018593e-14,
+      &quot;domainRecovery&quot;: {
+        &quot;termination&quot;: &quot;recovered&quot;,
+        &quot;passes&quot;: 106,
+        &quot;maximumPasses&quot;: 128,
+        &quot;referenceDisplacementMm&quot;: 9.382592498168016e-7
+      },
+      &quot;message&quot;: &quot;A deterministic free-group correction restored the line validity domain.&quot;
+    },
+    {
+      &quot;componentId&quot;: &quot;component:forced-line&quot;,
+      &quot;outcome&quot;: &quot;entity-domain-failure&quot;,
+      &quot;entityIds&quot;: [
+        &quot;forced-line&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;collapse-forced&quot;
+      ],
+      &quot;structuralFreedom&quot;: 2,
+      &quot;localFirstOrderFreedom&quot;: 2,
+      &quot;affineRank&quot;: 2,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 0,
+        &quot;originY&quot;: 0,
+        &quot;scale&quot;: 10
+      },
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14,
+      &quot;domainRecovery&quot;: {
+        &quot;termination&quot;: &quot;infeasible&quot;,
+        &quot;passes&quot;: 0,
+        &quot;maximumPasses&quot;: 128
+      },
+      &quot;invalidEntityIds&quot;: [
+        &quot;forced-line&quot;
+      ],
+      &quot;message&quot;: &quot;The affine candidate satisfies its constraints but contains a line below the minimum length.&quot;
+    },
+    {
+      &quot;componentId&quot;: &quot;component:recover-a&quot;,
+      &quot;outcome&quot;: &quot;success-with-freedom&quot;,
+      &quot;entityIds&quot;: [
+        &quot;recover-a&quot;,
+        &quot;recover-b&quot;,
+        &quot;recover-c&quot;
+      ],
+      &quot;constraintIds&quot;: [
+        &quot;horizontal-a&quot;,
+        &quot;horizontal-b&quot;,
+        &quot;horizontal-c&quot;,
+        &quot;join-recoverable-a-b&quot;,
+        &quot;join-recoverable-b-c&quot;
+      ],
+      &quot;structuralFreedom&quot;: 5,
+      &quot;localFirstOrderFreedom&quot;: 5,
+      &quot;affineRank&quot;: 7,
+      &quot;normalization&quot;: {
+        &quot;originX&quot;: 2.99999925,
+        &quot;originY&quot;: 4,
+        &quot;scale&quot;: 1
+      },
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15,
+      &quot;domainRecovery&quot;: {
+        &quot;termination&quot;: &quot;recovered&quot;,
+        &quot;passes&quot;: 18,
+        &quot;maximumPasses&quot;: 128,
+        &quot;referenceDisplacementMm&quot;: 0.0000011726039525228596
+      },
+      &quot;message&quot;: &quot;A deterministic free-group correction restored the line validity domain.&quot;
+    }
+  ],
+  &quot;constraints&quot;: [
+    {
+      &quot;constraintId&quot;: &quot;collapse-forced&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;forced-line&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;forced-line&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:forced-line&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 1.7763568394002505e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;direction-join-horizontal&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;direction-center&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;direction-horizontal&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:direction-center&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 5.329070607018593e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;direction-join-vertical&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;direction-center&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;direction-vertical&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:direction-center&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 5.329070607018593e-14
+    },
+    {
+      &quot;constraintId&quot;: &quot;horizontal-a&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;recover-a&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:recover-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15
+    },
+    {
+      &quot;constraintId&quot;: &quot;horizontal-b&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;recover-b&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:recover-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15
+    },
+    {
+      &quot;constraintId&quot;: &quot;horizontal-c&quot;,
+      &quot;kind&quot;: &quot;horizontal&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;line&quot;,
+          &quot;entityId&quot;: &quot;recover-c&quot;
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:recover-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15
+    },
+    {
+      &quot;constraintId&quot;: &quot;join-recoverable-a-b&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;recover-a&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;recover-b&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:recover-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15
+    },
+    {
+      &quot;constraintId&quot;: &quot;join-recoverable-b-c&quot;,
+      &quot;kind&quot;: &quot;coincidence&quot;,
+      &quot;participation&quot;: &quot;driving&quot;,
+      &quot;subjects&quot;: [
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;recover-b&quot;,
+            &quot;endpoint&quot;: &quot;end&quot;
+          }
+        },
+        {
+          &quot;kind&quot;: &quot;point&quot;,
+          &quot;point&quot;: {
+            &quot;entityId&quot;: &quot;recover-c&quot;,
+            &quot;endpoint&quot;: &quot;start&quot;
+          }
+        }
+      ],
+      &quot;componentIds&quot;: [
+        &quot;component:recover-a&quot;
+      ],
+      &quot;state&quot;: &quot;satisfied&quot;,
+      &quot;resolvedValueMm&quot;: 0,
+      &quot;measuredValueMm&quot;: 0,
+      &quot;physicalErrorMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 7.105427357601002e-15
+    }
+  ]
+}</pre></details></article>
+<article class="card"><header><div><h2>Invalid semantic references stop before solving</h2><code>invalid-input</code></div><span class="pass">PASS</span></header><p class="purpose">Exercise structural rejection at the standalone subsystem boundary.</p><svg viewBox="0 0 360 230" role="img" aria-label="Invalid semantic references stop before solving"><rect width="360" height="230"/><line class="axis" x1="20" y1="115" x2="340" y2="115"/><line class="axis" x1="180" y1="20" x2="180" y2="210"/><g class="reference"><line x1="40" y1="143" x2="320" y2="87"/><circle cx="40" cy="143" r="4"/><circle cx="320" cy="87" r="4"/><title>valid-line</title></g><g class="selected"><line x1="40" y1="143" x2="320" y2="87"/><circle cx="40" cy="143" r="4"/><circle cx="320" cy="87" r="4"/><title>valid-line</title></g><text x="16" y="214">reference</text><text class="selected-label" x="92" y="214">selected / candidate</text></svg><dl><dt>Expected</dt><dd>rejected · invalid-input</dd><dt>Actual</dt><dd>rejected · invalid-input · 0 components · 0 exact affine free modes · no physical measurement</dd><dt>Components</dt><dd>No components</dd><dt>Constraints</dt><dd>No constraints</dd><dt>Stability</dt><dd>Project v1 + evaluator matched</dd></dl><details><summary>Structured result</summary><pre>{
+  &quot;status&quot;: &quot;rejected&quot;,
+  &quot;outcome&quot;: &quot;invalid-input&quot;,
+  &quot;authoritative&quot;: false,
+  &quot;entities&quot;: [],
+  &quot;components&quot;: [],
+  &quot;constraints&quot;: [],
+  &quot;rejection&quot;: {
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;path&quot;: &quot;constraints[0].point&quot;,
+    &quot;message&quot;: &quot;A Sketch point subject refers to an unknown line.&quot;
+  }
+}</pre></details></article></main></div></body></html>

@@ -236,7 +236,7 @@
   </style>
 </head>
 <body>
-<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html" aria-current="page">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html" aria-current="page">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
   <main>
     <header class="hero">
       <div>
@@ -244,11 +244,11 @@
         <h1>Practical NURBS surface-intersection catalogue</h1>
       </div>
       <div class="summary" aria-label="Run summary">
-        <span><strong>23</strong> cases</span>
-        <span class="summary--pass"><strong>23</strong> passed</span>
+        <span><strong>24</strong> cases</span>
+        <span class="summary--pass"><strong>24</strong> passed</span>
         <span class="summary--fail"><strong>0</strong> failed</span>
         <span><strong>0</strong> not run</span>
-        <span><strong>1240.155 ms</strong> runtime</span>
+        <span><strong>1210.960 ms</strong> runtime</span>
       </div>
     </header>
     <section class="catalogue" aria-label="Surface-intersection cases">
@@ -273,7 +273,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 5.55e-16 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 4e-07 mm</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -908,6 +908,36 @@
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
           <dd>The operation rejects before numerical work when no output-error budget remains.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</article><article class="case-card">
+  <header class="case-card__header">
+    <div>
+      <h2>Coordinate floor exhausts remaining accuracy</h2>
+      <code>coordinate_floor_exhausts_accuracy_budget</code>
+    </div>
+    <span class="status status--pass">PASS</span>
+  </header>
+  <div class="case-card__content">
+    <figure>
+      <img src="renders/coordinate_floor_exhausts_accuracy_budget.svg" alt="Reference render for Coordinate floor exhausts remaining accuracy" loading="lazy">
+    </figure>
+    <div class="case-card__details">
+      <p class="verdict">Structured below-resolution rejection.</p>
+      <dl>
+        <div class="fact">
+          <dt>Expected</dt>
+          <dd>rejected: <code>below-resolution</code></dd>
+        </div>
+        <div class="fact">
+          <dt>Output</dt>
+          <dd>—</dd>
+        </div>
+        <div class="fact fact--purpose">
+          <dt>Purpose</dt>
+          <dd>The operation rejects before correction when coordinate-scale floating-point noise is larger than the positive budget left by inherited uncertainty.</dd>
         </div>
       </dl>
     </div>

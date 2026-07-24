@@ -112,13 +112,13 @@
   </style>
 </head>
 <body>
-<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html" aria-current="page">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-sketch-constraints/CATALOG.html">Sketch solver</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html" aria-current="page">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
 <main>
   <header>
     <div class="eyebrow">HEADLESS CAD <code>intent → evaluation → display scene → published Part</code></div>
     <h1>CAD Workflow</h1>
     <p>The first caller-neutral modelling sequence. Typed Sketch, Create Extrude, and Fillet commands use ordinary CAD evaluation, preserve the last accepted Project on refusal, and project token-bound preview and accepted tessellations without making display data authoritative.</p>
-    <div class="summary"><span><strong>5/5</strong> expected outcomes</span><span><strong>3</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Feature + Part</strong> typed inspection</span></div>
+    <div class="summary"><span><strong>7/7</strong> expected outcomes</span><span><strong>5</strong> accepted workflows</span><span><strong>2</strong> command refusals</span><span><strong>1</strong> accepted-state display refusal</span><span><strong>Preview + accepted</strong> display layers</span><span><strong>Part accuracy</strong> equals its body output</span><span><strong>Feature + Part</strong> typed inspection</span></div>
   </header>
   <section class="grid"><article id="rectangle_create_extrude" class="case case--pass">
     <div class="visual"><section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of Closed Sketch to published solid">
@@ -158,7 +158,7 @@
       <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
       <div><dt>Evaluated</dt><dd>complete</dd></div>
       <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
-      <div><dt>Outputs</dt><dd><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
     </dl>
   </article><article class="inspection">
     <div class="inspection__heading"><strong>Extrude 1</strong><span>feature</span></div>
@@ -167,6 +167,124 @@
       <div><dt>Evaluated</dt><dd>complete</dd></div>
       <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
       <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
+    </dl>
+  </article></div></section>
+      <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+    </div>
+  </article><article id="extrude_end_cap_sketch" class="case case--pass">
+    <div class="visual"><section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of Associative Sketch on an Extrude end cap">
+    <div class="result-view__label">Accepted Part</div>
+    <div class="result-view__stage">
+      <div class="result-view__fallback"><svg class="diagram diagram--solid" viewBox="0 0 320 200" role="img" aria-label="Associative Sketch on an Extrude end cap accepted CAD display scene"><rect width="320" height="200" rx="14"/><path class="surface" d="M229.52,28.00 L90.48,106.19 L22.00,76.87 Z"/><path class="surface" d="M229.52,28.00 L298.00,57.32 L90.48,106.19 Z"/><path class="surface" d="M229.52,97.81 L22.00,146.68 L90.48,176.00 Z"/><path class="surface" d="M229.52,97.81 L90.48,176.00 L298.00,127.13 Z"/><path class="surface" d="M298.00,127.13 L90.48,176.00 L90.48,106.19 Z"/><path class="surface" d="M298.00,127.13 L90.48,106.19 L298.00,57.32 Z"/><path class="surface" d="M229.52,97.81 L298.00,127.13 L298.00,57.32 Z"/><path class="surface" d="M229.52,97.81 L298.00,57.32 L229.52,28.00 Z"/><path class="surface" d="M22.00,146.68 L229.52,97.81 L229.52,28.00 Z"/><path class="surface" d="M22.00,146.68 L229.52,28.00 L22.00,76.87 Z"/><path class="surface" d="M90.48,176.00 L22.00,146.68 L22.00,76.87 Z"/><path class="surface" d="M90.48,176.00 L22.00,76.87 L90.48,106.19 Z"/><path class="edge" d="M90.48,106.19 L298.00,57.32"/><path class="edge" d="M298.00,57.32 L229.52,28.00"/><path class="edge" d="M229.52,28.00 L22.00,76.87"/><path class="edge" d="M22.00,76.87 L90.48,106.19"/><path class="edge" d="M90.48,176.00 L298.00,127.13"/><path class="edge" d="M298.00,127.13 L229.52,97.81"/><path class="edge" d="M229.52,97.81 L22.00,146.68"/><path class="edge" d="M22.00,146.68 L90.48,176.00"/><path class="edge" d="M298.00,57.32 L298.00,127.13"/><path class="edge" d="M90.48,106.19 L90.48,176.00"/><path class="edge" d="M229.52,28.00 L229.52,97.81"/><path class="edge" d="M22.00,76.87 L22.00,146.68"/><circle cx="90.48" cy="106.19" r="2"/><circle cx="298.00" cy="57.32" r="2"/><circle cx="229.52" cy="28.00" r="2"/><circle cx="22.00" cy="76.87" r="2"/><circle cx="90.48" cy="176.00" r="2"/><circle cx="298.00" cy="127.13" r="2"/><circle cx="229.52" cy="97.81" r="2"/><circle cx="22.00" cy="146.68" r="2"/><text x="16" y="191">accepted display scene · 12 triangles</text></svg></div>
+      <script class="result-view__data" type="application/json">{"solids":[{"faces":[{"positions":[30,18,0,0,0,0,0,18,0,30,18,0,30,0,0,0,0,0],"indices":[0,1,2,3,4,5],"color":"#5588d8"},{"positions":[30,18,12,0,18,12,0,0,12,30,18,12,0,0,12,30,0,12],"indices":[0,1,2,3,4,5],"color":"#6f7cdd"},{"positions":[30,0,12,0,0,12,0,0,0,30,0,12,0,0,0,30,0,0],"indices":[0,1,2,3,4,5],"color":"#7d69d0"},{"positions":[30,18,12,30,0,12,30,0,0,30,18,12,30,0,0,30,18,0],"indices":[0,1,2,3,4,5],"color":"#447ac1"},{"positions":[0,18,12,30,18,12,30,18,0,0,18,12,30,18,0,0,18,0],"indices":[0,1,2,3,4,5],"color":"#8b75e0"},{"positions":[0,0,12,0,18,12,0,18,0,0,0,12,0,18,0,0,0,0],"indices":[0,1,2,3,4,5],"color":"#4f96d2"}],"edges":[[0,0,0,30,0,0],[30,0,0,30,18,0],[30,18,0,0,18,0],[0,18,0,0,0,0],[0,0,12,30,0,12],[30,0,12,30,18,12],[30,18,12,0,18,12],[0,18,12,0,0,12],[30,0,0,30,0,12],[0,0,0,0,0,12],[30,18,0,30,18,12],[0,18,0,0,18,12]]}]}</script>
+    </div>
+    <p class="result-view__hint">Orthographic Z-up · drag to orbit · scroll to zoom · right-drag to pan</p>
+  </section></div>
+    <div class="case__body">
+      <div class="eyebrow"><span>PASS</span><code>extrude_end_cap_sketch</code></div>
+      <h2>Associative Sketch on an Extrude end cap</h2>
+      <p class="purpose">A current end-cap Face pick becomes a durable Extrude cap selector, resolves an outward support frame, and accepts a second closed Sketch without persisting a Face index.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile and preview scene published without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>12 mm normal extent against R1</span></li><li class="timeline__item timeline__item--preview"><strong>Extrude preview ready</strong><span>Validated transient B-rep · 12 display triangles</span></li><li class="timeline__item timeline__item--accepted"><strong>Extrude accepted</strong><span>Solid Part and accepted display published · R2</span></li><li class="timeline__item timeline__item--preview"><strong>Planar-Face Sketch proposed</strong><span>end-cap resolved to durable Extrude Face lineage</span></li><li class="timeline__item timeline__item--accepted"><strong>Planar-Face Sketch accepted</strong><span>Associative support and resolved profile published · R3</span></li></ol>
+      <section class="work-tree-card"><h3>Accepted Work tree</h3><ul class="work-tree"><li class="tree-node tree-node--project"><div><span class="tree-node__label">Project 1</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Designs</span></div><ul><li class="tree-node tree-node--design"><div><span class="tree-node__label">Design 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Origin</span></div><ul><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">Origin Point</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XY Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XZ Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">YZ Plane</span></div></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Variables</span></div></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Parts</span></div><ul><li class="tree-node tree-node--part"><div><span class="tree-node__label">Part 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Extrude 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 2</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li></ul></li></ul></li></ul></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Notes</span></div></li></ul></li></ul></section>
+      <section class="displays"><h3>CAD display-scene projection</h3><div class="displays__grid"><article class="display-card display-card--complete">
+    <div class="display-card__heading"><strong>Extrude preview</strong><span>complete</span></div>
+    <p><code>cad-workflow:extrude_end_cap_sketch:scene:5:preview</code> · preview layer</p>
+    <ul><li><strong>part_00000000-0000-4000-8000-000000000002</strong><span>12 triangles · 12 edge segments · 8 vertices</span><code>extrude_00000000-0000-4000-8000-000000000004/body</code></li></ul>
+  </article><article class="display-card display-card--complete">
+    <div class="display-card__heading"><strong>Accepted state</strong><span>complete</span></div>
+    <p><code>cad-workflow:extrude_end_cap_sketch:scene:6:accepted</code> · accepted layer</p>
+    <ul><li><strong>part_00000000-0000-4000-8000-000000000002</strong><span>12 triangles · 12 edge segments · 8 vertices</span><code>extrude_00000000-0000-4000-8000-000000000004/body</code></li></ul>
+  </article></div></section>
+      <section class="inspections"><h3>Selected subject inspection</h3><div class="inspections__grid"><article class="inspection">
+    <div class="inspection__heading"><strong>Part 1</strong><span>part</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Accepted publication: extrude_00000000-0000-4000-8000-000000000004/body</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Sketch 1</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Extrude 1</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Operation: create<br>Extent: 12 mm forward<br>Source Sketch: sketch_00000000-0000-4000-8000-000000000003<br>Target Part: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Sketch 2</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Support: fixed plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000006/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000006/profile</code></dd></div>
+    </dl>
+  </article></div></section>
+      <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
+    </div>
+  </article><article id="extrude_side_face_sketch" class="case case--pass">
+    <div class="visual"><section class="result-view" data-viewer-aria-label="Interactive three-dimensional render of Associative Sketch on an Extrude side Face">
+    <div class="result-view__label">Accepted Part</div>
+    <div class="result-view__stage">
+      <div class="result-view__fallback"><svg class="diagram diagram--solid" viewBox="0 0 320 200" role="img" aria-label="Associative Sketch on an Extrude side Face accepted CAD display scene"><rect width="320" height="200" rx="14"/><path class="surface" d="M22.00,57.32 L298.00,76.87 L154.00,106.19 Z"/><path class="surface" d="M22.00,57.32 L166.00,28.00 L298.00,76.87 Z"/><path class="surface" d="M22.00,127.13 L154.00,176.00 L298.00,146.68 Z"/><path class="surface" d="M22.00,127.13 L298.00,146.68 L166.00,97.81 Z"/><path class="surface" d="M166.00,97.81 L298.00,146.68 L298.00,76.87 Z"/><path class="surface" d="M166.00,97.81 L298.00,76.87 L166.00,28.00 Z"/><path class="surface" d="M22.00,127.13 L166.00,97.81 L166.00,28.00 Z"/><path class="surface" d="M22.00,127.13 L166.00,28.00 L22.00,57.32 Z"/><path class="surface" d="M154.00,176.00 L22.00,127.13 L22.00,57.32 Z"/><path class="surface" d="M154.00,176.00 L22.00,57.32 L154.00,106.19 Z"/><path class="surface" d="M298.00,146.68 L154.00,176.00 L154.00,106.19 Z"/><path class="surface" d="M298.00,146.68 L154.00,106.19 L298.00,76.87 Z"/><path class="edge" d="M298.00,76.87 L166.00,28.00"/><path class="edge" d="M166.00,28.00 L22.00,57.32"/><path class="edge" d="M22.00,57.32 L154.00,106.19"/><path class="edge" d="M154.00,106.19 L298.00,76.87"/><path class="edge" d="M298.00,146.68 L166.00,97.81"/><path class="edge" d="M166.00,97.81 L22.00,127.13"/><path class="edge" d="M22.00,127.13 L154.00,176.00"/><path class="edge" d="M154.00,176.00 L298.00,146.68"/><path class="edge" d="M166.00,28.00 L166.00,97.81"/><path class="edge" d="M298.00,76.87 L298.00,146.68"/><path class="edge" d="M22.00,57.32 L22.00,127.13"/><path class="edge" d="M154.00,106.19 L154.00,176.00"/><circle cx="298.00" cy="76.87" r="2"/><circle cx="166.00" cy="28.00" r="2"/><circle cx="22.00" cy="57.32" r="2"/><circle cx="154.00" cy="106.19" r="2"/><circle cx="298.00" cy="146.68" r="2"/><circle cx="166.00" cy="97.81" r="2"/><circle cx="22.00" cy="127.13" r="2"/><circle cx="154.00" cy="176.00" r="2"/><text x="16" y="191">accepted display scene · 12 triangles</text></svg></div>
+      <script class="result-view__data" type="application/json">{"solids":[{"faces":[{"positions":[-18,30,0,0,0,0,-18,0,0,-18,30,0,0,30,0,0,0,0],"indices":[0,1,2,3,4,5],"color":"#5588d8"},{"positions":[-18,30,12,-18,0,12,0,0,12,-18,30,12,0,0,12,0,30,12],"indices":[0,1,2,3,4,5],"color":"#6f7cdd"},{"positions":[0,30,12,0,0,12,0,0,0,0,30,12,0,0,0,0,30,0],"indices":[0,1,2,3,4,5],"color":"#7d69d0"},{"positions":[-18,30,12,0,30,12,0,30,0,-18,30,12,0,30,0,-18,30,0],"indices":[0,1,2,3,4,5],"color":"#447ac1"},{"positions":[-18,0,12,-18,30,12,-18,30,0,-18,0,12,-18,30,0,-18,0,0],"indices":[0,1,2,3,4,5],"color":"#8b75e0"},{"positions":[0,0,12,-18,0,12,-18,0,0,0,0,12,-18,0,0,0,0,0],"indices":[0,1,2,3,4,5],"color":"#4f96d2"}],"edges":[[0,0,0,0,30,0],[0,30,0,-18,30,0],[-18,30,0,-18,0,0],[-18,0,0,0,0,0],[0,0,12,0,30,12],[0,30,12,-18,30,12],[-18,30,12,-18,0,12],[-18,0,12,0,0,12],[0,30,0,0,30,12],[0,0,0,0,0,12],[-18,30,0,-18,30,12],[-18,0,0,-18,0,12]]}]}</script>
+    </div>
+    <p class="result-view__hint">Orthographic Z-up · drag to orbit · scroll to zoom · right-drag to pan</p>
+  </section></div>
+    <div class="case__body">
+      <div class="eyebrow"><span>PASS</span><code>extrude_side_face_sketch</code></div>
+      <h2>Associative Sketch on an Extrude side Face</h2>
+      <p class="purpose">A line-derived side Face uses its source Sketch endpoint and direction for a stable frame while the evaluated Solid supplies the outward normal.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile and preview scene published without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>12 mm normal extent against R1</span></li><li class="timeline__item timeline__item--preview"><strong>Extrude preview ready</strong><span>Validated transient B-rep · 12 display triangles</span></li><li class="timeline__item timeline__item--accepted"><strong>Extrude accepted</strong><span>Solid Part and accepted display published · R2</span></li><li class="timeline__item timeline__item--preview"><strong>Planar-Face Sketch proposed</strong><span>first-side resolved to durable Extrude Face lineage</span></li><li class="timeline__item timeline__item--accepted"><strong>Planar-Face Sketch accepted</strong><span>Associative support and resolved profile published · R3</span></li><li class="timeline__item timeline__item--accepted"><strong>Source Sketch changed</strong><span>The side Face changed direction and the associative frame followed its source line</span></li></ol>
+      <section class="work-tree-card"><h3>Accepted Work tree</h3><ul class="work-tree"><li class="tree-node tree-node--project"><div><span class="tree-node__label">Project 1</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Designs</span></div><ul><li class="tree-node tree-node--design"><div><span class="tree-node__label">Design 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Origin</span></div><ul><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">Origin Point</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XY Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XZ Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">YZ Plane</span></div></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Variables</span></div></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Parts</span></div><ul><li class="tree-node tree-node--part"><div><span class="tree-node__label">Part 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Extrude 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 2</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li></ul></li></ul></li></ul></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Notes</span></div></li></ul></li></ul></section>
+      <section class="displays"><h3>CAD display-scene projection</h3><div class="displays__grid"><article class="display-card display-card--complete">
+    <div class="display-card__heading"><strong>Extrude preview</strong><span>complete</span></div>
+    <p><code>cad-workflow:extrude_side_face_sketch:scene:7:preview</code> · preview layer</p>
+    <ul><li><strong>part_00000000-0000-4000-8000-000000000002</strong><span>12 triangles · 12 edge segments · 8 vertices</span><code>extrude_00000000-0000-4000-8000-000000000004/body</code></li></ul>
+  </article><article class="display-card display-card--complete">
+    <div class="display-card__heading"><strong>Accepted state</strong><span>complete</span></div>
+    <p><code>cad-workflow:extrude_side_face_sketch:scene:8:accepted</code> · accepted layer</p>
+    <ul><li><strong>part_00000000-0000-4000-8000-000000000002</strong><span>12 triangles · 12 edge segments · 8 vertices</span><code>extrude_00000000-0000-4000-8000-000000000004/body</code></li></ul>
+  </article></div></section>
+      <section class="inspections"><h3>Selected subject inspection</h3><div class="inspections__grid"><article class="inspection">
+    <div class="inspection__heading"><strong>Part 1</strong><span>part</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Accepted publication: extrude_00000000-0000-4000-8000-000000000004/body</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Sketch 1</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Extrude 1</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Operation: create<br>Extent: 12 mm forward<br>Source Sketch: sketch_00000000-0000-4000-8000-000000000003<br>Target Part: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>body · extrude_00000000-0000-4000-8000-000000000004/body</code></dd></div>
+    </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Sketch 2</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Support: fixed plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000006/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000006/profile</code></dd></div>
     </dl>
   </article></div></section>
       <div class="result"><span><strong>6</strong> Faces</span><span><strong>12</strong> Edges</span><span><strong>12</strong> display triangles</span><span><strong>6480.000</strong> mm³</span><p>6 Faces; 12 Edges; 0.00e+0 mm³ volume error</p></div>
@@ -202,7 +320,7 @@
       <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
       <div><dt>Evaluated</dt><dd>complete</dd></div>
       <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
-      <div><dt>Outputs</dt><dd><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
     </dl>
   </article><article class="inspection">
     <div class="inspection__heading"><strong>Extrude 1</strong><span>feature</span></div>
@@ -228,7 +346,7 @@
       <div class="eyebrow"><span>PASS</span><code>rectangle_extrude_single_fillet</code></div>
       <h2>Extrude to durable Edge fillet</h2>
       <p class="purpose">A current display Edge is converted to serializable Sketch-line lineage, resolved during evaluation, and used by a Fillet Feature that republishes the same Part with operation history.</p>
-      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile and preview scene published without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>8 mm normal extent against R1</span></li><li class="timeline__item timeline__item--preview"><strong>Extrude preview ready</strong><span>Validated transient B-rep · 12 display triangles</span></li><li class="timeline__item timeline__item--accepted"><strong>Extrude accepted</strong><span>Solid Part and accepted display published · R2</span></li><li class="timeline__item timeline__item--preview"><strong>Fillet proposed</strong><span>1 mm radius from one durable Sketch-line Edge selector</span></li><li class="timeline__item timeline__item--preview"><strong>Fillet preview ready</strong><span>Durable Edge resolved; reconstructed NURBS B-rep and display scene published</span></li><li class="timeline__item timeline__item--accepted"><strong>Fillet accepted</strong><span>Modified Part, operation history, and accepted display published · R3</span></li></ol>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>4 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Closed planar profile and preview scene published without changing accepted intent</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>8 mm normal extent against R1</span></li><li class="timeline__item timeline__item--preview"><strong>Extrude preview ready</strong><span>Validated transient B-rep · 12 display triangles</span></li><li class="timeline__item timeline__item--accepted"><strong>Extrude accepted</strong><span>Solid Part and accepted display published · R2</span></li><li class="timeline__item timeline__item--preview"><strong>Fillet proposed</strong><span>1 mm radius from one durable Sketch-line Edge selector</span></li><li class="timeline__item timeline__item--preview"><strong>Fillet preview ready</strong><span>Durable Edge resolved; reconstructed NURBS B-rep and display scene published</span></li><li class="timeline__item timeline__item--accepted"><strong>Fillet accepted</strong><span>Modified Part, traceable Face history, and accepted display published · R3</span></li></ol>
       <section class="work-tree-card"><h3>Accepted Work tree</h3><ul class="work-tree"><li class="tree-node tree-node--project"><div><span class="tree-node__label">Project 1</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Designs</span></div><ul><li class="tree-node tree-node--design"><div><span class="tree-node__label">Design 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Origin</span></div><ul><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">Origin Point</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XY Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XZ Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">YZ Plane</span></div></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Variables</span></div></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Parts</span></div><ul><li class="tree-node tree-node--part"><div><span class="tree-node__label">Part 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Extrude 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Fillet 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li></ul></li></ul></li></ul></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Notes</span></div></li></ul></li></ul></section>
       <section class="displays"><h3>CAD display-scene projection</h3><div class="displays__grid"><article class="display-card display-card--complete">
     <div class="display-card__heading"><strong>Fillet preview</strong><span>complete</span></div>
@@ -253,7 +371,7 @@
       <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
       <div><dt>Evaluated</dt><dd>complete</dd></div>
       <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
-      <div><dt>Outputs</dt><dd><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
     </dl>
   </article><article class="inspection">
     <div class="inspection__heading"><strong>Extrude 1</strong><span>feature</span></div>
@@ -274,17 +392,17 @@
   </article></div></section>
       <div class="result"><span><strong>7</strong> Faces</span><span><strong>15</strong> Edges</span><span><strong>172</strong> display triangles</span><span><strong>1595.700</strong> mm³</span><p>7 Faces; 15 Edges; 8.46e-3 mm³ volume error</p></div>
     </div>
-  </article><article id="open_sketch_rejected" class="case case--pass">
-    <div class="visual"><svg class="diagram diagram--rejected" viewBox="0 0 320 200" role="img" aria-label="Open Sketch remains unaccepted Sketch"><rect width="320" height="200" rx="14"/><path d="M22.00,176.00 L298.00,176.00"/><path d="M298.00,176.00 L298.00,28.00"/><path d="M298.00,28.00 L22.00,28.00"/><text x="16" y="191">last accepted Project preserved</text></svg></div>
+  </article><article id="open_sketch_publishes_without_profile" class="case case--pass">
+    <div class="visual"><svg class="diagram diagram--rejected" viewBox="0 0 320 200" role="img" aria-label="Open Sketch publishes without a profile Sketch"><rect width="320" height="200" rx="14"/><path d="M22.00,176.00 L298.00,176.00"/><path d="M298.00,176.00 L298.00,28.00"/><path d="M298.00,28.00 L22.00,28.00"/><text x="16" y="191">last accepted Project preserved</text></svg></div>
     <div class="case__body">
-      <div class="eyebrow"><span>PASS</span><code>open_sketch_rejected</code></div>
-      <h2>Open Sketch remains unaccepted</h2>
-      <p class="purpose">Finishing an open three-segment Sketch exposes the profile diagnostic and leaves the accepted Project at its prior revision.</p>
-      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>3 line entities against R0</span></li><li class="timeline__item timeline__item--rejected"><strong>Preview rejected</strong><span>evaluation-rejected · accepted revision remains R0</span></li></ol>
-      <section class="work-tree-card"><h3>Accepted Work tree</h3><ul class="work-tree"><li class="tree-node tree-node--project"><div><span class="tree-node__label">Project 1</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Designs</span></div><ul><li class="tree-node tree-node--design"><div><span class="tree-node__label">Design 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Origin</span></div><ul><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">Origin Point</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XY Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XZ Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">YZ Plane</span></div></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Variables</span></div></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Parts</span></div><ul><li class="tree-node tree-node--part"><div><span class="tree-node__label">Part 1</span><span class="tree-node__status tree-node__status--unpublished">unpublished</span></div></li></ul></li></ul></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Notes</span></div></li></ul></li></ul></section>
+      <div class="eyebrow"><span>PASS</span><code>open_sketch_publishes_without_profile</code></div>
+      <h2>Open Sketch publishes without a profile</h2>
+      <p class="purpose">Finishing an open three-segment Sketch publishes authoritative geometry, while a later Extrude is blocked by the independently unavailable profile.</p>
+      <ol class="timeline"><li class="timeline__item timeline__item--accepted"><strong>New Project</strong><span>One Design and one unpublished Part · R0</span></li><li class="timeline__item timeline__item--preview"><strong>Finish Sketch proposed</strong><span>3 line entities against R0</span></li><li class="timeline__item timeline__item--preview"><strong>Sketch preview ready</strong><span>Finite open Sketch geometry published without inventing a profile</span></li><li class="timeline__item timeline__item--accepted"><strong>Sketch accepted</strong><span>One semantic Feature transition · R1</span></li><li class="timeline__item timeline__item--preview"><strong>Create Extrude proposed</strong><span>12 mm normal extent against R1</span></li><li class="timeline__item timeline__item--rejected"><strong>Preview rejected</strong><span>evaluation-rejected · accepted revision remains R1</span></li></ol>
+      <section class="work-tree-card"><h3>Accepted Work tree</h3><ul class="work-tree"><li class="tree-node tree-node--project"><div><span class="tree-node__label">Project 1</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Designs</span></div><ul><li class="tree-node tree-node--design"><div><span class="tree-node__label">Design 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div><ul><li class="tree-node tree-node--group"><div><span class="tree-node__label">Origin</span></div><ul><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">Origin Point</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XY Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">XZ Plane</span></div></li><li class="tree-node tree-node--design-reference"><div><span class="tree-node__label">YZ Plane</span></div></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Variables</span></div></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Parts</span></div><ul><li class="tree-node tree-node--part"><div><span class="tree-node__label">Part 1</span><span class="tree-node__status tree-node__status--unpublished">unpublished</span></div><ul><li class="tree-node tree-node--feature"><div><span class="tree-node__label">Sketch 1</span><span class="tree-node__status tree-node__status--complete">complete</span></div></li></ul></li></ul></li></ul></li></ul></li><li class="tree-node tree-node--group"><div><span class="tree-node__label">Notes</span></div></li></ul></li></ul></section>
       <section class="displays"><h3>CAD display-scene projection</h3><div class="displays__grid"><article class="display-card display-card--complete">
     <div class="display-card__heading"><strong>Accepted state</strong><span>complete</span></div>
-    <p><code>cad-workflow:open_sketch_rejected:scene:0:accepted</code> · accepted layer</p>
+    <p><code>cad-workflow:open_sketch_publishes_without_profile:scene:2:accepted</code> · accepted layer</p>
     <ul></ul>
   </article></div></section>
       <section class="inspections"><h3>Selected subject inspection</h3><div class="inspections__grid"><article class="inspection">
@@ -295,8 +413,16 @@
       <div><dt>Accuracy</dt><dd>not established</dd></div>
       <div><dt>Outputs</dt><dd>none</dd></div>
     </dl>
+  </article><article class="inspection">
+    <div class="inspection__heading"><strong>Sketch 1</strong><span>feature</span></div>
+    <dl>
+      <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 3<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
+      <div><dt>Evaluated</dt><dd>complete</dd></div>
+      <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code></dd></div>
+    </dl>
   </article></div></section>
-      <div class="result result--rejected"><strong>evaluation-rejected</strong><span>candidate-evaluation</span><ul><li>Sketch 1 could not produce a usable planar profile: Every endpoint must meet exactly one other line to form a closed profile.</li></ul></div>
+      <div class="result result--rejected"><strong>evaluation-rejected</strong><span>candidate-evaluation</span><ul><li>Extrude 1 is blocked because its source Sketch profile is unavailable: Every endpoint must meet exactly one other line to form a closed profile.</li></ul></div>
     </div>
   </article><article id="invalid_extent_rejected" class="case case--pass">
     <div class="visual"><svg class="diagram diagram--rejected" viewBox="0 0 320 200" role="img" aria-label="Invalid Extrude extent remains unaccepted Sketch"><rect width="320" height="200" rx="14"/><path d="M22.00,176.00 L298.00,176.00"/><path d="M298.00,176.00 L298.00,28.00"/><path d="M298.00,28.00 L22.00,28.00"/><path d="M22.00,28.00 L22.00,176.00"/><text x="16" y="191">last accepted Project preserved</text></svg></div>
@@ -325,7 +451,7 @@
       <div><dt>Accepted</dt><dd>Support: xy-plane<br>Entities: 4<br>Scope: part_00000000-0000-4000-8000-000000000002</dd></div>
       <div><dt>Evaluated</dt><dd>complete</dd></div>
       <div><dt>Accuracy</dt><dd>0.00e+0 mm</dd></div>
-      <div><dt>Outputs</dt><dd><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
+      <div><dt>Outputs</dt><dd><code>sketch-geometry · sketch_00000000-0000-4000-8000-000000000003/geometry</code><br><code>sketch-profile · sketch_00000000-0000-4000-8000-000000000003/profile</code></dd></div>
     </dl>
   </article></div></section>
       <div class="result result--rejected"><strong>candidate-invalid</strong><span>candidate-validation</span><ul><li><code>$.items[0].features[1].extentMm</code> Extrude extent must be a finite positive number of millimetres.</li></ul></div>
