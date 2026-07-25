@@ -95,13 +95,13 @@
     <section><p>1 section; 0 boundary contacts; 2.22e-16 mm accuracy.</p><dl><dt>Published</dt><dd>section: line, t=[0.8000, 3.2000], 2/2 boundary hits</dd><dt>Purpose</dt><dd>A planar transverse section through two wire Vertices retains every incident source trim event at its endpoints.</dd></dl></section>
   </article>
 <article>
-    <header><div><h2>Isolated trim-Vertex contact</h2><code>isolated_corner_contact</code></div><strong class="pass">PASS</strong></header>
-    <svg viewBox="0 0 680 390" role="img" aria-label="Isolated trim-Vertex contact">
+    <header><div><h2>One-sided trim-Vertex guard</h2><code>isolated_corner_contact</code></div><strong class="pass">PASS</strong></header>
+    <svg viewBox="0 0 680 390" role="img" aria-label="One-sided trim-Vertex guard">
     <rect width="100%" height="100%" fill="#0f172a"/>
     <polyline points="169.83,195.00 176.24,191.50 182.65,188.01 189.06,184.51 195.47,181.02 201.88,177.52 208.28,174.03 214.69,170.53 221.10,167.03 206.83,168.43 192.55,169.83 178.28,171.23 164.00,172.63 149.73,174.03 135.46,175.42 121.18,176.82 106.91,178.22 97.88,181.02 88.85,183.81 79.81,186.61 70.78,189.41 61.75,192.20 52.72,195.00 43.69,197.80 34.66,200.59 51.56,199.89 68.45,199.19 85.35,198.50 102.25,197.80 119.14,197.10 136.04,196.40 152.93,195.70 169.83,195.00" fill="none" stroke="#60a5fa" stroke-width="2"/>
 <polyline points="30.00,80.34 64.96,74.05 99.92,67.75 134.87,61.46 169.83,55.17 204.79,48.88 239.75,42.58 274.70,36.29 309.66,30.00 309.66,64.96 309.66,99.92 309.66,134.87 309.66,169.83 309.66,204.79 309.66,239.75 309.66,274.70 309.66,309.66 274.70,315.95 239.75,322.25 204.79,328.54 169.83,334.83 134.87,341.12 99.92,347.42 64.96,353.71 30.00,360.00 30.00,325.04 30.00,290.08 30.00,255.13 30.00,220.17 30.00,185.21 30.00,150.25 30.00,115.30 30.00,80.34" fill="none" stroke="#fb923c" stroke-width="2"/>
   </svg>
-    <section><p>0 sections; 1 boundary contact; 0.00 mm accuracy.</p><dl><dt>Published</dt><dd>boundary Vertex contact: t=2.0000, 2 source parameter event(s)</dd><dt>Purpose</dt><dd>An isolated planar transverse wire-Vertex contact retains both face-local parameters and every incident source trim event without inventing a section.</dd></dl></section>
+    <section><p>trim-tangency at trim-classification: A planar transverse boundary point does not resolve to one authoritative trim Vertex on each Face.</p><dl><dt>Published</dt><dd><code>trim-tangency</code> · trim-classification</dd><dt>Purpose</dt><dd>A transverse line that only reaches an authoritative trim Vertex on one Face rejects instead of inventing endpoint topology on the other Face.</dd></dl></section>
   </article>
 <article>
     <header><div><h2>Collapsed support endpoint contact</h2><code>collapsed_support_endpoint_contact</code></div><strong class="pass">PASS</strong></header>
