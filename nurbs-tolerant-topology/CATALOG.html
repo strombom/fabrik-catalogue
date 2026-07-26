@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>74/74</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>76/76</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -429,6 +429,34 @@
     },
     &quot;sourceUnchanged&quot;: true
   }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-classification-curved-zero-envelope-boundary</code></div><h3>An exact non-flattening-sample point on a quadratic zero-envelope Edge is localized to its authoritative Coedge parameter.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-classification-curved-zero-envelope-boundary&quot;,
+  &quot;purpose&quot;: &quot;An exact non-flattening-sample point on a quadratic zero-envelope Edge is localized to its authoritative Coedge parameter.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;relation&quot;: &quot;on-boundary&quot;,
+    &quot;coedgeId&quot;: 0,
+    &quot;edgeId&quot;: 0,
+    &quot;endpointVertexId&quot;: null,
+    &quot;observedModelSpaceSeparationMm&quot;: 5.551115123125783e-17,
+    &quot;selectedTopologyEnvelopesMm&quot;: {
+      &quot;edge&quot;: {
+        &quot;edgeId&quot;: 0,
+        &quot;toleranceMm&quot;: 0
+      }
+    },
+    &quot;computationalEvidence&quot;: {
+      &quot;queryErrorBoundMm&quot;: 0,
+      &quot;localizationErrorMm&quot;: 0,
+      &quot;distanceErrorBoundMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 0,
+      &quot;distanceLowerBoundMm&quot;: 5.551115123125783e-17,
+      &quot;distanceUpperBoundMm&quot;: 5.551115123125783e-17,
+      &quot;decisionAllowanceMm&quot;: 0,
+      &quot;positiveRelation&quot;: &quot;same-coedge-parameter&quot;
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
 }</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-classification-near-boundary-unresolved</code></div><h3>A point merely inside an Edge envelope remains unresolved when no same-parameter or endpoint relation establishes boundary incidence.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;trim-classification-near-boundary-unresolved&quot;,
   &quot;purpose&quot;: &quot;A point merely inside an Edge envelope remains unresolved when no same-parameter or endpoint relation establishes boundary incidence.&quot;,
@@ -482,6 +510,34 @@
       &quot;distanceUpperBoundMm&quot;: 0,
       &quot;decisionAllowanceMm&quot;: 0,
       &quot;positiveRelation&quot;: &quot;same-coedge-parameter&quot;
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-classification-material-side-near-hole</code></div><h3>A material-side query reports the nearer hole Coedge and Edge as its structured Face-boundary separation evidence.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-classification-material-side-near-hole&quot;,
+  &quot;purpose&quot;: &quot;A material-side query reports the nearer hole Coedge and Edge as its structured Face-boundary separation evidence.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;relation&quot;: &quot;inside&quot;,
+    &quot;coedgeId&quot;: 4,
+    &quot;edgeId&quot;: 4,
+    &quot;endpointVertexId&quot;: null,
+    &quot;observedModelSpaceSeparationMm&quot;: 0.010000000000000009,
+    &quot;selectedTopologyEnvelopesMm&quot;: {
+      &quot;edge&quot;: {
+        &quot;edgeId&quot;: 4,
+        &quot;toleranceMm&quot;: 0
+      }
+    },
+    &quot;computationalEvidence&quot;: {
+      &quot;queryErrorBoundMm&quot;: 0,
+      &quot;localizationErrorMm&quot;: 0,
+      &quot;distanceErrorBoundMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 0,
+      &quot;distanceLowerBoundMm&quot;: 0.010000000000000009,
+      &quot;distanceUpperBoundMm&quot;: 0.010000000000000009,
+      &quot;decisionAllowanceMm&quot;: 0,
+      &quot;positiveRelation&quot;: null
     },
     &quot;sourceUnchanged&quot;: true
   }
