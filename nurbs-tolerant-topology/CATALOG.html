@@ -1,0 +1,1697 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fabrik · Tolerant B-rep Topology</title>
+  <style>
+    :root { color-scheme:dark; --bg:#071018; --panel:#0c1924; --line:#20384a; --text:#e7f5ff; --muted:#8da9ba; --green:#34d399; --red:#fb7185; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at 15% -10%,#12364a 0,transparent 35%),var(--bg); color:var(--text); font:15px/1.5 Inter,ui-sans-serif,system-ui,sans-serif; }
+    .bench-nav{position:sticky;top:0;z-index:1000;border-bottom:1px solid rgba(50,64,77,.9);background:rgba(9,12,16,.88);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.bench-nav__inner{display:flex;width:min(100% - 2rem,112rem);min-height:3.65rem;margin:auto;align-items:center;gap:1.5rem}
+.bench-nav__brand{flex:none;color:#f1f5f9;font-size:.78rem;font-weight:850;letter-spacing:.13em;text-decoration:none;text-transform:uppercase}
+.bench-nav__brand span{color:#67d4ff}
+.bench-nav__links{display:flex;min-width:0;align-self:stretch;align-items:center;gap:.2rem;overflow-x:auto;scrollbar-width:none}
+.bench-nav__links::-webkit-scrollbar{display:none}
+.bench-nav__link{padding:.5rem .7rem;border-radius:.45rem;color:#8998a6;font-size:.76rem;font-weight:700;text-decoration:none;white-space:nowrap;transition:background .15s ease,color .15s ease}
+.bench-nav__link:hover{background:#17202a;color:#e2e8ef}
+.bench-nav__link[aria-current="page"]{background:#192631;color:#7ddcff}
+@media(max-width:44rem){.bench-nav__inner{width:calc(100% - 1rem);gap:.65rem}.bench-nav__brand span{display:none}.bench-nav__link{padding:.5rem .58rem}}
+@media print{.bench-nav{display:none}}
+
+    main { width:min(1180px,calc(100% - 32px)); margin:0 auto; padding:52px 0 80px; }
+    header { margin-bottom:36px; }
+    h1 { margin:0 0 8px; font-size:clamp(32px,5vw,60px); letter-spacing:-.04em; }
+    header p,h3 { color:var(--muted); }
+    .summary { display:flex; flex-wrap:wrap; gap:10px; margin-top:20px; }
+    .summary span { padding:8px 12px; border:1px solid var(--line); border-radius:999px; background:#08141eaa; }
+    section { margin-top:34px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(340px,1fr)); gap:14px; }
+    article { padding:20px; border:1px solid var(--line); border-radius:16px; background:linear-gradient(145deg,#0e1f2c,#09141d); }
+    article.fail { border-color:#7f1d1d; }
+    .case-heading { display:flex; justify-content:space-between; gap:12px; color:var(--green); }
+    .fail .case-heading { color:var(--red); }
+    code,pre { color:#b8d1df; }
+    h3 { min-height:48px; font-size:15px; font-weight:500; }
+    details { border-top:1px solid var(--line); padding-top:12px; }
+    summary { cursor:pointer; }
+    pre { overflow:auto; white-space:pre-wrap; font-size:11px; }
+  </style>
+</head>
+<body>
+<nav class="bench-nav" aria-label="Geometry bench catalogues"><div class="bench-nav__inner"><a class="bench-nav__brand" href="https://strombom.github.io/fabrik-catalogue/">Fabrik <span>Benches</span></a><div class="bench-nav__links"><a class="bench-nav__link" href="../nurbs-surface-intersections/CATALOG.html">Surface × Surface</a><a class="bench-nav__link" href="../nurbs-curve-face-intersections/CATALOG.html">Line × Face</a><a class="bench-nav__link" href="../nurbs-face-intersections/CATALOG.html">Face × Face</a><a class="bench-nav__link" href="../nurbs-brep-partitioning/CATALOG.html">Partitioning</a><a class="bench-nav__link" href="../nurbs-solid-membership/CATALOG.html">Solid membership</a><a class="bench-nav__link" href="../nurbs-mass-properties/CATALOG.html">Mass properties</a><a class="bench-nav__link" href="../nurbs-tolerant-topology/CATALOG.html" aria-current="page">Tolerant topology</a><a class="bench-nav__link" href="../nurbs-extrusion-construction/CATALOG.html">Extrusion</a><a class="bench-nav__link" href="../nurbs-fillet-construction/CATALOG.html">Fillets</a><a class="bench-nav__link" href="../nurbs-tessellation/CATALOG.html">Tessellation</a><a class="bench-nav__link" href="../nurbs-booleans/CATALOG.html">Booleans</a><a class="bench-nav__link" href="../nurbs-cad-workflow/CATALOG.html">CAD workflow</a><a class="bench-nav__link" href="../nurbs-application-session/CATALOG.html">Application session</a></div></div></nav>
+<main>
+  <header>
+    <h1>Tolerant B-rep Topology</h1>
+    <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
+    <div class="summary"><span><strong>59/59</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+  </header>
+  <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;zero-envelopes&quot;,
+  &quot;purpose&quot;: &quot;A canonical triangular Face may carry exact zero topology envelopes.&quot;,
+  &quot;classification&quot;: &quot;structurally-valid&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: true
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: true,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>heterogeneous-local-envelopes</code></div><h3>The exact cache is the largest Vertex or Edge envelope, not a Coedge-derived aggregate.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;heterogeneous-local-envelopes&quot;,
+  &quot;purpose&quot;: &quot;The exact cache is the largest Vertex or Edge envelope, not a Coedge-derived aggregate.&quot;,
+  &quot;classification&quot;: &quot;structurally-valid&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: true
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: true,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>saturated-local-envelopes</code></div><h3>A valid snapshot may saturate Design tolerance exactly across its inherited relationship envelopes.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;saturated-local-envelopes&quot;,
+  &quot;purpose&quot;: &quot;A valid snapshot may saturate Design tolerance exactly across its inherited relationship envelopes.&quot;,
+  &quot;classification&quot;: &quot;structurally-valid&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: true
+  },
+  &quot;designToleranceMm&quot;: 0.001,
+  &quot;designAdmissible&quot;: true,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>structural-above-design-tolerance</code></div><h3>Structure-only validation accepts finite envelopes above a caller-supplied Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;structural-above-design-tolerance&quot;,
+  &quot;purpose&quot;: &quot;Structure-only validation accepts finite envelopes above a caller-supplied Design tolerance.&quot;,
+  &quot;classification&quot;: &quot;numerically-inadmissible&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: true
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: false,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>negative-vertex-envelope</code></div><h3>A Vertex envelope cannot be negative.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;negative-vertex-envelope&quot;,
+  &quot;purpose&quot;: &quot;A Vertex envelope cannot be negative.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-tolerance&quot;,
+    &quot;path&quot;: &quot;vertices[0].toleranceMm&quot;,
+    &quot;message&quot;: &quot;A topology tolerance or observation must be finite and non-negative.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>infinite-edge-envelope</code></div><h3>An Edge envelope must be finite.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;infinite-edge-envelope&quot;,
+  &quot;purpose&quot;: &quot;An Edge envelope must be finite.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-tolerance&quot;,
+    &quot;path&quot;: &quot;edges[0].toleranceMm&quot;,
+    &quot;message&quot;: &quot;A topology tolerance or observation must be finite and non-negative.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>negative-coedge-observation</code></div><h3>A Coedge observation cannot be negative.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;negative-coedge-observation&quot;,
+  &quot;purpose&quot;: &quot;A Coedge observation cannot be negative.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-tolerance&quot;,
+    &quot;path&quot;: &quot;coedges[0].maximumObservedDeviationMm&quot;,
+    &quot;message&quot;: &quot;A topology tolerance or observation must be finite and non-negative.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>coedge-observation-exceeds-edge</code></div><h3>A Coedge observation is bounded by its owning Edge envelope.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;coedge-observation-exceeds-edge&quot;,
+  &quot;purpose&quot;: &quot;A Coedge observation is bounded by its owning Edge envelope.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-tolerance&quot;,
+    &quot;path&quot;: &quot;coedges[0].maximumObservedDeviationMm&quot;,
+    &quot;message&quot;: &quot;A Coedge observation cannot exceed its owning Edge tolerance.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.02,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>stale-maximum-cache</code></div><h3>A conservative but inexact snapshot maximum is malformed.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;stale-maximum-cache&quot;,
+  &quot;purpose&quot;: &quot;A conservative but inexact snapshot maximum is malformed.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-tolerance&quot;,
+    &quot;path&quot;: &quot;maximumToleranceMm&quot;,
+    &quot;message&quot;: &quot;B-rep maximum tolerance must equal the exact maximum of its Vertex and Edge tolerances.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>missing-edge-curve</code></div><h3>Existing topology reference validation remains active.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;missing-edge-curve&quot;,
+  &quot;purpose&quot;: &quot;Existing topology reference validation remains active.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-reference&quot;,
+    &quot;path&quot;: &quot;edges[0].curveId&quot;,
+    &quot;message&quot;: &quot;Referenced 3D Curve does not exist in this B-rep snapshot.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>noncanonical-edge-curve</code></div><h3>Existing canonical NURBS validation remains active.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;noncanonical-edge-curve&quot;,
+  &quot;purpose&quot;: &quot;Existing canonical NURBS validation remains active.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-geometry&quot;,
+    &quot;path&quot;: &quot;curves3[0].weights[1]&quot;,
+    &quot;message&quot;: &quot;Weights must be finite and strictly positive.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>mismatched-pcurve-range</code></div><h3>An Edge and its Coedge pcurve retain one exact parameter range.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;mismatched-pcurve-range&quot;,
+  &quot;purpose&quot;: &quot;An Edge and its Coedge pcurve retain one exact parameter range.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;invalid-parameter-range&quot;,
+    &quot;path&quot;: &quot;coedges[0].curveOnFaceId&quot;,
+    &quot;message&quot;: &quot;A Coedge UV Curve must share the Edge parameter range.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>open-directed-wire</code></div><h3>Existing shared-Vertex Wire closure validation remains active.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;open-directed-wire&quot;,
+  &quot;purpose&quot;: &quot;Existing shared-Vertex Wire closure validation remains active.&quot;,
+  &quot;classification&quot;: &quot;malformed-structure&quot;,
+  &quot;structure&quot;: {
+    &quot;ok&quot;: false,
+    &quot;issueCode&quot;: &quot;open-wire&quot;,
+    &quot;path&quot;: &quot;wires[0].coedgeIds[0]&quot;,
+    &quot;message&quot;: &quot;Consecutive directed Coedges do not meet at one shared Vertex.&quot;
+  },
+  &quot;designToleranceMm&quot;: 0.01,
+  &quot;designAdmissible&quot;: null,
+  &quot;passed&quot;: true
+}</pre></details></article></div></section><section><h2>Arithmetic</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>outward-bound-sum</code></div><h3>A positive residual advances a rounded-down millimetre sum to the next representable upper bound.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;outward-bound-sum&quot;,
+  &quot;purpose&quot;: &quot;A positive residual advances a rounded-down millimetre sum to the next representable upper bound.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;boundMm&quot;: 1.0000000000000002
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>operation-derived-numerical-floor</code></div><h3>Independent operation-derived lower limits combine by maximum without a global multiplier.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;operation-derived-numerical-floor&quot;,
+  &quot;purpose&quot;: &quot;Independent operation-derived lower limits combine by maximum without a global multiplier.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;valueMm&quot;: 0.5,
+    &quot;contributionsMm&quot;: [
+      0.125,
+      0.5,
+      0.25
+    ]
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>distance-interval</code></div><h3>A measured model-space distance expands by its explicit error bound in both directions.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;distance-interval&quot;,
+  &quot;purpose&quot;: &quot;A measured model-space distance expands by its explicit error bound in both directions.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;lowerBoundMm&quot;: 0.875,
+    &quot;upperBoundMm&quot;: 1.125
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>bound-sum-overflow</code></div><h3>A non-finite composed bound is rejected instead of being mislabeled conservative.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;bound-sum-overflow&quot;,
+  &quot;purpose&quot;: &quot;A non-finite composed bound is rejected instead of being mislabeled conservative.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;overflow&quot;,
+    &quot;field&quot;: &quot;boundsMm&quot;
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>outward-step-overflow</code></div><h3>A finite rounded sum is rejected when its required outward step would overflow.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;outward-step-overflow&quot;,
+  &quot;purpose&quot;: &quot;A finite rounded sum is rejected when its required outward step would overflow.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;overflow&quot;,
+    &quot;field&quot;: &quot;boundsMm&quot;
+  }
+}</pre></details></article></div></section><section><h2>Spatial decisions</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>complete-separation</code></div><h3>Complete coverage separates only when the distance lower bound exceeds all participating envelopes.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;complete-separation&quot;,
+  &quot;purpose&quot;: &quot;Complete coverage separates only when the distance lower bound exceeds all participating envelopes.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;decision&quot;: {
+      &quot;participatingTopologyEnvelopesMm&quot;: [
+        0.125,
+        0.25
+      ],
+      &quot;measuredDistanceMm&quot;: 1,
+      &quot;distanceErrorBoundMm&quot;: 0.125,
+      &quot;numericalFloorMm&quot;: 0.0625,
+      &quot;separationEvidenceComplete&quot;: true,
+      &quot;positiveRelationEvidence&quot;: &quot;none&quot;,
+      &quot;distanceLowerBoundMm&quot;: 0.875,
+      &quot;distanceUpperBoundMm&quot;: 1.125,
+      &quot;topologyAllowanceMm&quot;: 0.375,
+      &quot;decisionAllowanceMm&quot;: 0.375,
+      &quot;outcome&quot;: &quot;separate&quot;
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>positive-construction-relation</code></div><h3>Positive construction evidence establishes a relation independently of proximity.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;positive-construction-relation&quot;,
+  &quot;purpose&quot;: &quot;Positive construction evidence establishes a relation independently of proximity.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;decision&quot;: {
+      &quot;participatingTopologyEnvelopesMm&quot;: [
+        0.125,
+        0.25
+      ],
+      &quot;measuredDistanceMm&quot;: 0.25,
+      &quot;distanceErrorBoundMm&quot;: 0.0625,
+      &quot;numericalFloorMm&quot;: 0.5,
+      &quot;separationEvidenceComplete&quot;: false,
+      &quot;positiveRelationEvidence&quot;: &quot;construction&quot;,
+      &quot;distanceLowerBoundMm&quot;: 0.1875,
+      &quot;distanceUpperBoundMm&quot;: 0.3125,
+      &quot;topologyAllowanceMm&quot;: 0.375,
+      &quot;decisionAllowanceMm&quot;: 0.5,
+      &quot;outcome&quot;: &quot;related&quot;
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>unresolved-within-allowance</code></div><h3>Proximity inside the decision allowance remains unresolved without positive relation evidence.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;unresolved-within-allowance&quot;,
+  &quot;purpose&quot;: &quot;Proximity inside the decision allowance remains unresolved without positive relation evidence.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;decision&quot;: {
+      &quot;participatingTopologyEnvelopesMm&quot;: [
+        0.25,
+        0.25
+      ],
+      &quot;measuredDistanceMm&quot;: 0.375,
+      &quot;distanceErrorBoundMm&quot;: 0.0625,
+      &quot;numericalFloorMm&quot;: 0.125,
+      &quot;separationEvidenceComplete&quot;: true,
+      &quot;positiveRelationEvidence&quot;: &quot;none&quot;,
+      &quot;distanceLowerBoundMm&quot;: 0.3125,
+      &quot;distanceUpperBoundMm&quot;: 0.4375,
+      &quot;topologyAllowanceMm&quot;: 0.5,
+      &quot;decisionAllowanceMm&quot;: 0.5,
+      &quot;outcome&quot;: &quot;unresolved&quot;
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>incomplete-separation-coverage</code></div><h3>A distant sample cannot prove separation when the operation's required coverage is incomplete.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;incomplete-separation-coverage&quot;,
+  &quot;purpose&quot;: &quot;A distant sample cannot prove separation when the operation's required coverage is incomplete.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;decision&quot;: {
+      &quot;participatingTopologyEnvelopesMm&quot;: [
+        0
+      ],
+      &quot;measuredDistanceMm&quot;: 1,
+      &quot;distanceErrorBoundMm&quot;: 0,
+      &quot;numericalFloorMm&quot;: 0,
+      &quot;separationEvidenceComplete&quot;: false,
+      &quot;positiveRelationEvidence&quot;: &quot;none&quot;,
+      &quot;distanceLowerBoundMm&quot;: 1,
+      &quot;distanceUpperBoundMm&quot;: 1,
+      &quot;topologyAllowanceMm&quot;: 0,
+      &quot;decisionAllowanceMm&quot;: 0,
+      &quot;outcome&quot;: &quot;unresolved&quot;
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>invalid-decision-floor</code></div><h3>A negative numerical floor is rejected as an invalid operation record.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;invalid-decision-floor&quot;,
+  &quot;purpose&quot;: &quot;A negative numerical floor is rejected as an invalid operation record.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;field&quot;: &quot;numericalFloorMm&quot;
+  }
+}</pre></details></article></div></section><section><h2>Admission</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>constructed-shell-admitted</code></div><h3>Complete construction evidence admits a replacement Shell within Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;constructed-shell-admitted&quot;,
+  &quot;purpose&quot;: &quot;Complete construction evidence admits a replacement Shell within Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;envelope&quot;: {
+      &quot;designToleranceMm&quot;: 0.01,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0.006,
+      &quot;maximumConstructionDeviationBoundMm&quot;: 0.007
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>topology-envelope-exceeds-design</code></div><h3>Finite structural topology is not admitted when a local envelope exceeds accepted Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;topology-envelope-exceeds-design&quot;,
+  &quot;purpose&quot;: &quot;Finite structural topology is not admitted when a local envelope exceeds accepted Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;tolerance-exceeded&quot;,
+    &quot;stage&quot;: &quot;numerical-admission&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>construction-bound-exceeds-design</code></div><h3>Construction evidence above accepted Design tolerance rejects without publishing a replacement.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;construction-bound-exceeds-design&quot;,
+  &quot;purpose&quot;: &quot;Construction evidence above accepted Design tolerance rejects without publishing a replacement.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;tolerance-exceeded&quot;,
+    &quot;stage&quot;: &quot;numerical-admission&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>unresolved-construction-decision</code></div><h3>Unresolved required spatial evidence rejects atomic publication as ambiguous.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;unresolved-construction-decision&quot;,
+  &quot;purpose&quot;: &quot;Unresolved required spatial evidence rejects atomic publication as ambiguous.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;ambiguous&quot;,
+    &quot;stage&quot;: &quot;evidence-validation&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>exhausted-construction</code></div><h3>Exhausted work terminates with its operation reason before candidate publication.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;exhausted-construction&quot;,
+  &quot;purpose&quot;: &quot;Exhausted work terminates with its operation reason before candidate publication.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;exhausted&quot;,
+    &quot;stage&quot;: &quot;work-termination&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>incomplete-construction-scope</code></div><h3>Construction evidence cannot admit a replacement when its explicit topology scope is incomplete.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;incomplete-construction-scope&quot;,
+  &quot;purpose&quot;: &quot;Construction evidence cannot admit a replacement when its explicit topology scope is incomplete.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;incomplete-scope&quot;,
+    &quot;stage&quot;: &quot;scope-validation&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>publication-claim-mismatch</code></div><h3>A structurally valid Shell cannot be admitted under a Solid publication claim.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;publication-claim-mismatch&quot;,
+  &quot;purpose&quot;: &quot;A structurally valid Shell cannot be admitted under a Solid publication claim.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;publication-claim-mismatch&quot;,
+    &quot;stage&quot;: &quot;publication-validation&quot;,
+    &quot;issueCode&quot;: null,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>malformed-candidate-not-admitted</code></div><h3>Numerical evidence cannot replace structural validation of the candidate B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;malformed-candidate-not-admitted&quot;,
+  &quot;purpose&quot;: &quot;Numerical evidence cannot replace structural validation of the candidate B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-structure&quot;,
+    &quot;stage&quot;: &quot;structural-validation&quot;,
+    &quot;issueCode&quot;: &quot;invalid-reference&quot;,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>same-oriented-shell-incidence-not-admitted</code></div><h3>A Shell with two same-oriented uses of each Edge is rejected without publishing a replacement.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;same-oriented-shell-incidence-not-admitted&quot;,
+  &quot;purpose&quot;: &quot;A Shell with two same-oriented uses of each Edge is rejected without publishing a replacement.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-structure&quot;,
+    &quot;stage&quot;: &quot;publication-validation&quot;,
+    &quot;issueCode&quot;: &quot;non-manifold-shell&quot;,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>three-use-shell-incidence-not-admitted</code></div><h3>A Shell with three uses of each Edge is rejected as non-manifold without publishing a replacement.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;three-use-shell-incidence-not-admitted&quot;,
+  &quot;purpose&quot;: &quot;A Shell with three uses of each Edge is rejected as non-manifold without publishing a replacement.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-structure&quot;,
+    &quot;stage&quot;: &quot;publication-validation&quot;,
+    &quot;issueCode&quot;: &quot;non-manifold-shell&quot;,
+    &quot;replacementPublished&quot;: false
+  }
+}</pre></details></article></div></section><section><h2>Rigid placement</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>local-rigid-placement</code></div><h3>An exact local translation publishes a new admitted snapshot with unchanged topology and zero relationship roundoff.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;local-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;An exact local translation publishes a new admitted snapshot with unchanged topology and zero relationship roundoff.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;zero&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 0,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>far-rigid-placement-equivalent</code></div><h3>The same exact topology remains admissible under a far translation while unit detail remains representable.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;far-rigid-placement-equivalent&quot;,
+  &quot;purpose&quot;: &quot;The same exact topology remains admissible under a far translation while unit detail remains representable.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;zero&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 0,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>local-tiny-angle-rigid-placement</code></div><h3>A 1e-20 radian local rotation publishes with angle-sensitive roundoff evidence.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;local-tiny-angle-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;A 1e-20 radian local rotation publishes with angle-sensitive roundoff evidence.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+      &quot;maximumTopologyEnvelopeMm&quot;: 2.000000000000683e-20,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.2759572504815717e-33,
+          &quot;admittedEnvelopeMm&quot;: 2.2759572504815717e-33
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 4.5519145009631434e-33,
+          &quot;admittedEnvelopeMm&quot;: 4.5519145009631434e-33
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 4.5519145009631434e-33,
+          &quot;admittedEnvelopeMm&quot;: 4.5519145009631434e-33
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedEnvelopeMm&quot;: 2.000000000000683e-20
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedEnvelopeMm&quot;: 2.000000000000683e-20
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedEnvelopeMm&quot;: 2.000000000000683e-20
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedObservationMm&quot;: 2.000000000000683e-20
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedObservationMm&quot;: 2.000000000000683e-20
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.000000000000683e-20,
+          &quot;admittedObservationMm&quot;: 2.000000000000683e-20
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>far-tiny-angle-rigid-placement</code></div><h3>The same 1e-20 radian rotation remains feasible at a 1e15 mm anchor when its term-sensitive error stays within Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;far-tiny-angle-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;The same 1e-20 radian rotation remains feasible at a 1e15 mm anchor when its term-sensitive error stays within Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;equivalentDeviationMm&quot;: 1e-20,
+    &quot;equivalentAllowanceMm&quot;: 1.3107583254487328e-16,
+    &quot;localFrameEquivalent&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 1.3105583254487326e-16,
+      &quot;maximumTopologyEnvelopeMm&quot;: 1.3105583254487326e-16,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 6.552291627243663e-17,
+          &quot;admittedEnvelopeMm&quot;: 6.552291627243663e-17
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 6.55230806678037e-17,
+          &quot;admittedEnvelopeMm&quot;: 6.55230806678037e-17
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.3104583254487326e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.3104583254487326e-16
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 6.553308066780368e-17,
+          &quot;admittedEnvelopeMm&quot;: 6.553308066780368e-17
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.3105583254487326e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.3105583254487326e-16
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.3105583254487326e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.3105583254487326e-16
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 6.553308066780368e-17,
+          &quot;admittedObservationMm&quot;: 6.553308066780368e-17
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.3105583254487326e-16,
+          &quot;admittedObservationMm&quot;: 1.3105583254487326e-16
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.3105583254487326e-16,
+          &quot;admittedObservationMm&quot;: 1.3105583254487326e-16
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>axis-aligned-far-anchor-placement</code></div><h3>A 1e15 mm anchor on the rotation axis remains feasible because exactly zero perpendicular terms reserve no full-coordinate allowance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;axis-aligned-far-anchor-placement&quot;,
+  &quot;purpose&quot;: &quot;A 1e15 mm anchor on the rotation axis remains feasible because exactly zero perpendicular terms reserve no full-coordinate allowance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+      &quot;maximumTopologyEnvelopeMm&quot;: 3.400217869623903e-13,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.133941254912804e-13,
+          &quot;admittedEnvelopeMm&quot;: 1.133941254912804e-13
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.267882509825608e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.267882509825608e-13
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.267882509825608e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.267882509825608e-13
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedEnvelopeMm&quot;: 3.400217869623903e-13
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedEnvelopeMm&quot;: 3.400217869623903e-13
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedEnvelopeMm&quot;: 3.400217869623903e-13
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedObservationMm&quot;: 3.400217869623903e-13
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedObservationMm&quot;: 3.400217869623903e-13
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 3.400217869623903e-13,
+          &quot;admittedObservationMm&quot;: 3.400217869623903e-13
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>non-coordinate-axis-far-anchor-placement</code></div><h3>A 1e15 mm anchor lying on the [1,2,3] rotation axis remains exact while the representational error of nearby geometry fits Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;non-coordinate-axis-far-anchor-placement&quot;,
+  &quot;purpose&quot;: &quot;A 1e15 mm anchor lying on the [1,2,3] rotation axis remains exact while the representational error of nearby geometry fits Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 1,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;axialAnchorUnchanged&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 1,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 0.5811125856289057,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0.5811125856289057,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.29055629281445283,
+          &quot;admittedEnvelopeMm&quot;: 0.29055629281445283
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.5811125856289057,
+          &quot;admittedEnvelopeMm&quot;: 0.5811125856289057
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.4948121049751571,
+          &quot;admittedEnvelopeMm&quot;: 0.4948121049751571
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.5811125856289057,
+          &quot;admittedEnvelopeMm&quot;: 0.5811125856289057
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.5811125856289057,
+          &quot;admittedEnvelopeMm&quot;: 0.5811125856289057
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.4948121049751571,
+          &quot;admittedEnvelopeMm&quot;: 0.4948121049751571
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.5811125856289057,
+          &quot;admittedObservationMm&quot;: 0.5811125856289057
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.5811125856289057,
+          &quot;admittedObservationMm&quot;: 0.5811125856289057
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0.4948121049751571,
+          &quot;admittedObservationMm&quot;: 0.4948121049751571
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>cross-product-cancellation-rigid-placement</code></div><h3>A far near-axial anchor rejects when unequal exact-binary cross products round separately to equal values and hide requested Rodrigues displacement above Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;cross-product-cancellation-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;A far near-axial anchor rejects when unequal exact-binary cross products round separately to equal values and hide requested Rodrigues displacement above Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;sourceStructurallyValid&quot;: true,
+    &quot;independentExactBinaryRodriguesDisplacementMm&quot;: 0.047228459351933844,
+    &quot;independentExactBinaryDisplacementAboveDesign&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>axial-normalization-round-trip-collapse</code></div><h3>A structurally valid extreme axial anchor rejects when its nonzero subnormal normalization quotient round trip loses more than Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;axial-normalization-round-trip-collapse&quot;,
+  &quot;purpose&quot;: &quot;A structurally valid extreme axial anchor rejects when its nonzero subnormal normalization quotient round trip loses more than Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;sourceStructurallyValid&quot;: true,
+    &quot;normalizationRescalingLossMm&quot;: 9.406564584124656e-17,
+    &quot;structuredNormalizationLossAboveDesign&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>normalization-underflow-rigid-placement</code></div><h3>A non-dominant 1e-100 mm coordinate lost while normalizing beside 1e308 mm is bounded in full and rejects above the accepted 1e-105 mm Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;normalization-underflow-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;A non-dominant 1e-100 mm coordinate lost while normalizing beside 1e308 mm is bounded in full and rejects above the accepted 1e-105 mm Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;numerical-admission&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>pre-rescaling-rotation-underflow</code></div><h3>A far anchor's requested rotation displacement rejects when a normalized sine product underflows before rescaling and its conservative coordinate-loss bound exceeds Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;pre-rescaling-rotation-underflow&quot;,
+  &quot;purpose&quot;: &quot;A far anchor's requested rotation displacement rejects when a normalized sine product underflows before rescaling and its conservative coordinate-loss bound exceeds Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;requestedSineDisplacementMm&quot;: 2.420921664622108e-16,
+    &quot;requestedSineDisplacementAboveDesign&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>subnormal-coordinate-tiny-angle-placement</code></div><h3>A 1e-310 mm triangle rotated by 1e-5 radians remains feasible when its term- and ULP-sensitive arithmetic bound fits a 1e-309 mm Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;subnormal-coordinate-tiny-angle-placement&quot;,
+  &quot;purpose&quot;: &quot;A 1e-310 mm triangle rotated by 1e-5 radians remains feasible when its term- and ULP-sensitive arithmetic bound fits a 1e-309 mm Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 1e-309,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 1e-309,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 5.08e-321,
+      &quot;maximumTopologyEnvelopeMm&quot;: 5.08e-321,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.54e-321,
+          &quot;admittedEnvelopeMm&quot;: 2.54e-321
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedEnvelopeMm&quot;: 5.08e-321
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedEnvelopeMm&quot;: 5.08e-321
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedEnvelopeMm&quot;: 5.08e-321
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedEnvelopeMm&quot;: 5.08e-321
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedEnvelopeMm&quot;: 5.08e-321
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedObservationMm&quot;: 5.08e-321
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedObservationMm&quot;: 5.08e-321
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.08e-321,
+          &quot;admittedObservationMm&quot;: 5.08e-321
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-angle-translation-roundoff</code></div><h3>A zero-angle placement bypasses rotation arithmetic while retaining observed final-translation roundoff.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;zero-angle-translation-roundoff&quot;,
+  &quot;purpose&quot;: &quot;A zero-angle placement bypasses rotation arithmetic while retaining observed final-translation roundoff.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+      &quot;maximumTopologyEnvelopeMm&quot;: 1.6653345369377348e-16,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 8.326672684688674e-17,
+          &quot;admittedEnvelopeMm&quot;: 8.326672684688674e-17
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.6653345369377348e-16
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 8.326672684688674e-17,
+          &quot;admittedEnvelopeMm&quot;: 8.326672684688674e-17
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.6653345369377348e-16
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+          &quot;admittedEnvelopeMm&quot;: 1.6653345369377348e-16
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 8.326672684688674e-17,
+          &quot;admittedEnvelopeMm&quot;: 8.326672684688674e-17
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+          &quot;admittedObservationMm&quot;: 1.6653345369377348e-16
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.6653345369377348e-16,
+          &quot;admittedObservationMm&quot;: 1.6653345369377348e-16
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 8.326672684688674e-17,
+          &quot;admittedObservationMm&quot;: 8.326672684688674e-17
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>anchor-translation-below-resolution</code></div><h3>A nonzero rigid placement rejects when a 0.01 mm anchor translation is lost at 1e15 mm under a 0.001 mm Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;anchor-translation-below-resolution&quot;,
+  &quot;purpose&quot;: &quot;A nonzero rigid placement rejects when a 0.01 mm anchor translation is lost at 1e15 mm under a 0.001 mm Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>saturated-envelope-exact-translation</code></div><h3>An exact translation publishes unchanged saturated Vertex, Edge, and Coedge envelopes instead of rejecting below resolution.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;saturated-envelope-exact-translation&quot;,
+  &quot;purpose&quot;: &quot;An exact translation publishes unchanged saturated Vertex, Edge, and Coedge envelopes instead of rejecting below resolution.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;zero&quot;,
+    &quot;sourceEnvelopesPreserved&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 0,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0.001,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0.001
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0.001
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0.001
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0.001
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>rotated-placement-evidence</code></div><h3>A rotated placement retains relationship-specific roundoff evidence in Vertex, Edge, and Coedge records without a Face tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;rotated-placement-evidence&quot;,
+  &quot;purpose&quot;: &quot;A rotated placement retains relationship-specific roundoff evidence in Vertex, Edge, and Coedge records without a Face tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.01,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.01,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 3.8048953700953896e-13,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0.006000000000380576,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 1.6180919364656924e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.0010000000001618237
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0.004,
+          &quot;transformRoundoffBoundMm&quot;: 3.2361838729313847e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.004000000000323676
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0.002,
+          &quot;transformRoundoffBoundMm&quot;: 2.9282950475851696e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.0020000000002928582
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0.003,
+          &quot;transformRoundoffBoundMm&quot;: 3.8048953700953896e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.003000000000380533
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0.006,
+          &quot;transformRoundoffBoundMm&quot;: 3.8048953700953896e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.006000000000380576
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0.0015,
+          &quot;transformRoundoffBoundMm&quot;: 3.4970065447491745e-13,
+          &quot;admittedEnvelopeMm&quot;: 0.0015000000003497222
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0.002,
+          &quot;transformRoundoffBoundMm&quot;: 3.8048953700953896e-13,
+          &quot;admittedObservationMm&quot;: 0.0020000000003805186
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0.005,
+          &quot;transformRoundoffBoundMm&quot;: 3.8048953700953896e-13,
+          &quot;admittedObservationMm&quot;: 0.005000000000380561
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0.001,
+          &quot;transformRoundoffBoundMm&quot;: 3.4970065447491745e-13,
+          &quot;admittedObservationMm&quot;: 0.001000000000349715
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>maximum-finite-axis-scale-invariant</code></div><h3>A maximum-finite axis has the same resolved direction, placement, and admission evidence as its ordinary positive scaling.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;maximum-finite-axis-scale-invariant&quot;,
+  &quot;purpose&quot;: &quot;A maximum-finite axis has the same resolved direction, placement, and admission evidence as its ordinary positive scaling.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;axisScaleInvariant&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+      &quot;maximumTopologyEnvelopeMm&quot;: 2.673390435490009e-13,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 1.335859711004597e-13,
+          &quot;admittedEnvelopeMm&quot;: 1.335859711004597e-13
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.671719422009194e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.671719422009194e-13
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.671719422009194e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.671719422009194e-13
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.673390435490009e-13
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.673390435490009e-13
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.673390435490009e-13
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedObservationMm&quot;: 2.673390435490009e-13
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedObservationMm&quot;: 2.673390435490009e-13
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.673390435490009e-13,
+          &quot;admittedObservationMm&quot;: 2.673390435490009e-13
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>subnormal-axis-scale-invariant</code></div><h3>A two-millimetre snapshot rotated around a subnormal axis matches the same placement under positive axis scaling.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;subnormal-axis-scale-invariant&quot;,
+  &quot;purpose&quot;: &quot;A two-millimetre snapshot rotated around a subnormal axis matches the same placement under positive axis scaling.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;positive-within-design&quot;,
+    &quot;axisScaleInvariant&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+      &quot;maximumTopologyEnvelopeMm&quot;: 5.346780870980018e-13,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 2.671719422009194e-13,
+          &quot;admittedEnvelopeMm&quot;: 2.671719422009194e-13
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.343438844018388e-13,
+          &quot;admittedEnvelopeMm&quot;: 5.343438844018388e-13
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.343438844018388e-13,
+          &quot;admittedEnvelopeMm&quot;: 5.343438844018388e-13
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedEnvelopeMm&quot;: 5.346780870980018e-13
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedEnvelopeMm&quot;: 5.346780870980018e-13
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedEnvelopeMm&quot;: 5.346780870980018e-13
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedObservationMm&quot;: 5.346780870980018e-13
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedObservationMm&quot;: 5.346780870980018e-13
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 5.346780870980018e-13,
+          &quot;admittedObservationMm&quot;: 5.346780870980018e-13
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>extreme-finite-zero-angle-no-op</code></div><h3>An exact no-op at finite coordinates near 1.6e308 bypasses unstable rotation products and preserves geometry.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;extreme-finite-zero-angle-no-op&quot;,
+  &quot;purpose&quot;: &quot;An exact no-op at finite coordinates near 1.6e308 bypasses unstable rotation products and preserves geometry.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;topologyPreserved&quot;: true,
+    &quot;pcurvesRetained&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;structurallyValidated&quot;: true,
+    &quot;designToleranceMm&quot;: 0.001,
+    &quot;maximumWithinDesign&quot;: true,
+    &quot;roundoff&quot;: &quot;zero&quot;,
+    &quot;geometryUnchanged&quot;: true,
+    &quot;sourceEnvelopesPreserved&quot;: true,
+    &quot;admission&quot;: {
+      &quot;kind&quot;: &quot;rigid-transform&quot;,
+      &quot;designToleranceMm&quot;: 0.001,
+      &quot;maximumTransformRoundoffBoundMm&quot;: 0,
+      &quot;maximumTopologyEnvelopeMm&quot;: 0,
+      &quot;vertices&quot;: [
+        {
+          &quot;vertexId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;vertexId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;edges&quot;: [
+        {
+          &quot;edgeId&quot;: 0,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 1,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        },
+        {
+          &quot;edgeId&quot;: 2,
+          &quot;sourceEnvelopeMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedEnvelopeMm&quot;: 0
+        }
+      ],
+      &quot;coedges&quot;: [
+        {
+          &quot;coedgeId&quot;: 0,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 1,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        },
+        {
+          &quot;coedgeId&quot;: 2,
+          &quot;sourceObservationMm&quot;: 0,
+          &quot;transformRoundoffBoundMm&quot;: 0,
+          &quot;admittedObservationMm&quot;: 0
+        }
+      ]
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>finite-rotation-coordinate-overflow</code></div><h3>Finite source coordinates whose rotated result exceeds binary64 range reject as ill-conditioned before a replacement is assembled.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;finite-rotation-coordinate-overflow&quot;,
+  &quot;purpose&quot;: &quot;Finite source coordinates whose rotated result exceeds binary64 range reject as ill-conditioned before a replacement is assembled.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;ill-conditioned&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-rigid-axis-rejected</code></div><h3>A zero axis rejects as invalid input before candidate publication.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;zero-rigid-axis-rejected&quot;,
+  &quot;purpose&quot;: &quot;A zero axis rejects as invalid input before candidate publication.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;stage&quot;: &quot;input-validation&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>nonfinite-rigid-angle-rejected</code></div><h3>A non-finite angle rejects as invalid input before candidate publication.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;nonfinite-rigid-angle-rejected&quot;,
+  &quot;purpose&quot;: &quot;A non-finite angle rejects as invalid input before candidate publication.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;stage&quot;: &quot;input-validation&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>nonfinite-rigid-translation-rejected</code></div><h3>A non-finite translation rejects as invalid input before candidate publication.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;nonfinite-rigid-translation-rejected&quot;,
+  &quot;purpose&quot;: &quot;A non-finite translation rejects as invalid input before candidate publication.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;stage&quot;: &quot;input-validation&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>invalid-rigid-design-tolerance-rejected</code></div><h3>A non-positive Design tolerance rejects as invalid input before candidate publication.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;invalid-rigid-design-tolerance-rejected&quot;,
+  &quot;purpose&quot;: &quot;A non-positive Design tolerance rejects as invalid input before candidate publication.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;invalid-input&quot;,
+    &quot;stage&quot;: &quot;input-validation&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>scale-sensitive-non-identical-representation</code></div><h3>A large local model with admitted but non-identical Edge and endpoint representations rejects when full rotation arithmetic cannot fit inside Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;scale-sensitive-non-identical-representation&quot;,
+  &quot;purpose&quot;: &quot;A large local model with admitted but non-identical Edge and endpoint representations rejects when full rotation arithmetic cannot fit inside Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;numerical-admission&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;sourceRepresentationsIdentical&quot;: false
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>collapsed-rigid-placement</code></div><h3>A translation that collapses distinct source coordinates rejects below resolution and publishes no transformed B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;collapsed-rigid-placement&quot;,
+  &quot;purpose&quot;: &quot;A translation that collapses distinct source coordinates rejects below resolution and publishes no transformed B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;coordinate-feasibility&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>rigid-placement-envelope-exhausted</code></div><h3>A still-distinct far placement rejects when its coordinate roundoff cannot fit inside the accepted Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;rigid-placement-envelope-exhausted&quot;,
+  &quot;purpose&quot;: &quot;A still-distinct far placement rejects when its coordinate roundoff cannot fit inside the accepted Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;below-resolution&quot;,
+    &quot;stage&quot;: &quot;numerical-admission&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article></div></section>
+</main>
+</body>
+</html>
