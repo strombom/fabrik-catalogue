@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>59/59</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>64/64</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -204,6 +204,98 @@
   &quot;designToleranceMm&quot;: 0.01,
   &quot;designAdmissible&quot;: null,
   &quot;passed&quot;: true
+}</pre></details></article></div></section><section><h2>Trimmed-Face preparation</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-preparation-separates-evidence</code></div><h3>Prepared Face data keeps normalized-UV work, endpoint incidence, junction localization, and observed Edge/pcurve disagreement separate without a Face or whole-body budget.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-preparation-separates-evidence&quot;,
+  &quot;purpose&quot;: &quot;Prepared Face data keeps normalized-UV work, endpoint incidence, junction localization, and observed Edge/pcurve disagreement separate without a Face or whole-body budget.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;faceHasAccuracyBudget&quot;: false,
+    &quot;loopHasAccuracyBudget&quot;: false,
+    &quot;faceHasWholeBodyTolerance&quot;: false,
+    &quot;policy&quot;: {
+      &quot;maximumUvChordDeviationNormalized&quot;: 0.0001,
+      &quot;uvWorkToleranceNormalized&quot;: 0.0004
+    },
+    &quot;firstCoedgeObservedRepresentation&quot;: {
+      &quot;maximumObservedEdgePcurveDeviationMm&quot;: 0.002
+    },
+    &quot;firstJunction&quot;: {
+      &quot;vertexId&quot;: 1,
+      &quot;normalizedUv&quot;: [
+        1,
+        0
+      ],
+      &quot;localizationErrorMm&quot;: 0,
+      &quot;incomingEndpointIncidence&quot;: {
+        &quot;vertexId&quot;: 1,
+        &quot;edgeId&quot;: 0,
+        &quot;observedDistanceMm&quot;: 0,
+        &quot;participatingTopologyEnvelopesMm&quot;: [
+          0.004,
+          0.003
+        ],
+        &quot;topologyAllowanceMm&quot;: 0.007
+      },
+      &quot;outgoingEndpointIncidence&quot;: {
+        &quot;vertexId&quot;: 1,
+        &quot;edgeId&quot;: 1,
+        &quot;observedDistanceMm&quot;: 0,
+        &quot;participatingTopologyEnvelopesMm&quot;: [
+          0.004,
+          0.006
+        ],
+        &quot;topologyAllowanceMm&quot;: 0.01
+      }
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-endpoint-uses-local-envelopes</code></div><h3>A pcurve endpoint outside its participating Vertex and Edge envelopes rejects even though it lies inside the Design tolerance and a larger snapshot maximum.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-endpoint-uses-local-envelopes&quot;,
+  &quot;purpose&quot;: &quot;A pcurve endpoint outside its participating Vertex and Edge envelopes rejects even though it lies inside the Design tolerance and a larger snapshot maximum.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;malformed-trim&quot;,
+    &quot;stage&quot;: &quot;trim-validation&quot;,
+    &quot;observedEndpointDistanceMm&quot;: 0.02,
+    &quot;topologyAllowanceMm&quot;: 0.004,
+    &quot;participatingTopologyEnvelopesMm&quot;: [
+      0.001,
+      0.003
+    ],
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-self-intersection-rejects-atomically</code></div><h3>A topologically closed but self-intersecting UV loop returns structured trim evidence without changing the source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-self-intersection-rejects-atomically&quot;,
+  &quot;purpose&quot;: &quot;A topologically closed but self-intersecting UV loop returns structured trim evidence without changing the source B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;malformed-trim&quot;,
+    &quot;stage&quot;: &quot;trim-validation&quot;,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-periodic-seam-rejects-atomically</code></div><h3>A deferred periodic seam returns structured unsupported evidence without changing the source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-periodic-seam-rejects-atomically&quot;,
+  &quot;purpose&quot;: &quot;A deferred periodic seam returns structured unsupported evidence without changing the source B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;unsupported-input&quot;,
+    &quot;stage&quot;: &quot;trim-validation&quot;,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-degenerate-edge-prepares</code></div><h3>An intentional zero-length topological Edge remains supported and retains junction evidence during disposable Face preparation.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-degenerate-edge-prepares&quot;,
+  &quot;purpose&quot;: &quot;An intentional zero-length topological Edge remains supported and retains junction evidence during disposable Face preparation.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;preparedDegenerateEdge&quot;: true,
+    &quot;junctionEvidenceCount&quot;: 4,
+    &quot;sourceUnchanged&quot;: true
+  }
 }</pre></details></article></div></section><section><h2>Arithmetic</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>outward-bound-sum</code></div><h3>A positive residual advances a rounded-down millimetre sum to the next representable upper bound.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;outward-bound-sum&quot;,
   &quot;purpose&quot;: &quot;A positive residual advances a rounded-down millimetre sum to the next representable upper bound.&quot;,
