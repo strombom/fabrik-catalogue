@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>65/65</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>66/66</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -280,6 +280,16 @@
       0.001,
       0.003
     ],
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-endpoint-evidence-precedes-uv-normalization</code></div><h3>A pcurve endpoint inside disposable UV work tolerance but outside the bounded support and zero participating envelopes rejects before polygon normalization without changing the source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-endpoint-evidence-precedes-uv-normalization&quot;,
+  &quot;purpose&quot;: &quot;A pcurve endpoint inside disposable UV work tolerance but outside the bounded support and zero participating envelopes rejects before polygon normalization without changing the source B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;malformed-trim&quot;,
+    &quot;stage&quot;: &quot;trim-validation&quot;,
     &quot;sourceUnchanged&quot;: true
   }
 }</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-self-intersection-rejects-atomically</code></div><h3>A topologically closed but self-intersecting UV loop returns structured trim evidence without changing the source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
