@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>64/64</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>65/65</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -249,6 +249,22 @@
       }
     },
     &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-crossing-skew-plane-point-bound</code></div><h3>A non-orthogonal Face parameterization measures trim-crossing displacement in model space so boundary point evidence never under-reports it.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-crossing-skew-plane-point-bound&quot;,
+  &quot;purpose&quot;: &quot;A non-orthogonal Face parameterization measures trim-crossing displacement in model space so boundary point evidence never under-reports it.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;eventCount&quot;: 1,
+    &quot;sampledPartialScaleEstimateUnderReports&quot;: true,
+    &quot;pointErrorBoundDoesNotUnderReport&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;normalizedUvResidual&quot;: 0.00009999999999990446,
+    &quot;sampledPartialScaleEstimateMm&quot;: 0.00019999999999980892,
+    &quot;actualDisplacementMm&quot;: 0.0002236067977497681,
+    &quot;localizationErrorMm&quot;: 0.0002236067977497681,
+    &quot;pointErrorBoundMm&quot;: 0.0002236067977497681
   }
 }</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-endpoint-uses-local-envelopes</code></div><h3>A pcurve endpoint outside its participating Vertex and Edge envelopes rejects even though it lies inside the Design tolerance and a larger snapshot maximum.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;trim-endpoint-uses-local-envelopes&quot;,
