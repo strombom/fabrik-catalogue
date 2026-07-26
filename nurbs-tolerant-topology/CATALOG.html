@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>76/76</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>77/77</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -431,6 +431,39 @@
       &quot;separationLowerBoundMm&quot;: 0,
       &quot;decisionAllowanceMm&quot;: 0,
       &quot;positiveRelation&quot;: &quot;same-coedge-parameter&quot;
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-classification-exact-uv-without-relation-authority</code></div><h3>Exact normalized-UV agreement with a zero-envelope Edge remains unresolved without same-parameter relation authority.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-classification-exact-uv-without-relation-authority&quot;,
+  &quot;purpose&quot;: &quot;Exact normalized-UV agreement with a zero-envelope Edge remains unresolved without same-parameter relation authority.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;relation&quot;: &quot;unresolved&quot;,
+    &quot;coedgeId&quot;: 0,
+    &quot;edgeId&quot;: 0,
+    &quot;endpointVertexId&quot;: null,
+    &quot;observedModelSpaceSeparationMm&quot;: 0,
+    &quot;selectedTopologyEnvelopesMm&quot;: {
+      &quot;edge&quot;: {
+        &quot;edgeId&quot;: 0,
+        &quot;toleranceMm&quot;: 0
+      }
+    },
+    &quot;computationalEvidence&quot;: {
+      &quot;queryErrorBoundMm&quot;: 0,
+      &quot;normalizationErrorBoundMm&quot;: 0,
+      &quot;evaluationErrorBoundMm&quot;: 1.7763568394002543e-14,
+      &quot;localizationErrorMm&quot;: 0,
+      &quot;distanceErrorBoundMm&quot;: 1.7763568394002543e-14,
+      &quot;numericalFloorMm&quot;: 0,
+      &quot;distanceLowerBoundMm&quot;: 0,
+      &quot;distanceUpperBoundMm&quot;: 1.7763568394002543e-14,
+      &quot;separationEvidenceComplete&quot;: true,
+      &quot;separationErrorBoundMm&quot;: 7.105427357601016e-15,
+      &quot;separationLowerBoundMm&quot;: 0,
+      &quot;decisionAllowanceMm&quot;: 0,
+      &quot;positiveRelation&quot;: null
     },
     &quot;sourceUnchanged&quot;: true
   }
