@@ -248,7 +248,7 @@
         <span class="summary--pass"><strong>23</strong> passed</span>
         <span class="summary--fail"><strong>0</strong> failed</span>
         <span><strong>0</strong> not run</span>
-        <span><strong>1278.582 ms</strong> runtime</span>
+        <span><strong>1593.784 ms</strong> runtime</span>
       </div>
     </header>
     <section class="catalogue" aria-label="Surface-intersection cases">
@@ -265,7 +265,7 @@
       <img src="renders/plane_plane_oblique.svg" alt="Reference render for Oblique planar cut" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -273,7 +273,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 5.55e-16 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 5.55e-16 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -295,7 +295,7 @@
       <img src="renders/sweep_profile_plane.svg" alt="Reference render for Swept profile section" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -303,7 +303,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>trace-polyline</code> · degree 1 · 1745 spans · 3.57e-07 mm</dd>
+          <dd><code>trace-polyline</code> · degree 1 · 1745 spans · 3.57e-07 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -325,7 +325,7 @@
       <img src="renders/freeform_bicubic_transverse.svg" alt="Reference render for Free-form transverse branch" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -333,7 +333,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 6.66e-16 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 6.66e-16 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -355,7 +355,7 @@
       <img src="renders/two_close_freeform_branches.svg" alt="Reference render for Two close free-form branches" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -363,7 +363,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 8.26e-12 mm<br><code>line</code> · degree 1 · 1 span · 8.26e-12 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 8.26e-12 mm construction deviation<br><code>line</code> · degree 1 · 1 span · 8.26e-12 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -385,7 +385,7 @@
       <img src="renders/cylinder_plane_axial.svg" alt="Reference render for Axial cylinder cut" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -393,7 +393,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 7.3e-16 mm<br><code>line</code> · degree 1 · 1 span · 4.58e-16 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 7.3e-16 mm construction deviation<br><code>line</code> · degree 1 · 1 span · 4.58e-16 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -415,7 +415,7 @@
       <img src="renders/cylinder_plane_cross.svg" alt="Reference render for Cylinder cross-section" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -423,7 +423,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>circle</code> · degree 2 · 4 spans · 2.65e-07 mm · radius 1 mm · recognized</dd>
+          <dd><code>circle</code> · degree 2 · 4 spans · 2.65e-07 mm construction deviation · radius 1 mm · recognized</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -445,7 +445,7 @@
       <img src="renders/sphere_plane_section.svg" alt="Reference render for Spherical corner cap section" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -453,7 +453,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>circle</code> · degree 2 · 4 spans · 2.28e-07 mm · radius 0.953939 mm · recognized</dd>
+          <dd><code>circle</code> · degree 2 · 4 spans · 2.28e-07 mm construction deviation · radius 0.953939 mm · recognized</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -475,7 +475,7 @@
       <img src="renders/flat_short_segment_bounded_by_b.svg" alt="Reference render for Short segment bounded by surface B" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -483,7 +483,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>line</code> · degree 1 · 1 span · 3.61e-16 mm</dd>
+          <dd><code>line</code> · degree 1 · 1 span · 3.61e-16 mm construction deviation</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -505,7 +505,7 @@
       <img src="renders/microscopic_cylinder_section.svg" alt="Reference render for Microscopic cylinder section" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -513,7 +513,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>circle</code> · degree 2 · 4 spans · 1.95e-08 mm · radius 0.001 mm · recognized</dd>
+          <dd><code>circle</code> · degree 2 · 4 spans · 1.95e-08 mm construction deviation · radius 0.001 mm · recognized</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -535,7 +535,7 @@
       <img src="renders/metre_scale_cylinder_section.svg" alt="Reference render for Metre-scale cylinder section" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -543,7 +543,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>circle</code> · degree 2 · 4 spans · 1.53e-05 mm · radius 1000 mm · recognized</dd>
+          <dd><code>circle</code> · degree 2 · 4 spans · 1.53e-05 mm construction deviation · radius 1000 mm · recognized</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
@@ -885,14 +885,14 @@
 </article><article class="case-card">
   <header class="case-card__header">
     <div>
-      <h2>Input accuracy exhausts Design tolerance</h2>
+      <h2>Input construction deviation exhausts Design tolerance</h2>
       <code>accuracy_budget_exhausted</code>
     </div>
     <span class="status status--pass">PASS</span>
   </header>
   <div class="case-card__content">
     <figure>
-      <img src="renders/accuracy_budget_exhausted.svg" alt="Reference render for Input accuracy exhausts Design tolerance" loading="lazy">
+      <img src="renders/accuracy_budget_exhausted.svg" alt="Reference render for Input construction deviation exhausts Design tolerance" loading="lazy">
     </figure>
     <div class="case-card__details">
       <p class="verdict">Structured below-resolution rejection.</p>
@@ -925,7 +925,7 @@
       <img src="renders/quarter_cylinder_plane_arc.svg" alt="Reference render for Bounded circular arc" loading="lazy">
     </figure>
     <div class="case-card__details">
-      <p class="verdict">Geometry and accuracy checks passed.</p>
+      <p class="verdict">Geometry and construction-deviation checks passed.</p>
       <dl>
         <div class="fact">
           <dt>Expected</dt>
@@ -933,7 +933,7 @@
         </div>
         <div class="fact">
           <dt>Output</dt>
-          <dd><code>circular-arc</code> · degree 2 · 1 span · 1.94e-07 mm · radius 1 mm · sweep 90° · recognized</dd>
+          <dd><code>circular-arc</code> · degree 2 · 1 span · 1.94e-07 mm construction deviation · radius 1 mm · sweep 90° · recognized</dd>
         </div>
         <div class="fact fact--purpose">
           <dt>Purpose</dt>
