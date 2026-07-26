@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>66/66</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>69/69</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -230,6 +230,10 @@
       &quot;incomingEndpointIncidence&quot;: {
         &quot;vertexId&quot;: 1,
         &quot;edgeId&quot;: 0,
+        &quot;rawPcurveEndpointUv&quot;: [
+          1,
+          0
+        ],
         &quot;observedDistanceMm&quot;: 0,
         &quot;participatingTopologyEnvelopesMm&quot;: [
           0.004,
@@ -240,12 +244,73 @@
       &quot;outgoingEndpointIncidence&quot;: {
         &quot;vertexId&quot;: 1,
         &quot;edgeId&quot;: 1,
+        &quot;rawPcurveEndpointUv&quot;: [
+          1,
+          0
+        ],
         &quot;observedDistanceMm&quot;: 0,
         &quot;participatingTopologyEnvelopesMm&quot;: [
           0.004,
           0.006
         ],
         &quot;topologyAllowanceMm&quot;: 0.01
+      }
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-preparation-retains-hole</code></div><h3>A supported outer loop and inner hole prepare as separate immutable loop records with their own junction evidence.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-preparation-retains-hole&quot;,
+  &quot;purpose&quot;: &quot;A supported outer loop and inner hole prepare as separate immutable loop records with their own junction evidence.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;outerJunctionCount&quot;: 4,
+    &quot;holeCount&quot;: 1,
+    &quot;firstHoleJunctionCount&quot;: 4,
+    &quot;holeHasAccuracyBudget&quot;: false,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-junction-uses-local-endpoint-evidence</code></div><h3>A raw pcurve endpoint mismatch admitted by its participating Vertex and Edge envelopes localizes from the better endpoint without consulting the smaller Design tolerance.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-junction-uses-local-endpoint-evidence&quot;,
+  &quot;purpose&quot;: &quot;A raw pcurve endpoint mismatch admitted by its participating Vertex and Edge envelopes localizes from the better endpoint without consulting the smaller Design tolerance.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;designToleranceLessThanRawEndpointMismatch&quot;: true,
+    &quot;mismatchedJunction&quot;: {
+      &quot;vertexId&quot;: 0,
+      &quot;normalizedUv&quot;: [
+        0,
+        0
+      ],
+      &quot;localizationErrorMm&quot;: 0,
+      &quot;incomingEndpointIncidence&quot;: {
+        &quot;vertexId&quot;: 0,
+        &quot;edgeId&quot;: 2,
+        &quot;rawPcurveEndpointUv&quot;: [
+          0,
+          0
+        ],
+        &quot;observedDistanceMm&quot;: 0,
+        &quot;participatingTopologyEnvelopesMm&quot;: [
+          0.0078125,
+          0
+        ],
+        &quot;topologyAllowanceMm&quot;: 0.0078125
+      },
+      &quot;outgoingEndpointIncidence&quot;: {
+        &quot;vertexId&quot;: 0,
+        &quot;edgeId&quot;: 0,
+        &quot;rawPcurveEndpointUv&quot;: [
+          0.015625,
+          0
+        ],
+        &quot;observedDistanceMm&quot;: 0.015625,
+        &quot;participatingTopologyEnvelopesMm&quot;: [
+          0.0078125,
+          0.0078125
+        ],
+        &quot;topologyAllowanceMm&quot;: 0.015625
       }
     },
     &quot;sourceUnchanged&quot;: true
@@ -275,6 +340,10 @@
     &quot;code&quot;: &quot;malformed-trim&quot;,
     &quot;stage&quot;: &quot;trim-validation&quot;,
     &quot;observedEndpointDistanceMm&quot;: 0.02,
+    &quot;rawPcurveEndpointUv&quot;: [
+      0.02,
+      0
+    ],
     &quot;topologyAllowanceMm&quot;: 0.004,
     &quot;participatingTopologyEnvelopesMm&quot;: [
       0.001,
@@ -289,6 +358,16 @@
   &quot;observed&quot;: {
     &quot;status&quot;: &quot;rejected&quot;,
     &quot;code&quot;: &quot;malformed-trim&quot;,
+    &quot;stage&quot;: &quot;trim-validation&quot;,
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-flattening-work-exhaustion-rejects</code></div><h3>A valid pcurve with more spans than the explicit flattening policy permits returns structured work exhaustion without changing the source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-flattening-work-exhaustion-rejects&quot;,
+  &quot;purpose&quot;: &quot;A valid pcurve with more spans than the explicit flattening policy permits returns structured work exhaustion without changing the source B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;work-limit-exceeded&quot;,
     &quot;stage&quot;: &quot;trim-validation&quot;,
     &quot;sourceUnchanged&quot;: true
   }
