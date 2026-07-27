@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>77/77</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>78/78</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -497,6 +497,39 @@
       &quot;separationLowerBoundMm&quot;: 0,
       &quot;decisionAllowanceMm&quot;: 0,
       &quot;positiveRelation&quot;: &quot;same-coedge-parameter&quot;
+    },
+    &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>trim-classification-ill-conditioned-rational-separation</code></div><h3>A restricted rational Edge with a near-zero positive weight falls back to the complete whole-Edge enclosure instead of publishing an under-conditioned separation proof.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;trim-classification-ill-conditioned-rational-separation&quot;,
+  &quot;purpose&quot;: &quot;A restricted rational Edge with a near-zero positive weight falls back to the complete whole-Edge enclosure instead of publishing an under-conditioned separation proof.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;relation&quot;: &quot;unresolved&quot;,
+    &quot;coedgeId&quot;: 0,
+    &quot;edgeId&quot;: 0,
+    &quot;endpointVertexId&quot;: null,
+    &quot;observedModelSpaceSeparationMm&quot;: 0.1,
+    &quot;selectedTopologyEnvelopesMm&quot;: {
+      &quot;edge&quot;: {
+        &quot;edgeId&quot;: 0,
+        &quot;toleranceMm&quot;: 0
+      }
+    },
+    &quot;computationalEvidence&quot;: {
+      &quot;queryErrorBoundMm&quot;: 0,
+      &quot;normalizationErrorBoundMm&quot;: 0,
+      &quot;evaluationErrorBoundMm&quot;: 2.0961010704923e-14,
+      &quot;localizationErrorMm&quot;: 0.10000000000000019,
+      &quot;distanceErrorBoundMm&quot;: 0.10000000000002134,
+      &quot;numericalFloorMm&quot;: 0,
+      &quot;distanceLowerBoundMm&quot;: 0,
+      &quot;distanceUpperBoundMm&quot;: 0.20000000000002136,
+      &quot;separationEvidenceComplete&quot;: true,
+      &quot;separationErrorBoundMm&quot;: 8.52651282912122e-15,
+      &quot;separationLowerBoundMm&quot;: 0,
+      &quot;decisionAllowanceMm&quot;: 0,
+      &quot;positiveRelation&quot;: null
     },
     &quot;sourceUnchanged&quot;: true
   }
