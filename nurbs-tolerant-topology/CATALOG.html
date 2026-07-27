@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>82/82</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span><span><strong>5</strong> Fillet</span></div>
+    <div class="summary"><span><strong>87/87</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span><span><strong>10</strong> Fillet</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -2257,6 +2257,261 @@
     &quot;conservativeBoundCoversDenseCorrespondence&quot;: true,
     &quot;nearEqualWeightRoundoffExercised&quot;: true,
     &quot;admissionHeadroomMm&quot;: 0.0009999999969300113
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-toric-box-corner-rejects-before-topology</code></div><h3>A public two-strip box corner carries finite toric solver, sampled surface/pcurve, and interference evidence into arrangement, then rejects its interior common-Face crossing without partial topology.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-toric-box-corner-rejects-before-topology&quot;,
+  &quot;purpose&quot;: &quot;A public two-strip box corner carries finite toric solver, sampled surface/pcurve, and interference evidence into arrangement, then rejects its interior common-Face crossing without partial topology.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;unsupported-junction&quot;,
+    &quot;stage&quot;: &quot;junction-arrangement&quot;,
+    &quot;message&quot;: &quot;The horn-torus contact segments cross 1 mm from their nearest endpoint on common Face 0; this would create a self-intersecting trim. A different toric, spherical, or setback corner arrangement is required.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true,
+    &quot;junction&quot;: {
+      &quot;candidateKind&quot;: &quot;planar-toric-rotule&quot;,
+      &quot;solverEvidence&quot;: {
+        &quot;maximumBoundaryResidualMm&quot;: 0,
+        &quot;maximumPlaneResidualMm&quot;: 0,
+        &quot;maximumAngularErrorRad&quot;: 0,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;participatingTopology&quot;: {
+        &quot;sourceVertexToleranceMm&quot;: 0,
+        &quot;maximumSourceEdgeToleranceMm&quot;: 0
+      },
+      &quot;surfaceValidation&quot;: {
+        &quot;coverage&quot;: &quot;sampled-observation&quot;,
+        &quot;samplesPerParameterDirection&quot;: 9,
+        &quot;maximumObservedBoundaryDeviationMm&quot;: 2.2887833992611187e-16,
+        &quot;maximumObservedPcurveDeviationMm&quot;: 0,
+        &quot;maximumObservedRadiusDeviationMm&quot;: 2.220446049250313e-16,
+        &quot;maximumTangencyErrorRad&quot;: 2.1073424255447017e-8,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;interference&quot;: {
+        &quot;nonlocalFaceIds&quot;: [
+          1,
+          3,
+          4
+        ],
+        &quot;candidateFaceIds&quot;: [],
+        &quot;inputSurfaceConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;maximumQueryConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;faceQueries&quot;: []
+      },
+      &quot;arrangementCompatibility&quot;: &quot;crossed-common-contact-segments&quot;
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-toric-connected-boundary-network-evidence</code></div><h3>A compatible concave-prism toric arrangement authoritatively enters focused connected replacement and validates exact curve/pcurve ranges, sampled observations, and finite local Vertex and Edge envelopes without publishing topology.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-toric-connected-boundary-network-evidence&quot;,
+  &quot;purpose&quot;: &quot;A compatible concave-prism toric arrangement authoritatively enters focused connected replacement and validates exact curve/pcurve ranges, sampled observations, and finite local Vertex and Edge envelopes without publishing topology.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;replacements&quot;: 2,
+    &quot;junctions&quot;: 1,
+    &quot;vertices&quot;: 7,
+    &quot;edges&quot;: 10,
+    &quot;pcurveUses&quot;: 19,
+    &quot;exactCurveAndPcurveRanges&quot;: true,
+    &quot;finiteLocalEnvelopes&quot;: true,
+    &quot;validationCoverage&quot;: &quot;sampled-observation&quot;,
+    &quot;maximumObservedBoundaryDeviationMm&quot;: 1.9860273225978185e-15,
+    &quot;maximumToleranceMm&quot;: 0.00011170109628726747,
+    &quot;recomputedMaximumToleranceMm&quot;: 0.00011170109628726747,
+    &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+    &quot;interferenceFaceQueries&quot;: [],
+    &quot;independentInterferenceMaximumMm&quot;: 1.6204073638448335e-9,
+    &quot;reportedInterferenceMaximumMm&quot;: 1.6204073638448335e-9,
+    &quot;arrangementCompatibility&quot;: &quot;compatible&quot;,
+    &quot;deferredConnectedEndCount&quot;: 2
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-toric-compatible-public-route</code></div><h3>The public Fillet evaluator accepts the concave-prism corner arrangement, completes connected replacement and boundary-network validation, and stops atomically at the G-18 topology-rebuild gate.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-toric-compatible-public-route&quot;,
+  &quot;purpose&quot;: &quot;The public Fillet evaluator accepts the concave-prism corner arrangement, completes connected replacement and boundary-network validation, and stops atomically at the G-18 topology-rebuild gate.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;unsupported-materialization&quot;,
+    &quot;stage&quot;: &quot;topology-rebuild&quot;,
+    &quot;message&quot;: &quot;The connected toric boundary network is validated; source-Face reconstruction and atomic publication remain at the next implementation boundary.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true,
+    &quot;junction&quot;: {
+      &quot;candidateKind&quot;: &quot;planar-toric-rotule&quot;,
+      &quot;solverEvidence&quot;: {
+        &quot;maximumBoundaryResidualMm&quot;: 0,
+        &quot;maximumPlaneResidualMm&quot;: 0,
+        &quot;maximumAngularErrorRad&quot;: 0,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;participatingTopology&quot;: {
+        &quot;sourceVertexToleranceMm&quot;: 1.2560739669470201e-15,
+        &quot;maximumSourceEdgeToleranceMm&quot;: 0
+      },
+      &quot;surfaceValidation&quot;: {
+        &quot;coverage&quot;: &quot;sampled-observation&quot;,
+        &quot;samplesPerParameterDirection&quot;: 9,
+        &quot;maximumObservedBoundaryDeviationMm&quot;: 2.220446049250313e-16,
+        &quot;maximumObservedPcurveDeviationMm&quot;: 6.280369834735101e-16,
+        &quot;maximumObservedRadiusDeviationMm&quot;: 1.2212453270876722e-15,
+        &quot;maximumTangencyErrorRad&quot;: 2.1073424255447017e-8,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;interference&quot;: {
+        &quot;nonlocalFaceIds&quot;: [
+          1,
+          2,
+          3,
+          6,
+          7
+        ],
+        &quot;candidateFaceIds&quot;: [],
+        &quot;inputSurfaceConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;maximumQueryConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;faceQueries&quot;: []
+      },
+      &quot;arrangementCompatibility&quot;: &quot;compatible&quot;,
+      &quot;replacementPlan&quot;: {
+        &quot;kind&quot;: &quot;global-fillet-replacement&quot;,
+        &quot;replacementCount&quot;: 2,
+        &quot;junctionCount&quot;: 1,
+        &quot;replacementKinds&quot;: [
+          &quot;planar-toric-member-strip&quot;,
+          &quot;planar-toric-member-strip&quot;
+        ],
+        &quot;sourceEdgeGroups&quot;: [
+          [
+            2
+          ],
+          [
+            3
+          ]
+        ],
+        &quot;selectedEdgeIds&quot;: [
+          2,
+          3
+        ],
+        &quot;consumedVertexIds&quot;: [
+          2,
+          3,
+          4
+        ],
+        &quot;trimmedBoundaryEdgeIds&quot;: [
+          1,
+          4,
+          14,
+          15,
+          16
+        ],
+        &quot;modifiedFaceIds&quot;: [
+          0,
+          3,
+          4,
+          5,
+          6
+        ],
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;boundaryNetwork&quot;: {
+        &quot;kind&quot;: &quot;planar-toric-connected-boundary-network&quot;,
+        &quot;vertexCount&quot;: 7,
+        &quot;edgeCount&quot;: 10,
+        &quot;surfaceCount&quot;: 3,
+        &quot;pcurveUseCount&quot;: 19,
+        &quot;sourcePcurveSegmentCount&quot;: 196,
+        &quot;vertexRoles&quot;: {
+          &quot;remote-contact&quot;: 4,
+          &quot;junction-common-contact&quot;: 2,
+          &quot;junction-pointed&quot;: 1
+        },
+        &quot;edgeRoles&quot;: {
+          &quot;strip-contact&quot;: 4,
+          &quot;remote-termination&quot;: 2,
+          &quot;junction-member&quot;: 2,
+          &quot;junction-common&quot;: 1,
+          &quot;junction-pointed-degenerate&quot;: 1
+        },
+        &quot;validationCoverage&quot;: &quot;sampled-observation&quot;,
+        &quot;maximumObservedBoundaryDeviationMm&quot;: 1.9860273225978185e-15,
+        &quot;maximumToleranceMm&quot;: 0.00011170109628726747,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      }
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-boundary-termination-span-limit</code></div><h3>A public simple-strip request with a 65-span remote boundary rejects from the 64-span location limit without changing its source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-boundary-termination-span-limit&quot;,
+  &quot;purpose&quot;: &quot;A public simple-strip request with a 65-span remote boundary rejects from the 64-span location limit without changing its source B-rep.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;work-limit-exceeded&quot;,
+    &quot;stage&quot;: &quot;replacement-planning&quot;,
+    &quot;message&quot;: &quot;Locating the fillet contact on source boundary Edge 0 requires 65 spans; the boundary-termination limit is 64.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-spherical-trihedral-stops-before-publication</code></div><h3>A public three-strip trihedral call validates its exact spherical patch, synchronized pcurves, and clear interference query, then stops structurally at the deferred atomic setback/publication boundary.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-spherical-trihedral-stops-before-publication&quot;,
+  &quot;purpose&quot;: &quot;A public three-strip trihedral call validates its exact spherical patch, synchronized pcurves, and clear interference query, then stops structurally at the deferred atomic setback/publication boundary.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;unsupported-materialization&quot;,
+    &quot;stage&quot;: &quot;replacement-planning&quot;,
+    &quot;message&quot;: &quot;The exact spherical junction and its three repositioned strip seams are validated; atomic setback planning and B-rep reconstruction are the next implementation boundary.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true,
+    &quot;junction&quot;: {
+      &quot;candidateKind&quot;: &quot;planar-spherical-trihedral&quot;,
+      &quot;solverEvidence&quot;: {
+        &quot;maximumBoundaryResidualMm&quot;: 0,
+        &quot;maximumPlaneResidualMm&quot;: 0,
+        &quot;maximumAngularErrorRad&quot;: 0,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;participatingTopology&quot;: {
+        &quot;sourceVertexToleranceMm&quot;: 0,
+        &quot;maximumSourceEdgeToleranceMm&quot;: 0
+      },
+      &quot;surfaceValidation&quot;: {
+        &quot;coverage&quot;: &quot;sampled-observation&quot;,
+        &quot;samplesPerParameterDirection&quot;: 9,
+        &quot;maximumObservedBoundaryDeviationMm&quot;: 3.3306690738754696e-16,
+        &quot;maximumObservedPcurveDeviationMm&quot;: 0,
+        &quot;maximumObservedRadiusDeviationMm&quot;: 2.220446049250313e-16,
+        &quot;maximumTangencyErrorRad&quot;: 2.580956827951785e-8,
+        &quot;angularDeviationMm&quot;: 0,
+        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      },
+      &quot;interference&quot;: {
+        &quot;nonlocalFaceIds&quot;: [
+          1,
+          3,
+          4
+        ],
+        &quot;candidateFaceIds&quot;: [],
+        &quot;inputSurfaceConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;maximumQueryConstructionDeviationMm&quot;: 1.6204073638448335e-9,
+        &quot;faceQueries&quot;: []
+      }
+    }
   }
 }</pre></details></article></div></section>
 </main>
