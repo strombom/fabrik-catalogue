@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>77/77</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span></div>
+    <div class="summary"><span><strong>82/82</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span><span><strong>5</strong> Fillet</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -2156,6 +2156,107 @@
     &quot;stage&quot;: &quot;numerical-admission&quot;,
     &quot;replacementPublished&quot;: false,
     &quot;sourceUnchanged&quot;: true
+  }
+}</pre></details></article></div></section><section><h2>Fillet simple strips</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-simple-strip-admitted</code></div><h3>A public simple planar-strip Fillet call publishes one atomically admitted replacement with synchronized generated Edge/pcurve evidence and local envelopes.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-simple-strip-admitted&quot;,
+  &quot;purpose&quot;: &quot;A public simple planar-strip Fillet call publishes one atomically admitted replacement with synchronized generated Edge/pcurve evidence and local envelopes.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;structurallyValidated&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;maximumToleranceExact&quot;: true,
+    &quot;maximumToleranceWithinDesign&quot;: true,
+    &quot;constructionWithinDesign&quot;: true,
+    &quot;generatedRepresentationsSynchronized&quot;: true,
+    &quot;densePcurveSamplesWithinEdgeEnvelopes&quot;: true,
+    &quot;denseMaximumPcurveDeviationMm&quot;: 0.00008376704609454952,
+    &quot;conservativePcurveBoundCoversDenseSamples&quot;: true,
+    &quot;positivePcurveAdmissionHeadroom&quot;: true,
+    &quot;affectedNeighbourhood&quot;: {
+      &quot;nonlocalFaceCount&quot;: 2,
+      &quot;candidateFaceCount&quot;: 0
+    },
+    &quot;admission&quot;: {
+      &quot;pcurveSegmentCount&quot;: 130,
+      &quot;maximumPcurveObservedDeviationMm&quot;: 0.00008376704609434644,
+      &quot;maximumPcurveDeviationBoundMm&quot;: 0.00011170109741262397,
+      &quot;minimumPcurveAdmissionHeadroomMm&quot;: 0.0008882989025873761,
+      &quot;maximumEdgeToleranceMm&quot;: 0.00011170109741262397,
+      &quot;maximumCoedgeObservedDeviationMm&quot;: 0.00008376704609434644
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-radius-overflow-atomic-rejection</code></div><h3>A radius that consumes the affected boundary rejects structurally without publishing partial Fillet topology or mutating the source.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-radius-overflow-atomic-rejection&quot;,
+  &quot;purpose&quot;: &quot;A radius that consumes the affected boundary rejects structurally without publishing partial Fillet topology or mutating the source.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;radius-infeasible&quot;,
+    &quot;stage&quot;: &quot;neighborhood-analysis&quot;,
+    &quot;message&quot;: &quot;The requested radius places the strip end outside limiting Face 0.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-curved-seed-rejected</code></div><h3>A degree-two seed whose genuine bow fits inside accepted topology envelopes is rejected by independent straightness evidence instead of being flattened into the exact straight-strip route.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-curved-seed-rejected&quot;,
+  &quot;purpose&quot;: &quot;A degree-two seed whose genuine bow fits inside accepted topology envelopes is rejected by independent straightness evidence instead of being flattened into the exact straight-strip route.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;rejected&quot;,
+    &quot;code&quot;: &quot;unsupported-support&quot;,
+    &quot;stage&quot;: &quot;support-analysis&quot;,
+    &quot;message&quot;: &quot;The first fillet solver requires a nondegenerate geometrically straight seed Edge.&quot;,
+    &quot;replacementPublished&quot;: false,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;independentSeedBowMm&quot;: 0.0008,
+    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-rational-pcurve-correspondence</code></div><h3>A collinear rational Edge with nonuniform weights exposes a same-parameter deviation peak missed by the former fixed grid; adaptive correspondence evidence must bound it with positive admission headroom.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-rational-pcurve-correspondence&quot;,
+  &quot;purpose&quot;: &quot;A collinear rational Edge with nonuniform weights exposes a same-parameter deviation peak missed by the former fixed grid; adaptive correspondence evidence must bound it with positive admission headroom.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;rationalWeights&quot;: [
+      1,
+      2
+    ],
+    &quot;coarseFivePointObservationMm&quot;: 0.00020000000000020002,
+    &quot;adversarialParameter&quot;: 0.41421356237309515,
+    &quot;adversarialCoarseDeviationMm&quot;: 0.00020588745030480915,
+    &quot;adversarialPeakMissedByFivePointGrid&quot;: true,
+    &quot;adaptiveSegmentCount&quot;: 2,
+    &quot;denseSameParameterDeviationMm&quot;: 0.00008081641154289443,
+    &quot;conservativeWholeSpanBoundMm&quot;: 0.00020000000613945728,
+    &quot;conservativeBoundCoversDenseCorrespondence&quot;: true,
+    &quot;nearEqualWeightRoundoffExercised&quot;: false,
+    &quot;admissionHeadroomMm&quot;: 0.0007999999938605427
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-near-equal-weight-pcurve-roundoff</code></div><h3>Near-equal rational weights expose binary64 cancellation in the correspondence numerator; the published whole-span bound must include absolute representation-arithmetic evidence.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-near-equal-weight-pcurve-roundoff&quot;,
+  &quot;purpose&quot;: &quot;Near-equal rational weights expose binary64 cancellation in the correspondence numerator; the published whole-span bound must include absolute representation-arithmetic evidence.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;rationalWeights&quot;: [
+      1,
+      1.0000000000000002
+    ],
+    &quot;coarseFivePointObservationMm&quot;: 2.220446049250313e-16,
+    &quot;adversarialParameter&quot;: 0.41421356237309515,
+    &quot;adversarialCoarseDeviationMm&quot;: 2.220446049250313e-16,
+    &quot;adversarialPeakMissedByFivePointGrid&quot;: false,
+    &quot;adaptiveSegmentCount&quot;: 1,
+    &quot;denseSameParameterDeviationMm&quot;: 9.155133597044475e-16,
+    &quot;conservativeWholeSpanBoundMm&quot;: 3.069988707693507e-12,
+    &quot;conservativeBoundCoversDenseCorrespondence&quot;: true,
+    &quot;nearEqualWeightRoundoffExercised&quot;: true,
+    &quot;admissionHeadroomMm&quot;: 0.0009999999969300113
   }
 }</pre></details></article></div></section>
 </main>
