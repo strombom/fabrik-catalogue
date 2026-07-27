@@ -45,7 +45,7 @@
   <header>
     <h1>Tolerant B-rep Topology</h1>
     <p>Inspectable structural validation, bounded topology admission, spatial decisions, and scale-qualified rigid-placement evidence.</p>
-    <div class="summary"><span><strong>87/87</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span><span><strong>10</strong> Fillet</span></div>
+    <div class="summary"><span><strong>88/88</strong> expected outcomes</span><span><strong>13</strong> topology</span><span><strong>10</strong> admission</span><span><strong>26</strong> rigid placement</span><span><strong>11</strong> Fillet</span></div>
   </header>
   <section><h2>Topology</h2><div class="grid"><article class="pass"><div class="case-heading"><strong>PASS</strong><code>zero-envelopes</code></div><h3>A canonical triangular Face may carry exact zero topology envelopes.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;zero-envelopes&quot;,
@@ -2177,14 +2177,355 @@
     &quot;positivePcurveAdmissionHeadroom&quot;: true,
     &quot;affectedNeighbourhood&quot;: {
       &quot;nonlocalFaceCount&quot;: 2,
-      &quot;candidateFaceCount&quot;: 0
+      &quot;candidateFaceCount&quot;: 0,
+      &quot;certificate&quot;: {
+        &quot;changedFaceIds&quot;: [
+          0,
+          1,
+          2,
+          5,
+          6
+        ],
+        &quot;incidentFaceIds&quot;: [
+          3,
+          4
+        ],
+        &quot;riskExpandedFaceIds&quot;: [],
+        &quot;admittedFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        &quot;admittedEdgeIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ],
+        &quot;admittedVertexIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9
+        ],
+        &quot;riskExpansion&quot;: &quot;surface-control-bounds&quot;
+      },
+      &quot;affectedScopeComplete&quot;: true,
+      &quot;deepAuditFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      &quot;deepAuditAccepted&quot;: true,
+      &quot;deepAuditAcceptedAffectedFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      &quot;deepAuditMatchesAffectedAdmission&quot;: true,
+      &quot;independentFullSpatialAudit&quot;: {
+        &quot;families&quot;: [
+          {
+            &quot;family&quot;: &quot;vertex-vertex&quot;,
+            &quot;nonincidentPairs&quot;: 45,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 45
+          },
+          {
+            &quot;family&quot;: &quot;vertex-edge&quot;,
+            &quot;nonincidentPairs&quot;: 120,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 120
+          },
+          {
+            &quot;family&quot;: &quot;edge-edge&quot;,
+            &quot;nonincidentPairs&quot;: 75,
+            &quot;broadPhaseCandidates&quot;: 2,
+            &quot;broadPhaseSeparations&quot;: 73
+          },
+          {
+            &quot;family&quot;: &quot;vertex-face&quot;,
+            &quot;nonincidentPairs&quot;: 40,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 40
+          },
+          {
+            &quot;family&quot;: &quot;edge-face&quot;,
+            &quot;nonincidentPairs&quot;: 75,
+            &quot;broadPhaseCandidates&quot;: 34,
+            &quot;broadPhaseSeparations&quot;: 41
+          },
+          {
+            &quot;family&quot;: &quot;face-face&quot;,
+            &quot;nonincidentPairs&quot;: 6,
+            &quot;broadPhaseCandidates&quot;: 1,
+            &quot;broadPhaseSeparations&quot;: 5
+          }
+        ],
+        &quot;allFamiliesCovered&quot;: true,
+        &quot;localCandidateFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        &quot;localScopeContainsEveryCandidate&quot;: true,
+        &quot;remotePairCount&quot;: 0
+      }
     },
+    &quot;route&quot;: &quot;simple-planar-strip-set&quot;,
+    &quot;routeFactsComplete&quot;: true,
     &quot;admission&quot;: {
       &quot;pcurveSegmentCount&quot;: 130,
       &quot;maximumPcurveObservedDeviationMm&quot;: 0.00008376704609434644,
       &quot;maximumPcurveDeviationBoundMm&quot;: 0.00011170109741262397,
       &quot;minimumPcurveAdmissionHeadroomMm&quot;: 0.0008882989025873761,
       &quot;maximumEdgeToleranceMm&quot;: 0.00011170109741262397,
+      &quot;maximumCoedgeObservedDeviationMm&quot;: 0.00008376704609434644
+    }
+  }
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-risk-expanded-deep-audit</code></div><h3>A topologically separate cavity Face lies only inside the conservative affected-neighbourhood padding, is admitted solely through risk expansion, and agrees with an independent whole-result trim audit.</h3><details><summary>Observed evidence</summary><pre>{
+  &quot;id&quot;: &quot;fillet-risk-expanded-deep-audit&quot;,
+  &quot;purpose&quot;: &quot;A topologically separate cavity Face lies only inside the conservative affected-neighbourhood padding, is admitted solely through risk expansion, and agrees with an independent whole-result trim audit.&quot;,
+  &quot;passed&quot;: true,
+  &quot;observed&quot;: {
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
+    &quot;sourceUnchanged&quot;: true,
+    &quot;structurallyValidated&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;maximumToleranceExact&quot;: true,
+    &quot;maximumToleranceWithinDesign&quot;: true,
+    &quot;constructionWithinDesign&quot;: true,
+    &quot;generatedRepresentationsSynchronized&quot;: true,
+    &quot;densePcurveSamplesWithinEdgeEnvelopes&quot;: true,
+    &quot;denseMaximumPcurveDeviationMm&quot;: 0.00008376704609454952,
+    &quot;conservativePcurveBoundCoversDenseSamples&quot;: true,
+    &quot;positivePcurveAdmissionHeadroom&quot;: true,
+    &quot;affectedNeighbourhood&quot;: {
+      &quot;nonlocalFaceCount&quot;: 8,
+      &quot;candidateFaceCount&quot;: 0,
+      &quot;certificate&quot;: {
+        &quot;changedFaceIds&quot;: [
+          0,
+          1,
+          2,
+          5,
+          12
+        ],
+        &quot;incidentFaceIds&quot;: [
+          3,
+          4
+        ],
+        &quot;riskExpandedFaceIds&quot;: [
+          6,
+          7,
+          8,
+          10,
+          11
+        ],
+        &quot;admittedFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12
+        ],
+        &quot;admittedEdgeIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26
+        ],
+        &quot;admittedVertexIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17
+        ],
+        &quot;riskExpansion&quot;: &quot;surface-control-bounds&quot;
+      },
+      &quot;affectedScopeComplete&quot;: true,
+      &quot;deepAuditFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      &quot;deepAuditAccepted&quot;: true,
+      &quot;deepAuditAcceptedAffectedFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        10,
+        11,
+        12
+      ],
+      &quot;deepAuditMatchesAffectedAdmission&quot;: true,
+      &quot;independentFullSpatialAudit&quot;: {
+        &quot;families&quot;: [
+          {
+            &quot;family&quot;: &quot;vertex-vertex&quot;,
+            &quot;nonincidentPairs&quot;: 153,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 153
+          },
+          {
+            &quot;family&quot;: &quot;vertex-edge&quot;,
+            &quot;nonincidentPairs&quot;: 432,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 432
+          },
+          {
+            &quot;family&quot;: &quot;edge-edge&quot;,
+            &quot;nonincidentPairs&quot;: 297,
+            &quot;broadPhaseCandidates&quot;: 2,
+            &quot;broadPhaseSeparations&quot;: 295
+          },
+          {
+            &quot;family&quot;: &quot;vertex-face&quot;,
+            &quot;nonincidentPairs&quot;: 180,
+            &quot;broadPhaseCandidates&quot;: 4,
+            &quot;broadPhaseSeparations&quot;: 176
+          },
+          {
+            &quot;family&quot;: &quot;edge-face&quot;,
+            &quot;nonincidentPairs&quot;: 297,
+            &quot;broadPhaseCandidates&quot;: 66,
+            &quot;broadPhaseSeparations&quot;: 231
+          },
+          {
+            &quot;family&quot;: &quot;face-face&quot;,
+            &quot;nonincidentPairs&quot;: 51,
+            &quot;broadPhaseCandidates&quot;: 6,
+            &quot;broadPhaseSeparations&quot;: 45
+          }
+        ],
+        &quot;allFamiliesCovered&quot;: true,
+        &quot;localCandidateFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          10,
+          11,
+          12
+        ],
+        &quot;localScopeContainsEveryCandidate&quot;: true,
+        &quot;remotePairCount&quot;: 295
+      },
+      &quot;intendedRiskFaceIds&quot;: [
+        11
+      ],
+      &quot;intendedRiskFaceIsChanged&quot;: false,
+      &quot;intendedRiskFaceIsIncident&quot;: false,
+      &quot;intendedRiskFaceIsAdmitted&quot;: true,
+      &quot;expandedRiskEvidenceComplete&quot;: true
+    },
+    &quot;route&quot;: &quot;simple-planar-strip-set&quot;,
+    &quot;routeFactsComplete&quot;: true,
+    &quot;admission&quot;: {
+      &quot;pcurveSegmentCount&quot;: 130,
+      &quot;maximumPcurveObservedDeviationMm&quot;: 0.00008376704609434644,
+      &quot;maximumPcurveDeviationBoundMm&quot;: 0.00011170109741262397,
+      &quot;minimumPcurveAdmissionHeadroomMm&quot;: 0.0008882989025873761,
+      &quot;maximumEdgeToleranceMm&quot;: 0.0008,
       &quot;maximumCoedgeObservedDeviationMm&quot;: 0.00008376704609434644
     }
   }
@@ -2333,121 +2674,198 @@
     &quot;arrangementCompatibility&quot;: &quot;compatible&quot;,
     &quot;deferredConnectedEndCount&quot;: 2
   }
-}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-toric-compatible-public-route</code></div><h3>The public Fillet evaluator accepts the concave-prism corner arrangement, completes connected replacement and boundary-network validation, and stops atomically at the G-18 topology-rebuild gate.</h3><details><summary>Observed evidence</summary><pre>{
+}</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-toric-compatible-public-route</code></div><h3>The public Fillet evaluator atomically publishes the compatible concave-prism toric corner with local topology evidence, affected-neighbourhood admission, route-specific history, and a matching independent deep audit.</h3><details><summary>Observed evidence</summary><pre>{
   &quot;id&quot;: &quot;fillet-toric-compatible-public-route&quot;,
-  &quot;purpose&quot;: &quot;The public Fillet evaluator accepts the concave-prism corner arrangement, completes connected replacement and boundary-network validation, and stops atomically at the G-18 topology-rebuild gate.&quot;,
+  &quot;purpose&quot;: &quot;The public Fillet evaluator atomically publishes the compatible concave-prism toric corner with local topology evidence, affected-neighbourhood admission, route-specific history, and a matching independent deep audit.&quot;,
   &quot;passed&quot;: true,
   &quot;observed&quot;: {
-    &quot;status&quot;: &quot;rejected&quot;,
-    &quot;code&quot;: &quot;unsupported-materialization&quot;,
-    &quot;stage&quot;: &quot;topology-rebuild&quot;,
-    &quot;message&quot;: &quot;The connected toric boundary network is validated; source-Face reconstruction and atomic publication remain at the next implementation boundary.&quot;,
-    &quot;replacementPublished&quot;: false,
+    &quot;status&quot;: &quot;complete&quot;,
+    &quot;replacementPublished&quot;: true,
     &quot;sourceUnchanged&quot;: true,
-    &quot;independentSeedBowMm&quot;: 0,
-    &quot;curvedSeedInsideAcceptedTopologyEnvelope&quot;: true,
-    &quot;junction&quot;: {
-      &quot;candidateKind&quot;: &quot;planar-toric-rotule&quot;,
-      &quot;solverEvidence&quot;: {
-        &quot;maximumBoundaryResidualMm&quot;: 0,
-        &quot;maximumPlaneResidualMm&quot;: 0,
-        &quot;maximumAngularErrorRad&quot;: 0,
-        &quot;angularDeviationMm&quot;: 0,
-        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
-      },
-      &quot;participatingTopology&quot;: {
-        &quot;sourceVertexToleranceMm&quot;: 1.2560739669470201e-15,
-        &quot;maximumSourceEdgeToleranceMm&quot;: 0
-      },
-      &quot;surfaceValidation&quot;: {
-        &quot;coverage&quot;: &quot;sampled-observation&quot;,
-        &quot;samplesPerParameterDirection&quot;: 9,
-        &quot;maximumObservedBoundaryDeviationMm&quot;: 2.220446049250313e-16,
-        &quot;maximumObservedPcurveDeviationMm&quot;: 6.280369834735101e-16,
-        &quot;maximumObservedRadiusDeviationMm&quot;: 1.2212453270876722e-15,
-        &quot;maximumTangencyErrorRad&quot;: 2.1073424255447017e-8,
-        &quot;angularDeviationMm&quot;: 0,
-        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
-      },
-      &quot;interference&quot;: {
-        &quot;nonlocalFaceIds&quot;: [
-          1,
-          2,
-          3,
-          6,
-          7
-        ],
-        &quot;candidateFaceIds&quot;: [],
-        &quot;inputSurfaceConstructionDeviationMm&quot;: 1.6204073638448335e-9,
-        &quot;maximumQueryConstructionDeviationMm&quot;: 1.6204073638448335e-9,
-        &quot;faceQueries&quot;: []
-      },
-      &quot;arrangementCompatibility&quot;: &quot;compatible&quot;,
-      &quot;replacementPlan&quot;: {
-        &quot;kind&quot;: &quot;global-fillet-replacement&quot;,
-        &quot;replacementCount&quot;: 2,
-        &quot;junctionCount&quot;: 1,
-        &quot;replacementKinds&quot;: [
-          &quot;planar-toric-member-strip&quot;,
-          &quot;planar-toric-member-strip&quot;
-        ],
-        &quot;sourceEdgeGroups&quot;: [
-          [
-            2
-          ],
-          [
-            3
-          ]
-        ],
-        &quot;selectedEdgeIds&quot;: [
-          2,
-          3
-        ],
-        &quot;consumedVertexIds&quot;: [
-          2,
-          3,
-          4
-        ],
-        &quot;trimmedBoundaryEdgeIds&quot;: [
-          1,
-          4,
-          14,
-          15,
-          16
-        ],
-        &quot;modifiedFaceIds&quot;: [
+    &quot;structurallyValidated&quot;: true,
+    &quot;faceTolerancePresent&quot;: false,
+    &quot;maximumToleranceExact&quot;: true,
+    &quot;maximumToleranceWithinDesign&quot;: true,
+    &quot;constructionWithinDesign&quot;: true,
+    &quot;generatedRepresentationsSynchronized&quot;: true,
+    &quot;densePcurveSamplesWithinEdgeEnvelopes&quot;: true,
+    &quot;denseMaximumPcurveDeviationMm&quot;: 0.00008376704609462497,
+    &quot;conservativePcurveBoundCoversDenseSamples&quot;: true,
+    &quot;positivePcurveAdmissionHeadroom&quot;: true,
+    &quot;affectedNeighbourhood&quot;: {
+      &quot;certificate&quot;: {
+        &quot;changedFaceIds&quot;: [
           0,
           3,
           4,
           5,
-          6
+          6,
+          8,
+          9,
+          10
         ],
-        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+        &quot;incidentFaceIds&quot;: [
+          1,
+          2,
+          7
+        ],
+        &quot;riskExpandedFaceIds&quot;: [],
+        &quot;admittedFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        &quot;admittedEdgeIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25
+        ],
+        &quot;admittedVertexIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        &quot;riskExpansion&quot;: &quot;surface-control-bounds&quot;
       },
-      &quot;boundaryNetwork&quot;: {
-        &quot;kind&quot;: &quot;planar-toric-connected-boundary-network&quot;,
-        &quot;vertexCount&quot;: 7,
-        &quot;edgeCount&quot;: 10,
-        &quot;surfaceCount&quot;: 3,
-        &quot;pcurveUseCount&quot;: 19,
-        &quot;sourcePcurveSegmentCount&quot;: 196,
-        &quot;vertexRoles&quot;: {
-          &quot;remote-contact&quot;: 4,
-          &quot;junction-common-contact&quot;: 2,
-          &quot;junction-pointed&quot;: 1
-        },
-        &quot;edgeRoles&quot;: {
-          &quot;strip-contact&quot;: 4,
-          &quot;remote-termination&quot;: 2,
-          &quot;junction-member&quot;: 2,
-          &quot;junction-common&quot;: 1,
-          &quot;junction-pointed-degenerate&quot;: 1
-        },
-        &quot;validationCoverage&quot;: &quot;sampled-observation&quot;,
-        &quot;maximumObservedBoundaryDeviationMm&quot;: 1.9860273225978185e-15,
-        &quot;maximumToleranceMm&quot;: 0.00011170109628726747,
-        &quot;maximumConstructionDeviationMm&quot;: 1.6204073638448335e-9
+      &quot;affectedScopeComplete&quot;: true,
+      &quot;deepAuditFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      &quot;deepAuditAccepted&quot;: true,
+      &quot;deepAuditAcceptedAffectedFaceIds&quot;: [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      &quot;deepAuditMatchesAffectedAdmission&quot;: true,
+      &quot;independentFullSpatialAudit&quot;: {
+        &quot;families&quot;: [
+          {
+            &quot;family&quot;: &quot;vertex-vertex&quot;,
+            &quot;nonincidentPairs&quot;: 120,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 120
+          },
+          {
+            &quot;family&quot;: &quot;vertex-edge&quot;,
+            &quot;nonincidentPairs&quot;: 365,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 365
+          },
+          {
+            &quot;family&quot;: &quot;edge-edge&quot;,
+            &quot;nonincidentPairs&quot;: 265,
+            &quot;broadPhaseCandidates&quot;: 3,
+            &quot;broadPhaseSeparations&quot;: 262
+          },
+          {
+            &quot;family&quot;: &quot;vertex-face&quot;,
+            &quot;nonincidentPairs&quot;: 126,
+            &quot;broadPhaseCandidates&quot;: 0,
+            &quot;broadPhaseSeparations&quot;: 126
+          },
+          {
+            &quot;family&quot;: &quot;edge-face&quot;,
+            &quot;nonincidentPairs&quot;: 235,
+            &quot;broadPhaseCandidates&quot;: 71,
+            &quot;broadPhaseSeparations&quot;: 164
+          },
+          {
+            &quot;family&quot;: &quot;face-face&quot;,
+            &quot;nonincidentPairs&quot;: 30,
+            &quot;broadPhaseCandidates&quot;: 7,
+            &quot;broadPhaseSeparations&quot;: 23
+          }
+        ],
+        &quot;allFamiliesCovered&quot;: true,
+        &quot;localCandidateFaceIds&quot;: [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        &quot;localScopeContainsEveryCandidate&quot;: true,
+        &quot;remotePairCount&quot;: 3
       }
+    },
+    &quot;route&quot;: &quot;planar-toric-corner&quot;,
+    &quot;routeFactsComplete&quot;: true,
+    &quot;admission&quot;: {
+      &quot;pcurveSegmentCount&quot;: 208,
+      &quot;maximumPcurveObservedDeviationMm&quot;: 0.0000837670460943434,
+      &quot;maximumPcurveDeviationBoundMm&quot;: 0.00011170109628726747,
+      &quot;minimumPcurveAdmissionHeadroomMm&quot;: 0.0008882989037127325,
+      &quot;maximumEdgeToleranceMm&quot;: 0.00011170109628726747,
+      &quot;maximumCoedgeObservedDeviationMm&quot;: 0.0000837670460943434
     }
   }
 }</pre></details></article><article class="pass"><div class="case-heading"><strong>PASS</strong><code>fillet-boundary-termination-span-limit</code></div><h3>A public simple-strip request with a 65-span remote boundary rejects from the 64-span location limit without changing its source B-rep.</h3><details><summary>Observed evidence</summary><pre>{
